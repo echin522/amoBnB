@@ -1,5 +1,46 @@
 {
-  "name": "amoGuS",
+  "name": "amogus",
   "private": true,
-  "dependencies": {}
+  "description": "## Tentative logo <img src=\"./public/logo.png\" width=\"1000\" height=\"500\">",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack",
+    "webpack": "webpack --watch --mode=development",
+    "postinstall": "webpack"
+  },
+  "engines": {
+    "node": "16.14.2",
+    "npm": "8.5.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/echin522/amoGuS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/echin522/amoGuS/issues"
+  },
+  "homepage": "https://github.com/echin522/amoGuS#readme",
+  "dependencies": {
+    "@babel/core": "^7.17.10",
+    "@babel/preset-env": "^7.17.10",
+    "@babel/preset-react": "^7.16.7",
+    "babel-loader": "^8.2.5",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-redux": "^8.0.1",
+    "redux": "^4.2.0",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.4.1",
+    "webpack": "^5.72.1",
+    "webpack-cli": "^4.9.2"
+  },
+  "keywords": []
 }
