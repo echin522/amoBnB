@@ -1,4 +1,4 @@
-/*
+/* 
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
  *
@@ -15,6 +15,18 @@
  */
 
 
+
+
+input:focus {
+  outline: none;
+}
+
+body {
+  background-color: #F8F8F8;
+  margin: 0;
+}
+
+/* 
 ::-webkit-scrollbar {
     width: 12px;
 }
@@ -137,7 +149,7 @@ h1, h5 {
 }
 
 .review-button {
-  /* padding-top: 1px; */
+  padding-top: 1px;
 }
 
 .header-name {
@@ -259,4 +271,4 @@ hr {
   top: 5px;
   right: 5px;
   cursor: pointer;
-}
+} */

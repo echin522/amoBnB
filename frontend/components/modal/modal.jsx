@@ -20,6 +20,7 @@ const Modal = ({ modal, closeModal }) => {
         default:
             return null;
     }
+
     return(
         <div className="modal-bg" onClick={closeModal}>
             <div className="modal-child" onClick={e => e.stopPropagation()}>
@@ -29,11 +30,11 @@ const Modal = ({ modal, closeModal }) => {
     )
 }
 
-const mSTP = ({ state, ownProps }) => ({
+const mSTP = ( state, ownProps ) => ({
     modal: state.ui.modal,
 });
 
-const mDTP = ({ dispatch, ownProps }) => ({
+const mDTP = ( dispatch, ownProps ) => ({
     closeModal: () => dispatch(closeModal()),
 })
 

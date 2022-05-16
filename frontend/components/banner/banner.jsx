@@ -16,10 +16,10 @@ class Banner extends React.Component {
                         <h1>amobnb</h1>
                     </Link>
                 </header>
-                <div className='search-bar'>Search Bar
-                    <SearchBar/>
+                <SearchBar/>
+                <div className='user-options'>
+                    User options
                 </div>
-                
             </div>
         )
     }

@@ -12,39 +12,41 @@ class SearchBar extends React.Component {
     }
 
     render() {
-        <form onSubmit={this.handleSubmit} className="search-bar">
-            <div className="location">
-                <h1>Location</h1>
-                <input
-                    type="text"
-                    placeholder="Where are you going?"
-                />
-            </div>
-            <div className="check-in">
-                <h1>Check in</h1>
-                <input 
-                    type="date"
-                    placeholder="Add dates" 
-                />
-            </div>
-            <div className="check-out">
-                <h1>Check out</h1>
-                <input 
-                    type="date"
-                    placeholder="Add dates" 
-                />
-            </div>
-            <div className="add-guests">
-                <h1>Who</h1>
-                <input 
-                    type="text"
-                    placeholder="Add guests" 
-                />
-            </div>
-            <button onClick={this.handleSubmit} className="search-button">
-                <i className="fas fa-search"/>
-            </button>
-        </form>
+        return(
+            <form onSubmit={this.handleSubmit} className="search-bar">
+                <div className="location">
+                    <h3>Location</h3>
+                    <input
+                        type="text"
+                        placeholder="Where are you going?"
+                    />
+                </div>
+                <div className="check-in">
+                    <h3>Check in</h3>
+                    <input 
+                        type="date"
+                        placeholder="Add dates" 
+                    />
+                </div>
+                <div className="check-out">
+                    <h3>Check out</h3>
+                    <input 
+                        type="date"
+                        placeholder="Add dates" 
+                    />
+                </div>
+                <div className="add-guests">
+                    <h3>Who</h3>
+                    <input 
+                        type="text"
+                        placeholder="Add guests" 
+                    />
+                </div>
+                <button onClick={this.handleSubmit} className="banner-search-button">
+                    Search
+                </button>
+            </form>
+        )
     }
 }
 
