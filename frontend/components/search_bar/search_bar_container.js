@@ -1,4 +1,4 @@
-import connect from "react-redux";
+import { connect } from "react-redux";
 import SearchBar from "./search_bar"
 
 const mSTP = ({ session, entities: { users }, errors }) => {

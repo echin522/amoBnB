@@ -13,28 +13,28 @@ class SearchBar extends React.Component {
 
     render() {
         <form onSubmit={this.handleSubmit} className="search-bar">
-            <div onClick={/* dropdown for locations */} className="location">
+            <div className="location">
                 <h1>Location</h1>
                 <input
                     type="text"
                     placeholder="Where are you going?"
                 />
             </div>
-            <div onClick={/* dropdown for check-in date */} className="check-in">
+            <div className="check-in">
                 <h1>Check in</h1>
                 <input 
                     type="date"
                     placeholder="Add dates" 
                 />
             </div>
-            <div onClick={/* dropdown for check-out date */} className="check-out">
+            <div className="check-out">
                 <h1>Check out</h1>
                 <input 
                     type="date"
                     placeholder="Add dates" 
                 />
             </div>
-            <div onClick={/* dropdown for check-out date */} className="add-guests">
+            <div className="add-guests">
                 <h1>Who</h1>
                 <input 
                     type="text"
