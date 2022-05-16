@@ -43,7 +43,7 @@ class SearchBar extends React.Component {
                     />
                 </div>
                 <button onClick={this.handleSubmit} className="banner-search-button">
-                    Search
+                    Search <i className="fas fa-search"></i>
                 </button>
             </form>
         )
