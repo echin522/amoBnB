@@ -35,7 +35,7 @@ class SessionForm extends React.Component {
 
     render() {
         let nameInfo;
-        if (this.props.formType === "sign up") {
+        if (this.props.formType === "signup") {
             nameInfo = (
                 <>
                     <input 
@@ -77,20 +77,20 @@ class SessionForm extends React.Component {
 
         return (
             <div className="login-form-container">
-                <form onSubmit={this.handleSubmit} className>
+                <div >
                     <div className="modal-header">
                         <div onClick={this.props.closeModal} className="x">X</div>
                         Log in or sign up
                     </div>
                     {this.renderErrors()}
-                    <form className="login-form">
-                        <h1>Welcome to Amogus</h1>
+                    <form onSubmit={this.handleSubmit} className="login-form">
+                        <h1>Welcome to AmoBnB</h1>
                         { formInfo }
-                        <input type="submit" className="session-submit">
+                        <button type="submit" className="session-submit">
                             {this.props.formType}
-                        </input>
+                        </button>
                     </form>
-                </form>
+                </div>
             </div>
         )
     }

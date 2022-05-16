@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
+import SearchBar from '../search_bar/search_bar_container';
 
 class Banner extends React.Component {
     constructor(props) {
@@ -11,16 +12,17 @@ class Banner extends React.Component {
         return (
             <div className='banner'>
                 <header>
-                    <div onClick={() => this.props.history.push("/")} className="logo">
-                        {/* put logo here */}
-                        amogus
-                    </div>
+                    <Link to="/" className="header-link">
+                        <h1>amobnb</h1>
+                    </Link>
                 </header>
-                <div className='search-bar'>
-                    Search Bar
+                <div className='search-bar'>Search Bar
+                    <SearchBar/>
                 </div>
                 
             </div>
         )
     }
 }
+
+export default Banner;
