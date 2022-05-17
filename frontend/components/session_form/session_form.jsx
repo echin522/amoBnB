@@ -79,20 +79,19 @@ class SessionForm extends React.Component {
 
         return (
             <div className="login-form-container">
-                <div >
-                    <div className="modal-header">
-                        <div onClick={this.props.closeModal} className="x">X</div>
-                        Log in or sign up
-                    </div>
-                    {this.renderErrors()}
-                    <form onSubmit={this.handleSubmit} className="login-form">
-                        <h1>Welcome to AmoBnB</h1>
-                        { formInfo }
-                        <button type="submit" className="session-submit">
-                            {this.props.formType}
-                        </button>
-                    </form>
+                <div className="modal-header">
+                    <div onClick={this.props.closeModal} className="x">X</div>
+                    <p>Log in or sign up</p>
+                    <div></div>
                 </div>
+                {this.renderErrors()}
+                <form onSubmit={this.handleSubmit} className="login-form">
+                    <h1>Welcome to AmoBnB</h1>
+                    { formInfo }
+                    <button type="submit" className="session-submit">
+                        {this.props.formType}
+                    </button>
+                </form>
             </div>
         )
     }

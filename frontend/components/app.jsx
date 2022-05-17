@@ -13,8 +13,6 @@ const App = () => (
     <>    
         <header>
             <Banner/>
-            <GreetingContainer />
-            {/* <SessionForm /> */}
         </header>
         
         < Modal />

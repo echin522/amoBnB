@@ -38,6 +38,10 @@ input:focus {
   outline: none;
 }
 
+input:hover {
+  background-color: none;
+}
+
 body {
   display: flex;
   justify-content: center;
