@@ -3,6 +3,7 @@
     justify-content: space-between;
     align-items: center; 
     position: sticky;
+    padding: 20px;
     top: 0;
     background-color: white;
     z-index: 100;
@@ -16,8 +17,7 @@
 
 .header-link {
     object-fit: contain;
-    height: 100px;
-    margin-left: 20px;
+    color: #FF5A5F;
 }
 
 .search-bar {
@@ -50,7 +50,11 @@
     height: 50px;
     top: 50%;
     width: auto;
+    border-radius: 1000px;
     border-right: 1px solid lightgrey;
+    margin: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .search-bar h3 {
@@ -69,15 +73,23 @@
     border-right: none;
 }
 
+.add-guests {
+    border-right: none;
+}
+
 .banner-search-button {
-    background-color: red;
+    background-color: #FF385C;
+    color: white;
     border: none;
     border-radius: 1000px;
-    height: 30px;
+    height: 40px;
+    width: 40px;
     text-align: center;
+    align-items: center;
+    justify-content: center;
 }
 
 .banner-search-button:hover {
-    background-color: lightcoral;
+    background-color: #FF5A5F;
     cursor: pointer;
 }

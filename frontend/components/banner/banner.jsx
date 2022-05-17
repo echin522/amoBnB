@@ -11,14 +11,10 @@ class Banner extends React.Component {
     render() {
         return (
             <div className='banner'>
-                <header>
-                    <Link to="/" className="header-link">
-                        <h1>amobnb</h1>
-                    </Link>
-                </header>
+                <Link to="/" className="header-link"><h1>amobnb</h1></Link>
                 <SearchBar/>
                 <div className='user-options'>
-                    User options
+                    <p>User options</p>
                 </div>
             </div>
         )

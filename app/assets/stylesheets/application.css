@@ -14,16 +14,38 @@
  *= require_self
  */
 
+:root {
+  --bg: #dadce1;
+  --bg-accent: #484a4d;
+  --text-color: #242424;
+  --nav-size: 60px;
+  --border: 1px solid #474a4d;
+  --border-radius: 8px;
+}
 
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 
+a {
+  color: var(--text-color);
+  text-decoration: none;
+}
 
 input:focus {
   outline: none;
 }
 
 body {
-  background-color: #F8F8F8;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   margin: 0;
+  padding-left: 100px;
+  padding-right: 100px;
+  max-width: 1920px;
 }
 
 /* 
