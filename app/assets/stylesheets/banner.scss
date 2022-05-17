@@ -13,6 +13,8 @@
 
 .banner input {
     border: none;
+    text-decoration: none;
+    background-color: nonew;
   }
 
 
@@ -111,7 +113,7 @@
 }
 
 .user-drop-down {
-    display: flex;
+    display: none;
     flex-direction: column;
     position: absolute;
     background-color: #f1f1f1;

@@ -37,6 +37,15 @@ num_users.times do
 end
 
 # Create random listings
+test_listing = Listing.create!(
+    title: "Big house",
+    description: "extremely big house",
+    max_guests: 10,
+    price_per_night: 420,
+    lat: 37.804, lng: -122.419651,
+    address: "55 9th Street",
+    owner_id: 1
+)
 
 # Large homes
 
