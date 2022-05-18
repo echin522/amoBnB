@@ -6,39 +6,48 @@ import SearchBar from '../search_bar/search_bar_container';
 class Banner extends React.Component {
     constructor(props) {
         super(props);
-        this.userOptionsClicked = false;
-        this.toggleUserOptions = this.toggleUserOptions.bind(this);
+    }
+
+    dropDown(e) {
+        if (!e.target.closest(".user-options") && !e.target.closest(".dropdown-option")) {
+            document.querySelector(".user-drop-down").style.display = 'none'
+            document.removeEventListener("click", this.dropDown)
+        }
     }
 
     toggleUserOptions() {
-        this.setState({ userOptionsClicked: !this.userOptionsClicked })
+        let userDropDown = document.querySelector(".user-drop-down");
+        if (userDropDown.style.display === "none") {
+            userDropDown.style.display = "flex"
+            document.addEventListener("click", this.dropDown)
+        } else {
+            userDropDown.style.display = "none"
+            document.removeEventListener("click", this.dropDown)
+        }
     }
 
     render() {
-        console.log(this.props);
-        const { currentUser, logout, openModal } = this.props
-        const userOptionsToggle = this.userOptionsClicked ? 
-            "user-drop-down show" :
-            "user-drop-down"
-        const dropDownOptions = this.props.currentUser ?
+        const { currentUser, logout, openModal } = this.props;
+        let dropDownOptions = this.props.currentUser ?
             <>
-                <button onClick={() => this.props.logout()}>logout</button>
-                <button onClick={() => this.props.history.push("/listings/new")}>Create a new</button>
+                <button onClick={() => this.props.logout()} className="dropdown-option">Log out</button>
+                <button onClick={() => this.props.history.push("/listings/new")} className="dropdown-option">Add your home!</button>
             </> :
             <>
-                <button onClick={() => openModal("login")}>Login</button>
-                <button onClick={() => openModal("signup")}>Sign Up</button>
+                <button onClick={() => openModal("login")} className="dropdown-option">Log In</button>
+                <button onClick={() => openModal("signup")} className="dropdown-option">Sign Up</button>
             </>
         return (
             <div className='banner'>
                 <Link to="/" className="header-link">
-                    <h1><i className="fa-brands fa-airbnb"></i>     amobnb</h1>
+                    <img className='banner-icon' src={window.icon}/>
+                    <h1>amobnb</h1>
                 </Link>
                 <SearchBar/>
-                <div className='user-options'>
+                <div onClick={() => this.toggleUserOptions()} className='user-options'>
                     <i className="fa-solid fa-bars"></i>
                     <i className="fa-solid fa-user-astronaut"></i>
-                    <div onClick={() => this.toggleUserOptions()} className={userOptionsToggle}>
+                    <div className="user-drop-down" style={{display: "none"}}>
                         {dropDownOptions}
                     </div>
                 </div>

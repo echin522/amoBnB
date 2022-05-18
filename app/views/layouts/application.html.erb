@@ -7,13 +7,27 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope&family=Open+Sans:wght@500&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css" integrity="sha384-/frq1SRXYH/bSyou/HUp/hib7RVN1TawQYja658FEOodR/FQBKVqT9Ol+Oz3Olq5" crossorigin="anonymous"/>
+    <style>
+      /* @font-face {
+        font-family: "airbnb";
+        src: url("./AirbnbCereal_W_Bk.otf");
+      } */
+      * {
+        font-family: 'Manrope';
+
+      }
+      </style>
     <script>
       // Add images here
-      window.logo = "<%= image_url('amogus_logo') %>"
+      window.icon = "<%= image_url('amogus_icon') %>"
       window.defaultListingImg = "<%= image_url('amogus_logo') %>"
-      </script>
-      <!-- <%= favicon_link_tag asset_path("") %> -->
+    </script>
+      <%= favicon_link_tag asset_path("amogus_icon") %>
   </head>
 
   <body>

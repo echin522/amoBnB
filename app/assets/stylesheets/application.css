@@ -14,11 +14,6 @@
  *= require_self
  */
 
-@font-face {
-  font-family: "airbnb";
-  src: url("/app/assets/fonts/AirbnbCereal_W_Bk.otf") format("opentype");
-}
-
 /* * {
   font-family: "airbnb";
 } */
@@ -54,11 +49,12 @@ input:hover {
 body {
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-direction: column;
   margin: 0;
-  padding-left: 100px;
+  /* padding-left: 100px;
   padding-right: 100px;
-  max-width: 1920px;
+  max-width: 1920px; */
 }
 
 /* 

@@ -27,6 +27,8 @@ class User < ApplicationRecord
         foreign_key: :owner_id,
         class_name: :Listing
 
+    has_one_attached :photo
+
     def self.find_by_credentials(email, password)
         @user = User.find_by(email: email)
         if @user && @user.is_password?(password)
