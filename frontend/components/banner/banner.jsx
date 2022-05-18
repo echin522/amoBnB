@@ -23,6 +23,7 @@ class Banner extends React.Component {
         const dropDownOptions = this.props.currentUser ?
             <>
                 <button onClick={() => this.props.logout()}>logout</button>
+                <button onClick={() => this.props.history.push("/listings/new")}>Create a new</button>
             </> :
             <>
                 <button onClick={() => openModal("login")}>Login</button>

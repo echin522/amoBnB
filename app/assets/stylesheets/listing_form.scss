@@ -1,0 +1,96 @@
+.listing-form-container {
+    padding-top: 80px;
+    min-height: 900px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.listing-form {
+    width: 40%;
+    min-width: 400px;
+    max-width: 650px;
+    // border: 3px solid #FF385C;
+    border-radius: 25px;
+}
+
+.listing-form form {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: space-between;
+    height: 700px;
+    border: 3px solid lightgrey;
+    border-radius: 25px;
+}
+
+.home-button {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-weight: bold;
+    justify-content: space-between;
+}
+
+.home-button i {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin-left: 25px;
+    // padding-left: 20px;
+    height: 30px;
+    width: 30px;
+    border-radius: 1000px;
+}
+
+.home-button i:hover {
+    cursor: pointer;
+    background-color: lightgrey;
+}
+
+.listing-field {
+    display: flex;
+    padding: 15px;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid lightgrey;
+    border-radius: 10px;
+}
+
+.listing-field:focus {
+    border: 1px solid #242424;
+}
+
+.listing-field input {
+    border: none;
+}
+
+.form-button-holder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#new-listing-button-container {
+    display: flex;
+    align-items: center;
+    margin-left: 30px;
+    width: 120px;
+    height: 50px;
+}
+
+.new-listing-button {
+    background-color: #242424;
+    color: white;
+    width: inherit;
+    height: inherit;
+    border: none;
+    border-radius: 10px;
+}
+
+.new-listing-button:hover {
+    background-color: black;
+    cursor: pointer;
+}

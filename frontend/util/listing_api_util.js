@@ -1,33 +1,32 @@
 export const fetchListings = data => (
     $.ajax({
-      method: 'GET',
-      url: 'api/listings',
-      data
+        method: 'GET',
+        url: 'api/listings',
+        data
     })
-  );
-  
-  export const fetchListing = id => (
+);
+
+export const fetchListing = listingId => (
     $.ajax({
-      method: 'GET',
-      url: `api/listings/${id}`
+        method: 'GET',
+        url: `api/listings/${listingId}`
     })
-  );
-  
-  export const createReview = review => (
+);
+
+export const createReview = review => (
     $.ajax({
         method: 'POST',
         url: 'api/reviews',
         data: { review }
     })
-  );
-  
-  export const createListing = listingForm => (
+);
+
+export const createListing = listingForm => (
     $.ajax({
         method: 'POST',
         url: 'api/listings',
-        data: listingForm,
-        //   contentType: false,
-        //   processData: false
+        data: JSON.stringify(listingForm),
+        contentType: false,
+        processData: false
     })
-  );
-  
+);

@@ -14,6 +14,15 @@
  *= require_self
  */
 
+@font-face {
+  font-family: "airbnb";
+  src: url("/app/assets/fonts/AirbnbCereal_W_Bk.otf") format("opentype");
+}
+
+/* * {
+  font-family: "airbnb";
+} */
+
 :root {
   --bg: #dadce1;
   --bg-accent: #484a4d;
