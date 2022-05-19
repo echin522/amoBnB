@@ -23,7 +23,7 @@ demo_user = User.create!(
 
 test_listing = Listing.create!(
     title: "Big house",
-    description: "extremely big house",
+    description: "Extremely big house",
     max_guests: 10,
     num_rooms: 4,
     num_beds: 6,
@@ -35,12 +35,24 @@ test_listing = Listing.create!(
     owner_id: 1
 )
 
-num_users = 1
-num_listings_per_city = 1
+test_listing.photos.attach(io: open("https://dwgyu36up6iuz.cloudfront.net/heru80fdn/image/upload/c_fill,d_placeholder_architecturaldigest.png,fl_progressive,g_face,h_1080,q_80,w_1920/v1645135325/architecturaldigest_on-the-market-inside-a-23-dollars-million-mega-mansion-surrounded-by-a-lake.jpg"), filename: "testListingExterior")
+test_listing.photos.attach(io: open("https://www.impressiveinteriordesign.com/wp-content/uploads/2019/08/Textural-Balance-Suite-Master.jpg"), filename: "testListingInterior")
+test_listing.photos.attach(io: open("https://media.istockphoto.com/photos/contemporary-island-villa-picture-id154952872?k=20&m=154952872&s=612x612&w=0&h=u9cCS_5SxbVlU227abjUC9cyG0FrCFeM2BwfMYA62Fc="), filename: "testListingInterior3")
+test_listing.photos.attach(io: open("https://i.imgur.com/puydZcV.jpeg"), filename: "testListingInterior4")
+test_listing.photos.attach(io: open("https://s.wsj.net/public/resources/images/BN-IG334_0507MR_M_20150505130415.jpg"), filename: "testListingInterior5")
+# 4.times do |i|
+# end
+
+num_users = 10
+num_listings_per_city = 7
 num_reviews_per_listing = 1
 num_reservations_per_listing = 1
 
-locations = ["San Francisco"]
+locations = {
+    "San Francisco" => "CA",
+    # "New York" => "NY",
+    # "Seattle" => "WA"
+}
 
 city_coords = {
     "San Francisco" => {:lat => (37.7513212..37.999122), :lng =>(-122.447897..-122.391135)}
@@ -150,7 +162,7 @@ listing_interior_images = [
     'https://comoorganizarlacasa.com/en/wp-content/uploads/2017/07/interior-decoration-modern-houses-9.jpg',
     'https://4.bp.blogspot.com/-ogQ7YCG_HQ8/UU6uiIo_QRI/AAAAAAAAA7M/Y9eM_mR_xOU/s1600/Modern-Interior-Design-Ideas.jpg',
     'https://jumanji.livspace-cdn.com/magazine/wp-content/uploads/sites/3/2021/10/28081848/modern-house-cover.png',
-    # 'https://www.digsdigs.com/photos/really-modern-pool-house-2-554x371.jpg',
+    'https://www.digsdigs.com/photos/really-modern-pool-house-2-554x371.jpg',
     'https://www.extraspace.com/blog/wp-content/uploads/2021/09/modern-home-features-popular.jpg',
     'https://roohome.com/wp-content/uploads/2016/08/contemporary-two-storey-house-design-1280x720.jpg',
     'https://i.ytimg.com/vi/YUzm5rxwbM4/hqdefault.jpg',
@@ -181,24 +193,21 @@ num_users.times do
         lname: Faker::Name.unique.last_name,
         email: Faker::Internet.unique.email,
         password: "password",
-        about: Faker::TvShows::SouthPark.quote
+        about: Faker::JapaneseMedia::StudioGhibli.quote
     })
+    # rand_user.photos.attach(io: open(pro_pic.sample()), filename: "#{rand_user.fname + rand_user.lname}ProPic")
 end
 
 # Create random listings
-
-test_listing.photos.attach()
-
-locations.each do |city|
-    
+locations.each_key do |city|
     num_listings_per_city.times do
         guests = rand(1..50)
         beds = rand(1..guests)
         rooms = rand(1..beds)
         baths = rand(1..rooms)
         currListing = Listing.create!(
-            title: Faker::Space.meteorite,
-            description: Faker::JapaneseMedia::StudioGhibli.quote,
+            title: "#{Faker::Space.meteorite} #{Faker::Space.star_cluster}",
+            description: Faker::Lorem.paragraph(sentence_count: 3, supplemental: false, random_sentences_to_add: 10),
             max_guests: guests,
             num_beds: beds,
             num_rooms: rooms,
@@ -207,22 +216,24 @@ locations.each do |city|
             lat: rand(city_coords[city][:lat]),
             lng: rand(city_coords[city][:lng]),
             location: city,
-            address: Faker::Address.full_address,
+            address: "#{Faker::Address.street_address}, #{city}, #{locations[city]}, #{Faker::Address.zip}",
             owner_id: rand(1..num_users)
         )
 
-        1.times do |i|
+        currListing.photos.attach(io: open(listing_exterior_images.sample()), filename: "#{currListing[:title]} exterior")
+        
+        2.times do |i|
             currListing.photos.attach(io: open(listing_interior_images.sample()), filename: "#{currListing[:title] + i.to_s}")
         end
 
-        rand(0..num_reviews_per_listing).times do
-            Review.create!(
-                rating: rand(1..5),
-                body: Faker::Games::LeagueOfLegends.quote,
-                listing_id: currListing.id,
-                reviewer_id: rand(1..num_users)
-            )
-        end
+        # rand(0..num_reviews_per_listing).times do
+        #     Review.create!(
+        #         rating: rand(1..5),
+        #         body: Faker::Games::LeagueOfLegends.quote,
+        #         listing_id: currListing.id,
+        #         reviewer_id: rand(1..num_users)
+        #     )
+        # end
 
         # Generate reservations here
 

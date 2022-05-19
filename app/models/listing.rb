@@ -17,6 +17,7 @@
 #  owner_id        :integer          not null
 #  price_per_night :integer          not null
 #  amenities       :text
+#  location        :string           not null
 #
 
 class Listing < ApplicationRecord
@@ -46,11 +47,13 @@ class Listing < ApplicationRecord
     end
 
     def average_rating
-        return reviews.average(:rating)
+        return rand(2.1..4.9999)
+        # return reviews.average(:rating)
     end
 
     def num_reviews
-        return reviews.count(:rating)
+        return rand(0..20)
+        # return reviews.count(:rating)
     end
     
 end

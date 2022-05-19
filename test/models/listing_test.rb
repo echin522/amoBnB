@@ -17,6 +17,7 @@
 #  owner_id        :integer          not null
 #  price_per_night :integer          not null
 #  amenities       :text
+#  location        :string           not null
 #
 require 'test_helper'
 

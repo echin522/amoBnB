@@ -7,9 +7,13 @@ class ListingIndex extends React.Component {
         super(props)
     }
 
+    componentDidMount() {
+        this.props.fetchListings();
+    }
+
     render() {
         const { listings, filters } = this.props;
-        console.log(listings)
+        console.log(this.props)
         let indexHeader = filters
             ? <h1 className="filtered-listing-index-header">{Object.length(listings)} stays in this area</h1>
             : <h1 className="unfiltered-listing-index-header">Our top stays</h1>

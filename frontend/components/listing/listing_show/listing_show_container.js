@@ -1,12 +1,12 @@
 import { connect } from "react-redux";
-import ListingIndexItem from "../listing_index/listing_index_item";
+import ListingShow from "./listing_show";
 
 const mSTP = ( state, ownProps ) => ({
-
+    
 });
 
 const mDTP = ( dispatch, ownProps ) => ({
 
 });
 
-export default connect(mSTP, mDTP)(ListingIndexItem)
+export default connect(mSTP, mDTP)(ListingShow)

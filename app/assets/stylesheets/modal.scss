@@ -25,6 +25,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: inherit;
 }
 
 .modal-child input {
@@ -39,8 +40,16 @@
     align-items: center;
 }
 
+.login-form h1 {
+    margin: 0;
+}
+
 .login-form-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     width: 100%;
+    padding: 30px;
 }
 
 .session-submit {

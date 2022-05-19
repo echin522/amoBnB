@@ -1,0 +1,47 @@
+.listing-index-and-map {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.listing-item {
+    margin: 10px;
+    margin-bottom: 20px;
+    width: 30vw;
+    min-width: 150px;
+    max-width: 250px;
+}
+
+.listing-item img {
+    width: inherit;
+    height: 30vw;
+    background-color: black;
+    border-radius: 15px;
+    min-height: 150px;
+    max-height: 250px;
+}
+
+.listing-item p {
+    margin: 0;
+}
+
+.listing-item span {
+    font-weight: bolder;
+}
+
+.listing-item > * > * {
+    display: flex;
+    justify-content: space-between;
+    // height: 40px;
+    margin-top: 5px;
+}
+
+.listing-name {
+    font-weight: 900;
+}
+
+.listing-capacity {
+    font-size: 14px;
+    margin-top: 0px;
+    color: grey;
+}

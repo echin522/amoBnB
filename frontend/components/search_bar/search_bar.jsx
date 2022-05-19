@@ -15,7 +15,7 @@ class SearchBar extends React.Component {
         return(
             <form onSubmit={this.handleSubmit} className="search-bar">
                 <div className="location">
-                    <h3>Location</h3>
+                    <h3>Where</h3>
                     <input
                         type="text"
                         placeholder="Where are you going?"
@@ -35,16 +35,21 @@ class SearchBar extends React.Component {
                         placeholder="Add dates" 
                     />
                 </div>
-                <div className="add-guests">
-                    <h3>Who</h3>
-                    <input 
-                        type="text"
-                        placeholder="Add guests" 
-                    />
+                <div>
+                    <div className="add-guests">
+                        <div>
+                            <h3>Who</h3>
+                            <input 
+                                type="text"
+                                placeholder="Add guests" 
+                            />
+                        </div>
+                        <button onClick={this.handleSubmit} className="banner-search-button">
+                            <i className="fas fa-search"></i>
+                        </button>
+                    </div>
+
                 </div>
-                <button onClick={this.handleSubmit} className="banner-search-button">
-                    <i className="fas fa-search"></i>
-                </button>
             </form>
         )
     }

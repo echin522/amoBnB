@@ -92,6 +92,7 @@ class SessionForm extends React.Component {
                         {this.props.formType}
                     </button>
                 </form>
+                <button>Log in as Demo User</button>
             </div>
         )
     }
