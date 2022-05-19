@@ -11,6 +11,9 @@
 #  lat             :float
 #  lng             :float
 #  max_guests      :integer          not null
+#  num_rooms       :integer          not null
+#  num_beds        :integer          not null
+#  num_baths       :integer          not null
 #  owner_id        :integer          not null
 #  price_per_night :integer          not null
 #  amenities       :text

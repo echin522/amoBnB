@@ -6,7 +6,9 @@ import GreetingContainer from "./greeting/greeting_container";
 import Banner from "./banner/banner_container"
 import SignupForm from "./session_form/signup_form_container";
 import LoginForm from "./session_form/login_form_container";
-import ListingForm from "./listing_form/listing_form_container"
+import Listing from "./listing/listing_show/listing_show_container"
+import ListingForm from "./listing/listing_form/listing_form_container"
+import ListingIndex from "./listing/listing_index/listing_index_container";
 // Auth routes redirect to homepage while Protected routes
 // redirect to the login page
 
@@ -19,12 +21,12 @@ const App = () => (
         < Modal />
 
         <Switch>
-            {/* <Route exact path="/" component={Listings} /> */}
-            <AuthRoute exact path="/signup" component={SignupForm}/>
-            <AuthRoute exact path="/signin" component={LoginForm}/>
-            <Route exact path="/listings/new" component={ListingForm} />
+            <Route exact path="/" component={ListingIndex} />
+            <AuthRoute exact path="/signup" component={SignupForm} />
+            <AuthRoute exact path="/signin" component={LoginForm} />
             {/* <Route exact path="listings" component={} /> */}
-            {/* <Route exact path="/listings/:listingId" component={} /> */}
+            <Route exact path="/listings/new" component={ListingForm} />
+            <Route exact path="/listings/:listingId" component={Listing} />
             {/* <Route exact path="/users/:userId" component={} /> */}
             {/* <ProtectedRoute path="/reservations" component={} /> */}
         </Switch>

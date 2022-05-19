@@ -3,11 +3,11 @@ import { RECEIVE_LISTING, RECEIVE_LISTINGS, RECEIVE_REVIEW } from "../actions/li
 const listingsReducer = ( oldState = {}, action ) => {
     Object.freeze(oldState)
     switch(action.type) {
+        case RECEIVE_LISTINGS:
+            return action.listings;
         case RECEIVE_LISTING:
             const newListing = { [action.listing.id]: action.listing };
             return Object.assign({}, oldState, newListing);
-        case RECEIVE_LISTINGS:
-            return action.listings;
         case RECEIVE_REVIEW:
             const { review, average_rating } = action;
             const newState = Object.assign({}, oldState);
@@ -19,4 +19,4 @@ const listingsReducer = ( oldState = {}, action ) => {
     }
 };
 
-export default benchesReducer;
+export default listingsReducer;

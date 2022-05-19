@@ -1,0 +1,1 @@
+json.extract! listing, :id, :title, :description, :address, :lat, :lng, :max_guests, :owner_id, :price_per_night, :amenities

@@ -1,6 +1,7 @@
 class Api::ListingsController < ApplicationController
     def show
         @listing = Listing.find_by(id: params[:id])
+        render :show
     end
 
     def index
@@ -26,7 +27,7 @@ class Api::ListingsController < ApplicationController
     private
     
     def listing_params
-        params.require(:listing).permit(:title, :description, :address, :lat, :lng)
+        params.require(:listing).permit(:title, :description, :address, :lat, :lng, :max_guests, :num_rooms, :num_beds, :num_baths, :owner_id, :price_per_night, :location)
     end
 
     def bounds

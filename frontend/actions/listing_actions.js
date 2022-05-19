@@ -29,8 +29,9 @@ export const createReview = review => dispatch => (
     ))
 );
 
-export const fetchListings = filters => dispatch => (
-    listingAPIUtil.fetchListings(filters)
+// Add filters to this later
+export const fetchListings = () => dispatch => (
+    listingAPIUtil.fetchListings()
         .then(listings => (dispatch(receiveListings(listings))
     ))
 );
