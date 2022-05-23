@@ -30,11 +30,13 @@ class Listing < ApplicationRecord
         class_name: :User
 
     has_many :reviews,
-        foreign_key: :property_id,
+        primary_key: :id,
+        foreign_key: :listing_id,
         class_name: :Review
-
+        
     has_many :reservations,
-        primary_key: :property_id,
+        primary_key: :id,
+        primary_key: :listing_id,
         class_name: :Reservation
 
     has_many_attached :photos

@@ -7,7 +7,7 @@ class ListingReviewsItem extends React.Component {
 
     render() {
         const { listing } = this.props;
-        
+        <h4>listing info</h4>
     }
 }
 

@@ -9,11 +9,10 @@ export const receiveListings = listings => ({
     listings,
 });
 
-export const receiveListing = ({ listing, reviews, reviewers }) => ({
+export const receiveListing = ({ listing, reviews }) => ({
     type: RECEIVE_LISTING,
     listing,
     reviews,
-    reviewers,
 });
 
 export const receiveReview = ({ review, average_rating, reviewer }) => ({
@@ -38,7 +37,7 @@ export const fetchListings = () => dispatch => (
 
 export const fetchListing = listingId => dispatch => (
     listingAPIUtil.fetchListing(listingId)
-        .then(payload => (dispatch(receiveListing(payload))
+        .then(data => (dispatch(receiveListing(data))
     ))
 );
 

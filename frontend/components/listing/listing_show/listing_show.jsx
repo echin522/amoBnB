@@ -9,17 +9,17 @@ class ListingShow extends React.Component {
             end_date: "",
             num_nights: 3,
             num_guests: 1,
-            listing_id: this.props.listing.id,
-            cleaning_fee: Math.ceil(this.props.listing.price_per_night * 0.05),
+            listing_id: this.props.match.params.listingId,
+            cleaning_fee: 0,
             // user_id: this.props.currentUser.id,
         }
+        this.reviews = []
     }
 
     componentDidMount() {
-        console.log("AWFOI;JAWLVJA;LFS;LA")
-        if (!this.props.listing) {
-            this.props.listing = this.props.fetchListing(this.props.match.params.listingId);
-        }
+        this.props.fetchListing(this.props.match.params.listingId)
+            .then(listing => this.setState({ cleaning_fee: Math.ceil(listing.price_per_night * 0.05) }))
+            .then(console.log("props: ", this.props));
         document.querySelector("header").style.position = "static";
     }
     
@@ -37,12 +37,14 @@ class ListingShow extends React.Component {
         // this.props.processForm(user).then(this.props.closeModal);
     }
 
-    redirecToBrowse() {
+    redirectToBrowse() {
         // this.props.history.push(`/browse/${this.props.filter}`);
     }
 
     render() {
         let listing = this.props.listing;
+        console.log("RENDER PROPS", this.props)
+        if (!listing) return null;
         let averageRating = parseFloat(listing.average_rating).toFixed(2);
 
         return(
@@ -154,12 +156,13 @@ class ListingShow extends React.Component {
                 {/* REVIEWS */}
                 <div className="listing-reviews">
                     <h3>Reviews</h3>
+
                 </div>
 
                 <div className="listing-show-map">
                     <h2>Where you'll be</h2>
                     <h4>{listing.address}</h4>
-                    <ListingMap></ListingMap>
+                    {/* <ListingMap/> */}
                 </div>
             </div>
         )

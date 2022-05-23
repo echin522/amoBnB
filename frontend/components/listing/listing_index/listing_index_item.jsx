@@ -8,7 +8,7 @@ class ListingIndexItem extends React.Component {
 
     redirectToShow() {
         const listingId = this.props.listing.id;
-        this.props.history.push(`/listings/$`)
+        // this.props.history.push(`/listings/`)
     }
 
     render() {

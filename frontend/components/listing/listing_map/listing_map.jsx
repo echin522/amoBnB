@@ -18,7 +18,7 @@ class ListingMap extends React.Component {
             zoom: 13,
         };
         this.map = new google.maps.Map(this.mapNode, mapOptions);
-        this.MarkerManager = new MarkerManager(this.mapNode, this.handleMarkerClick.bind(this));
+        this.MarkerManager = new MarkerManager(this.map, this.handleMarkerClick.bind(this));
     }
 
     componentDidUpdate() {

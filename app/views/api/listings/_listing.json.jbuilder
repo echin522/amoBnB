@@ -14,3 +14,7 @@ json.extract! listing,
     :price_per_night,
     :amenities
 json.photoUrl url_for(listing.photos[0])
+
+# json.array!(listing.photos) do |photo| 
+#     photo
+# end
