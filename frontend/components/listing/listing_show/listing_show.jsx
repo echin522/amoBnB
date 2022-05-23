@@ -16,12 +16,16 @@ class ListingShow extends React.Component {
     }
 
     componentDidMount() {
+        console.log("AWFOI;JAWLVJA;LFS;LA")
         if (!this.props.listing) {
             this.props.listing = this.props.fetchListing(this.props.match.params.listingId);
         }
+        document.querySelector("header").style.position = "static";
     }
-
-
+    
+    componentWillUnmount() {
+        document.querySelector("header").style.position = "sticky";
+    }
 
     update(field) {
         return e => this.setState({ [field]: e.currentTarget.value });
@@ -148,6 +152,9 @@ class ListingShow extends React.Component {
                 </div>
 
                 {/* REVIEWS */}
+                <div className="listing-reviews">
+                    <h3>Reviews</h3>
+                </div>
 
                 <div className="listing-show-map">
                     <h2>Where you'll be</h2>

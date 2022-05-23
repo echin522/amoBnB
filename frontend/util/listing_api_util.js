@@ -13,13 +13,15 @@ export const fetchListing = listingId => (
     })
 );
 
-export const createReview = review => (
+export const createReview = review => {
+    console.log("CREATING REVIEW")
+    return(
     $.ajax({
         method: 'POST',
         url: 'api/reviews',
         data: { review }
     })
-);
+)};
 
 export const createListing = listingForm => (
     $.ajax({

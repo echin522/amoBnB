@@ -10,7 +10,7 @@ class Api::SessionsController < ApplicationController
             render json: @user
             # render "/api/users/show"
         else
-            render json: ['Invalid email or password.'], status: 401
+            render json: 'Invalid email or password.', status: 401
         end
 
     end
@@ -21,7 +21,7 @@ class Api::SessionsController < ApplicationController
             render plain: "successfully logged out"
             # render "/api/users/show"
         else
-            render json: ["Already signed out"], status: 404
+            render json: "Already signed out", status: 404
         end
     end
 end
