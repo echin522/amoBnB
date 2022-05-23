@@ -1,6 +1,9 @@
 class Api::SessionsController < ApplicationController
     skip_before_action :verify_authenticity_token
     def create
+        if logged_in?
+            render json: ['You are already signed in']
+        end
         @user = User.find_by_credentials(params[:user][:email], params[:user][:password])
         if @user
             login(@user)

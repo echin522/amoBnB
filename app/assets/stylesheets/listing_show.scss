@@ -1,0 +1,217 @@
+.listing-show-container {
+    justify-content: center;
+}
+
+.listing-show-container * {
+    margin: 0px;
+    padding: 0px;
+    color: black;
+    display: flex;
+    flex-direction: column;
+}
+
+.listing-show-offerings-block > * {
+    padding-bottom: 30px;
+    padding-top: 20px;
+    border-bottom: 1px solid lightgrey;
+}
+
+.listing-show-container > * {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.listing-show-title {
+    margin-top: 0px;
+}
+
+.listing-show-title > * {
+    margin-bottom: 5px;
+}
+
+.listing-show-offerings-block h3 {
+    margin-bottom: 5px;
+}
+
+.show-block-title {
+    padding-top: 0px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+}
+
+
+.owner-pro-pic img {
+    width: 60px;
+    aspect-ratio: 1 / 1;
+    background-color: black;
+    border-radius: 100px;
+    object-fit: cover;
+}
+
+.listing-show-info {
+    margin-top: 40px;
+    display: grid;
+    height: fit-content;
+    gap: 5rem;
+}
+
+.listing-show-info > *:nth-child(1) {
+    grid-area: info;
+}
+
+.listing-show-info > *:nth-child(2) {
+    grid-area: reservation;
+}
+
+@media (min-width: 700px) {
+    .listing-show-info{
+        grid-template-areas: 
+            'info info reservation';
+    }
+}
+
+// @media {
+//     .listing-show-info {
+//         grid-template-areas: 
+//             'info' 
+//             'reservation';
+//     }
+// }
+
+.listing-show-reservation-block {
+    position: sticky;
+    top: 180px;
+    bottom: 100px;
+    height: fit-content;
+    min-width: 250px;
+    border: 1px solid lightgrey;
+    box-shadow: 0px 3px 15px lightgrey;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.reserve-block-listing-info {
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.reserve-block-price {
+    flex-direction: row;
+    align-items: baseline;
+}
+
+.reserve-block-price span {
+    padding-left: 5px;
+    font-size: 15px;
+}
+
+.reserve-block-listing-info p {
+    display: block;
+    font-size: 12px;
+}
+
+.reserve-block-form {
+    border-radius: 10px;
+    display: grid;
+    grid-template-areas: 
+        'checkin checkout'
+        'guests guests'
+        'button button'
+        'notification notification';
+}
+
+.reserve-block-form > * {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.reserve-block-form > *:nth-child(1) {
+    grid-area: checkin;
+    margin-bottom: 0px;
+    border: 1px solid lightgrey;
+    border-top-left-radius: 10px;
+}
+
+.reserve-block-form > *:nth-child(2) {
+    grid-area: checkout;
+    margin-bottom: 0px;
+    border: 1px solid lightgrey;
+    border-top-right-radius: 10px;
+}
+
+.reserve-block-form > *:nth-child(3) {
+    grid-area: guests;
+    margin-top: 0px;
+    border: 1px solid lightgrey;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.reserve-block-form > *:nth-child(4) {
+    grid-area: button;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    background-image: linear-gradient(to right, #e51f4e, #d60567);
+    text-align: center;
+    border: none;
+    border-radius: 10px;
+}
+
+.reserve-block-form > *:nth-child(5) {
+    grid-area: notification;
+    align-items: center;
+}
+
+.reserve-block-submit:hover {
+    cursor: pointer;
+}
+
+#charge-notice {
+    align-items: center;
+    font-size: 12px;
+}
+
+.reserve-block-input {
+    align-items: baseline;
+    padding: 8px;
+}
+
+.reserve-block-input:hover {
+    background-color: #ededed;
+}
+
+.reserve-block-input h3 {
+    font-size: 12px;
+}
+
+.reserve-block-input input {
+    flex-direction: row;
+    font-size: 12px;
+}
+
+.reserve-block-subtotal {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid lightgrey;
+}
+
+.fee {
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.fee:first-child {
+    text-decoration: underline;
+}
+
+.fa-star {
+    margin-left: 3px;
+    margin-right: 3px;
+}

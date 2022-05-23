@@ -10,19 +10,20 @@ class Banner extends React.Component {
 
     dropDown(e) {
         if (!e.target.closest(".user-options") && !e.target.closest(".dropdown-option")) {
-            document.querySelector(".user-drop-down").style.display = 'none'
-            document.removeEventListener("click", this.dropDown)
+            document.querySelector(".user-drop-down").style.display = 'none';
+            document.removeEventListener("click", this.dropDown);
         }
     }
 
     toggleUserOptions() {
         let userDropDown = document.querySelector(".user-drop-down");
         if (userDropDown.style.display === "none") {
-            userDropDown.style.display = "flex"
-            document.addEventListener("click", this.dropDown)
+            userDropDown.style.display = "flex";
+            
+            document.addEventListener("click", this.dropDown);
         } else {
-            userDropDown.style.display = "none"
-            document.removeEventListener("click", this.dropDown)
+            userDropDown.style.display = "none";
+            document.removeEventListener("click", this.dropDown);
         }
     }
 
@@ -43,7 +44,11 @@ class Banner extends React.Component {
                     <img className='banner-icon' src={window.icon}/>
                     <h1>amobnb</h1>
                 </Link>
-                <SearchBar/>
+                <div id='mini-search-bar'>
+                    <p>Find your perfect getaway</p>
+                    <i></i>
+                </div>
+                <SearchBar />
                 <div onClick={() => this.toggleUserOptions()} className='user-options'>
                     <i className="fa-solid fa-bars"></i>
                     <i className="fa-solid fa-user-astronaut"></i>

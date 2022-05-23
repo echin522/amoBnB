@@ -14,28 +14,28 @@ class SearchBar extends React.Component {
     render() {
         return(
             <form onSubmit={this.handleSubmit} className="search-bar">
-                <div className="location">
+                <label className="location">
                     <h3>Where</h3>
                     <input
                         type="text"
                         placeholder="Where are you going?"
                     />
-                </div>
-                <div className="check-in">
+                </label>
+                <label className="check-in">
                     <h3>Check in</h3>
                     <input 
                         type="date"
                         placeholder="Add dates" 
                     />
-                </div>
-                <div className="check-out">
+                </label>
+                <label className="check-out">
                     <h3>Check out</h3>
                     <input 
                         type="date"
                         placeholder="Add dates" 
                     />
-                </div>
-                <div>
+                </label>
+                <label>
                     <div className="add-guests">
                         <div>
                             <h3>Who</h3>
@@ -49,7 +49,7 @@ class SearchBar extends React.Component {
                         </button>
                     </div>
 
-                </div>
+                </label>
             </form>
         )
     }

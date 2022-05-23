@@ -13,3 +13,4 @@ json.extract! listing,
     :owner_id,
     :price_per_night,
     :amenities
+json.photoUrl url_for(listing.photos[0])

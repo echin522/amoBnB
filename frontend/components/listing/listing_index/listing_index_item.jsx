@@ -6,13 +6,18 @@ class ListingIndexItem extends React.Component {
         super(props);
     }
 
+    redirectToShow() {
+        const listingId = this.props.listing.id;
+        this.props.history.push(`/listings/$`)
+    }
+
     render() {
         let listing = this.props.listing;
         return (
             <div className="listing-item">
                 <Link to={`/listings/${listing.id}`}>
                     <div className="listing-image-container">
-                        <img src={window.icon}/>
+                        <img src={this.props.listing.photoUrl}/>
                     </div>
                     <div className="listing-title">
                         <h4 className="listing-name">{listing.title.split(" ").slice(0, 3).join(" ")}</h4>
