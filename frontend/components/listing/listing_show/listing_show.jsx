@@ -1,4 +1,5 @@
 import React from "react";
+import ListingMap from "../listing_map/listing_map";
 
 class ListingShow extends React.Component {
     constructor(props) {
@@ -151,7 +152,7 @@ class ListingShow extends React.Component {
                 <div className="listing-show-map">
                     <h2>Where you'll be</h2>
                     <h4>{listing.address}</h4>
-                    <p id="test-map">POG</p>
+                    <ListingMap></ListingMap>
                 </div>
             </div>
         )

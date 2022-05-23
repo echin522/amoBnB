@@ -1,6 +1,7 @@
 header {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     position: sticky;
     top: 0px;
     box-shadow: 0px 3px 15px lightgrey;
@@ -46,20 +47,38 @@ header {
     margin-left: 50px;
 }
 
-.search-bar {
+#mini-search-bar {
+    cursor: pointer;
     display: flex;
-    flex: 1;
-    justify-content: center;
     align-items: center;
-    max-width: fit-content;
-    // padding: 10px;
-    height: 70px;
+    color: grey;
     border: 1px solid lightgray;
-    border-radius: 1000px;
+    border-radius: 100px;
+    box-shadow: 0 0 7px 1px rgba(33, 33, 33, .1);
+    padding-left: 20px;
+    padding-right: 10px;
+    justify-content: space-between;
+    height: 50px;
+    min-width: 300px;
 }
 
-.search-bar:hover {
-    -shadow: 0 0 3px rgba(33,33,33,.2);
+#mini-search-bar > p{
+    font-size: 15px;
+}
+
+#mini-search-bar > span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e51f4e;
+    border-radius: 100px;
+    height: 30px;
+    aspect-ratio: 1/1;
+}
+
+#mini-search-bar i {
+    font-size: 14px;
+    color: white;
 }
 
 .user-options {
@@ -84,6 +103,30 @@ header {
     padding: 8px;
 }
 
+.add-guests {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    width: 200px;
+}
+
+.search-bar {
+    display: none;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    max-width: fit-content;
+    height: 100px;
+    // background-color: #EEEEEE;
+    border: 1px solid lightgray;
+    border-radius: 1000px;
+    margin-bottom: 40px;
+}
+
+.search-bar:hover {
+    -shadow: 0 0 3px rgba(33,33,33,.2);
+}
+
 .search-bar > * {
     display: flex;
     flex-direction: column;
@@ -99,8 +142,8 @@ header {
     margin: 0;
 }
 
-.search-bar > *:last-child {
-    border-right: none;
+.search-bar > *{
+    height: 70px;
 }
 
 .search-bar > *:hover {
@@ -108,22 +151,17 @@ header {
 }
 
 .search-bar > *:focus {
-    border-right: none;
+    background-color: white;
+    z-index: 10;
 }
 
 .search-bar > * > * {
     padding-left: 25px;
 }
 
-.add-guests {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    width: 200px;
-}
 
 .banner-search-button {
-    background-color: #FF385C;
+    background-image: linear-gradient(to right, #e51f4e, #d60567);
     color: white;
     border: none;
     border-radius: 1000px;

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
-import SearchBar from '../search_bar/search_bar_container';
 
 class Banner extends React.Component {
     constructor(props) {
@@ -15,16 +14,30 @@ class Banner extends React.Component {
         }
     }
 
+    dropSearch(e) {
+        // Include the dropdowns in this later
+        if (!e.target.closest(".search-bar")) {
+            document.querySelector(".search-bar").style.display = 'none';
+            document.getElementById("mini-search-bar").style.display = "flex"
+            document.removeEventListener("click", this.dropSearch);
+        }
+    }
+    
     toggleUserOptions() {
         let userDropDown = document.querySelector(".user-drop-down");
         if (userDropDown.style.display === "none") {
             userDropDown.style.display = "flex";
-            
             document.addEventListener("click", this.dropDown);
         } else {
             userDropDown.style.display = "none";
             document.removeEventListener("click", this.dropDown);
         }
+    }
+    
+    toggleSearchBar() {
+        document.getElementById("mini-search-bar").style.display = "none"
+        document.querySelector(".search-bar").style.display = 'flex';
+        // document.addEventListener("click", this.dropSearch);
     }
 
     render() {
@@ -44,11 +57,12 @@ class Banner extends React.Component {
                     <img className='banner-icon' src={window.icon}/>
                     <h1>amobnb</h1>
                 </Link>
-                <div id='mini-search-bar'>
+                <div id='mini-search-bar' onClick={() => this.toggleSearchBar()}>
                     <p>Find your perfect getaway</p>
-                    <i></i>
+                    <span>
+                        <i className="fas fa-search"></i>
+                    </span>
                 </div>
-                <SearchBar />
                 <div onClick={() => this.toggleUserOptions()} className='user-options'>
                     <i className="fa-solid fa-bars"></i>
                     <i className="fa-solid fa-user-astronaut"></i>

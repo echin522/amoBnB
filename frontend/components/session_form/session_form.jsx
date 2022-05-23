@@ -11,6 +11,7 @@ class SessionForm extends React.Component {
             password: "",
         };
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.loginAsDemo = this.loginAsDemo.bind(this);
     }
 
     update(field) {
@@ -20,19 +21,28 @@ class SessionForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         const user = Object.assign({}, this.state);
-        this.props.processForm(user).then(this.props.closeModal);
+        this.props.processForm(user)
+            .then(this.props.closeModal);
+    }
+
+    loginAsDemo() {
+        this.props.processForm({email: 'demo@email.com', password: 'asdf1234'})
+            .then(this.props.closeModal);
     }
 
     renderErrors() {
-        // return (
-        //     <ul>
-        //         {this.props.errors.map((error, i) => (
-        //             <li key={i}>
-        //                 {error}
-        //             </li>
-        //         ))}
-        //     </ul>
-        // );
+        console.log("ERRORS ERRORS", this.props.errors)
+        if (this.props.errors.session) {
+            return (
+                <ul className="session-errors">
+                    {this.props.errors.map((error, i) => (
+                        <li key={i}>
+                            {error}
+                        </li>
+                    ))}
+                </ul>
+            );
+        }
     }
 
     render() {
@@ -81,18 +91,22 @@ class SessionForm extends React.Component {
             <div className="login-form-container">
                 <div className="modal-header">
                     <div onClick={this.props.closeModal} className="x">X</div>
-                    <p>Log in or sign up</p>
+                    <p>Log in 
+                        or 
+                        Sign up</p>
                     <div></div>
                 </div>
-                {this.renderErrors()}
                 <form onSubmit={this.handleSubmit} className="login-form">
-                    <h1>Welcome to AmoBnB</h1>
+                    <h1>AmoBnB</h1>
+                    {this.renderErrors()}
                     { formInfo }
                     <button type="submit" className="session-submit">
-                        {this.props.formType}
+                        {this.props.formType.charAt(0).toUpperCase() + this.props.formType.slice(1)}
                     </button>
                 </form>
-                <button>Log in as Demo User</button>
+                <button onClick={this.loginAsDemo} id="demo-button">
+                    Log in as Demo User
+                </button>
             </div>
         )
     }

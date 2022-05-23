@@ -18,7 +18,7 @@ class SearchBar extends React.Component {
                     <h3>Where</h3>
                     <input
                         type="text"
-                        placeholder="Where are you going?"
+                        placeholder="Search destinations"
                     />
                 </label>
                 <label className="check-in">
