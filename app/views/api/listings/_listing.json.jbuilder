@@ -13,8 +13,10 @@ json.extract! listing,
     :owner_id,
     :price_per_night,
     :amenities
-json.photoUrl url_for(listing.photos[0])
+json.owner User.find_by(id: listing.owner_id)
+json.average_rating listing.average_rating
+json.num_reviews listing.num_reviews
 
-# json.array!(listing.photos) do |photo| 
-#     photo
-# end
+json.photoUrls do
+    json.array! listing.photos.map { |photo| url_for(photo) }
+end

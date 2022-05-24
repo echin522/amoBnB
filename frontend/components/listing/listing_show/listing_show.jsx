@@ -1,5 +1,8 @@
 import React from "react";
 import ListingMap from "../listing_map/listing_map";
+import Amenities from "./listing_amenities";
+import ListingReviewsItem from "./listing_reviews_item_container";
+import ProgressBar from "./progress_bar";
 
 class ListingShow extends React.Component {
     constructor(props) {
@@ -11,15 +14,16 @@ class ListingShow extends React.Component {
             num_guests: 1,
             listing_id: this.props.match.params.listingId,
             cleaning_fee: 0,
+            reviewModal: false,
             // user_id: this.props.currentUser.id,
         }
         this.reviews = []
+        this.toggleReviewModal = this.toggleReviewModal.bind(this);
     }
 
     componentDidMount() {
         this.props.fetchListing(this.props.match.params.listingId)
-            .then(listing => this.setState({ cleaning_fee: Math.ceil(listing.price_per_night * 0.05) }))
-            .then(console.log("props: ", this.props));
+            .then(listing => this.setState({ cleaning_fee: Math.ceil(listing.price_per_night * 0.05) }));
         document.querySelector("header").style.position = "static";
     }
     
@@ -37,18 +41,20 @@ class ListingShow extends React.Component {
         // this.props.processForm(user).then(this.props.closeModal);
     }
 
-    redirectToBrowse() {
-        // this.props.history.push(`/browse/${this.props.filter}`);
+    toggleReviewModal() {
+        this.setState({reviewModal: !this.state.reviewModal})
     }
 
     render() {
         let listing = this.props.listing;
-        console.log("RENDER PROPS", this.props)
         if (!listing) return null;
         let averageRating = parseFloat(listing.average_rating).toFixed(2);
-
+        
         return(
             <div className="listing-show-container content">
+                {/* {this.state.reviewModal && (
+                    <ReviewModal />
+                )} */}
                 <div className="listing-show-title">
                     <h1>{listing.title}</h1>
                     <h4 className="reserve-block-price">
@@ -60,11 +66,9 @@ class ListingShow extends React.Component {
                 {/* REPLACE */}
                 
                 <div id="listing-show-photos">
-                    <img src={listing.photoUrl}/>
-                    <img src={window.icon}/>
-                    <img src={window.icon}/>
-                    <img src={window.icon}/>
-                    <img src={window.icon}/>
+                    {Object.values(listing.photoUrls).map(photoUrl => (
+                        <img src={photoUrl}/>
+                    ))}
                 </div>
                 
                 {/* REPLACE */}
@@ -73,52 +77,40 @@ class ListingShow extends React.Component {
                     <div className="listing-show-offerings-block">
                         <div className="show-block-title">
                             <div>
-                                <h3>{`${listing.title.split(" ").slice(0, 2).join(" ")} by ${listing.owner_id}`}</h3>
+                                <h1>{`${listing.title.split(" ").slice(0, 2).join(" ")} by ${listing.owner.fname} ${listing.owner.lname}`}</h1>
                                 {/* <i class="fa-solid fa-people-group"></i> */}
                                 <h4>{`${listing.max_guests} guests`} · {`${listing.num_rooms} bedrooms`} · {`${listing.num_beds} beds`} · {`${listing.num_baths} baths`}</h4>
                             </div>
                             <div className="owner-pro-pic"><img src={window.icon} /></div>
                         </div>
                         <div className="listing-description">
-                            <h3>About this home</h3>
+                            <h2>About this home</h2>
                             <p>{listing.description}</p>
                         </div>
-                        <div className="listing-amenities">
-                            <h3>What this place offers</h3>
-                            <p>Amenity</p>
-                            <p>Amenity</p>
-                            <p>Amenity</p>
-                            <p>Amenity</p>
-                            <p>Amenity</p>
-                            <p>Amenity</p>
-                            <p>Amenity</p>
-                            {/* {listing.amenities.map(amenity => (
-                                <p> {amenity}</p>
-                            ))} */}
-                        </div>
+                        <Amenities/>
                     </div>
                     <div className="listing-show-reservation-block">
                         <div className="reserve-block-listing-info">
-                            <h3 className="reserve-block-price">${listing.price_per_night} <span>night</span></h3>
+                            <h2 className="reserve-block-price">${listing.price_per_night} <span>night</span></h2>
                             <p><i className="fa-solid fa-star"></i> {averageRating} · {listing.num_reviews} reviews</p>
                         </div>
                         <form onSubmit={this.handleSubmit} className="reserve-block-form">
                             <label className="reserve-block-input">
-                                <h3>CHECK-IN</h3>
+                                <h2>CHECK-IN</h2>
                                 <input 
                                     type="date"
                                     placeholder="Add dates" 
                                 />
                             </label>
                             <label className="reserve-block-input">
-                                <h3>CHECKOUT</h3>
+                                <h2>CHECKOUT</h2>
                                 <input 
                                     type="date"
                                     placeholder="Add dates" 
                                 />
                             </label>
                             <label className="reserve-block-input">
-                                <h3>GUESTS</h3>
+                                <h2>GUESTS</h2>
                                 <input 
                                     type="text"
                                     placeholder="1 guest"
@@ -154,15 +146,78 @@ class ListingShow extends React.Component {
                 </div>
 
                 {/* REVIEWS */}
-                <div className="listing-reviews">
-                    <h3>Reviews</h3>
-
+                <div className="reviews-overview">
+                    <div className="reviews-header">
+                        <h2>Reviews</h2>
+                        <h4 id="leave-review" onClick={this.toggleReviewModal}>Leave a review</h4>
+                    </div>
+                    <p id="reviews-scores">
+                        <i className="fa-solid fa-star"></i> {averageRating} · {listing.num_reviews} reviews
+                    </p>
+                    <ul id="reviews-metrics">
+                        <li className="metric">
+                            <p>Cleanliness</p>
+                            <ProgressBar 
+                                bgcolor="black"
+                                progress="76"
+                            />
+                        </li>
+                        <li className="metric">
+                            <p>Communication</p>
+                            <ProgressBar 
+                                bgcolor="black"
+                                progress="42"
+                            />
+                        </li>
+                        <li className="metric">
+                            <p>Check-in</p>
+                            <ProgressBar 
+                                bgcolor="black"
+                                progress="71"
+                            />
+                        </li>
+                        <li className="metric">
+                            <p>Accuracy</p>
+                            <ProgressBar 
+                                bgcolor="black"
+                                progress="23"
+                            />
+                        </li>
+                        <li className="metric">
+                            <p>Location</p>
+                            <ProgressBar 
+                                bgcolor="black"
+                                progress="98"
+                            />
+                        </li>
+                        <li className="metric">
+                            <p>Value</p>
+                            <ProgressBar 
+                                bgcolor="black"
+                                progress="12"
+                            />
+                        </li>
+                    </ul>
                 </div>
+                <ul className="listing-reviews">
+                    {Object.values(this.props.reviews).map(review => (
+                        <ListingReviewsItem
+                            key={review.id}
+                            reviewer_id={review.reviewer_id}
+                            rating={review.rating}
+                            body={review.body}
+                        />
+                    ))}
+                </ul>
 
                 <div className="listing-show-map">
                     <h2>Where you'll be</h2>
                     <h4>{listing.address}</h4>
-                    {/* <ListingMap/> */}
+                    <ListingMap
+                        listings={{listings: listing}}
+                        updateFilter={this.props.updateFilter}
+                        singleListing={true}
+                    />
                 </div>
             </div>
         )

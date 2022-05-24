@@ -49,13 +49,11 @@ class Listing < ApplicationRecord
     end
 
     def average_rating
-        return rand(2.1..4.9999)
-        # return reviews.average(:rating)
+        return reviews.average(:rating)
     end
 
     def num_reviews
-        return rand(0..20)
-        # return reviews.count(:rating)
+        return reviews.count(:rating)
     end
     
 end

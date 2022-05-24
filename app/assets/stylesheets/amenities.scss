@@ -1,0 +1,18 @@
+#listing-amenities {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 3rem;
+    row-gap: .5rem;
+}
+
+#amenity {
+    flex-direction: row;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#amenity i {
+    height: 24px;
+    width: 24px;
+    margin-right: 8px;
+}

@@ -15,9 +15,7 @@ class Banner extends React.Component {
     }
 
     dropSearch(e) {
-        console.log(e)
-        // Include the dropdowns in this later
-        if (!e.target.closest(".search-bar")) {
+        if (!e.target.closest(".search-bar") && !e.target.closest("#mini-search-bar")) {
             document.getElementById("mini-search-bar").style.display = "flex"
             document.querySelector(".search-bar").style.display = 'none';
             document.removeEventListener("click", this.dropSearch);

@@ -17,7 +17,7 @@ class ListingIndexItem extends React.Component {
             <div className="listing-item">
                 <Link to={`/listings/${listing.id}`}>
                     <div className="listing-image-container">
-                        <img src={this.props.listing.photoUrl}/>
+                        <img src={this.props.listing.photoUrls[0]}/>
                     </div>
                     <div className="listing-title">
                         <h4 className="listing-name">{listing.title.split(" ").slice(0, 3).join(" ")}</h4>

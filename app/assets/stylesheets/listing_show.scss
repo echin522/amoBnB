@@ -21,8 +21,8 @@
     margin-bottom: 20px;
 }
 
-.listing-show-container h3 {
-    font-size: 30px;
+.listing-show-container h2 {
+    font-size: 22px;
 }
 
 .listing-show-title {
@@ -33,8 +33,8 @@
     margin-bottom: 5px;
 }
 
-.listing-show-offerings-block h3 {
-    margin-bottom: 5px;
+.listing-show-offerings-block h2 {
+    margin-bottom: 16px;
 }
 
 .show-block-title {
@@ -190,7 +190,7 @@
     background-color: #ededed;
 }
 
-.reserve-block-input h3 {
+.reserve-block-input h2 {
     font-size: 12px;
 }
 
@@ -211,7 +211,7 @@
     justify-content: space-between;
 }
 
-.fee:first-child {
+.fee > *:first-child {
     text-decoration: underline;
 }
 

@@ -3,11 +3,34 @@ import React from "react";
 class ListingReviewsItem extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            reviewer: "",
+        }
     }
-
+    
+    componentDidMount() {
+        this.props.fetchUser(this.props.reviewer_id)
+            .then(reviewer => this.setState({reviewer: reviewer}))
+            .then(() => console.log("STATE: ", this.props));
+    }
+    
     render() {
-        const { listing } = this.props;
-        <h4>listing info</h4>
+        const { body } = this.props;
+        const reviewer = this.state.reviewer;
+        if (!this.state.reviewer) return
+        return(
+            <li className="review">
+                <div className="reviewer-header">
+                    <img className="reviewer-propic" src={window.icon}/>
+                    <div>
+                        <h3 className="reviewer-name">{`${reviewer.user.fname}`}</h3>
+                        <p className="review-create-date">May 2022</p>
+                        {/* <p className="review-create-date">{listing.date_created}</p> */}
+                    </div>
+                </div>
+                <p className="review-body">{body}</p>
+            </li>
+        )
     }
 }
 

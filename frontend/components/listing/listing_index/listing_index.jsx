@@ -33,6 +33,7 @@ class ListingIndex extends React.Component {
                         {listings.map(listing => (
                             <ListingIndexItem 
                                 listing={listing}
+                                updateFilter={updateFilter}
                                 key={`listing-${listing.id}`}
                             />
                         ))}

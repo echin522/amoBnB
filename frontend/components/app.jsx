@@ -17,6 +17,7 @@ const App = () => (
             <Route path={"/"} component={Banner} />
             <SearchBar/>
         </header>
+        
         < Modal />
         
         <Switch>
