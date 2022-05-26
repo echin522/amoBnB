@@ -14,7 +14,6 @@ export const fetchListing = listingId => (
 );
 
 export const createReview = review => {
-    console.log("CREATING REVIEW")
     return(
     $.ajax({
         method: 'POST',
@@ -27,8 +26,9 @@ export const createListing = listingForm => (
     $.ajax({
         method: 'POST',
         url: 'api/listings',
-        data: JSON.stringify(listingForm),
+        data: listingForm,
+        // data: {listing: listingForm},
         contentType: false,
-        processData: false
+        processData: false,
     })
 );

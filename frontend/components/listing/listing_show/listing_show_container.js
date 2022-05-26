@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import { createReview, fetchListing } from "../../../actions/listing_actions";
+import { openModal } from "../../../actions/modal_actions";
 import ListingShow from "./listing_show";
 
 const mSTP = ( state, ownProps ) => {
@@ -17,6 +18,7 @@ const mSTP = ( state, ownProps ) => {
 const mDTP = ( dispatch, ownProps ) => ({
     fetchListing: id => dispatch(fetchListing(id)),
     createReview: review => dispatch(createReview(review)),
+    openModal: modal => dispatch(openModal(modal))
     // createReservation: reservation => dispatch(createReservation(reservation)),
 });
 

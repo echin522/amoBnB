@@ -11,25 +11,29 @@
 
 .modal-child {
     display: flex;
-    align-items: center;
     justify-content: center;
-    max-width: 400px;
-    min-width: 40%;
+    width: 50%;
+    max-width: 600px;
     background-color: white;
     border-radius: 15px;
     margin: 15% auto;
 }
 
 .modal-header {
+    position: relative;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     width: inherit;
     margin-bottom: 20px;
+    height: 70px;
     border-bottom: 1px solid lightgray;
 }
 
+
 .x {
+    position: absolute;
+    left: 30px;
     aspect-ratio: 1/1;
     cursor: pointer;
 }
@@ -39,7 +43,7 @@
 // }
 
 .modal-child input {
-    width: 300px;
+    width: inherit;
     height: 30px;
     padding: 8px;
     border-radius: 5px;
@@ -55,7 +59,28 @@
     flex-direction: column;
     min-height: 300px;
     justify-content: space-between;
-    align-items: center;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-bottom: 30px;
+}
+
+#form-info {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border: 1px solid lightgrey;
+    border-radius: 10px;
+}
+
+#form-info > input:nth-child(2) {
+    border-top: 1px solid lightgrey;
+    border-bottom: 1px solid lightgrey;
+}
+
+#form-info > input:nth-child(3) {
+    border-top: 1px solid lightgrey;
+    border-bottom: 1px solid lightgrey;
 }
 
 .login-form h1 {
@@ -64,10 +89,8 @@
 
 .login-form-container {
     display: flex;
-    align-items: center;
     flex-direction: column;
     width: 100%;
-    padding: 30px;
 }
 
 .session-submit {
@@ -79,9 +102,7 @@
     background-image: linear-gradient(to right, #e51f4e, #d60567);
     border: none;
     border-radius: 7px;
-    margin: 9px;
     height: 50px;
-    width: 318px;
 }
 
 #demo-button {
@@ -90,4 +111,18 @@
 
 .modal-bg button:hover {
     cursor: pointer;
+}
+
+#other-form {
+    text-align: end;
+    text-decoration: underline;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-bottom: 30px;
+    margin-top: 0px;
+    cursor: pointer;
+}
+
+.session-errors {
+    color: red;
 }

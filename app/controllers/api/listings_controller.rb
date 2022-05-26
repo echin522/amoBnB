@@ -10,8 +10,13 @@ class Api::ListingsController < ApplicationController
     end
 
     def create
-        @listing = Listing.create!(listing_params)
-        render :show
+        @listing = Listing.new(listing_params)
+        @listing.owner_id = current_user.id
+        if @listing.save
+            render :show
+        else
+            render json: @listing.errors.full_messages, status: 422
+        end
     end
     
     def update
@@ -27,7 +32,7 @@ class Api::ListingsController < ApplicationController
     private
     
     def listing_params
-        params.require(:listing).permit(:title, :description, :address, :lat, :lng, :max_guests, :num_rooms, :num_beds, :num_baths, :owner_id, :price_per_night, :location)
+        params.require(:listing).permit(:title, :description, :address, :lat, :lng, :max_guests, :num_rooms, :num_beds, :num_baths, :owner_id, :price_per_night, :location, photos: [])
     end
 
     def bounds

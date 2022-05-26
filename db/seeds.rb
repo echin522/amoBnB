@@ -35,13 +35,13 @@ test_listing = Listing.create!(
     owner_id: 1
 )
 
+demo_user.photo.attach(io: open("https://i.kym-cdn.com/photos/images/newsfeed/001/248/318/ae2.jpg"), filename: "demoProPic")
+
 test_listing.photos.attach(io: open("https://dwgyu36up6iuz.cloudfront.net/heru80fdn/image/upload/c_fill,d_placeholder_architecturaldigest.png,fl_progressive,g_face,h_1080,q_80,w_1920/v1645135325/architecturaldigest_on-the-market-inside-a-23-dollars-million-mega-mansion-surrounded-by-a-lake.jpg"), filename: "testListingExterior")
 test_listing.photos.attach(io: open("https://www.impressiveinteriordesign.com/wp-content/uploads/2019/08/Textural-Balance-Suite-Master.jpg"), filename: "testListingInterior")
 test_listing.photos.attach(io: open("https://media.istockphoto.com/photos/contemporary-island-villa-picture-id154952872?k=20&m=154952872&s=612x612&w=0&h=u9cCS_5SxbVlU227abjUC9cyG0FrCFeM2BwfMYA62Fc="), filename: "testListingInterior3")
-test_listing.photos.attach(io: open("https://i.imgur.com/puydZcV.jpeg"), filename: "testListingInterior4")
+test_listing.photos.attach(io: open("https://i.imgur.com/HRxo7lY.jpg"), filename: "testListingInterior4")
 test_listing.photos.attach(io: open("https://s.wsj.net/public/resources/images/BN-IG334_0507MR_M_20150505130415.jpg"), filename: "testListingInterior5")
-# 4.times do |i|
-# end
 
 num_users = 10
 num_listings_per_city = 7
@@ -57,6 +57,40 @@ locations = {
 city_coords = {
     "San Francisco" => {:lat => (37.7513212..37.999122), :lng =>(-122.447897..-122.391135)}
 }
+
+profile_pictures = [
+    'https://i.kym-cdn.com/photos/images/facebook/000/848/178/9f9.png',
+    'https://cdn.vox-cdn.com/thumbor/EgPEeyYA5jezoZI6t96t9MshGXk=/1400x1400/filters:format(png)/cdn.vox-cdn.com/uploads/chorus_asset/file/10528279/Screen_Shot_2018_03_26_at_9.32.57_AM.png',
+    'http://static.demilked.com/wp-content/uploads/2019/04/5cb6d34f775c2-stock-models-share-weirdest-stories-photo-use-102-5cb5c725bc378__700.jpg',
+    'https://thumbs.dreamstime.com/b/portrait-young-african-american-business-woman-black-peop-people-51712509.jpg',
+    'https://media.istockphoto.com/photos/happy-smiling-man-looking-away-picture-id1158245623?k=20&m=1158245623&s=612x612&w=0&h=rGmn02kNdoQySPEoQmbbDBxOayL4sdW3QWqP9rjgxCg=',
+    'https://image.shutterstock.com/mosaic_250/2780032/1606121245/stock-photo-happy-young-indian-woman-blogger-applicant-teacher-sit-at-home-office-look-at-camera-doing-online-1606121245.jpg',
+    'https://media.istockphoto.com/photos/portrait-of-a-successful-malay-muslim-man-picture-id1148380353?k=20&m=1148380353&s=612x612&w=0&h=svhVFjShpRc16s2_Nh5WpdkNFuU321jY2LiSBZYllAY=',
+    'https://robertrosenthal.typepad.com/photos/uncategorized/ist_2.jpg',
+    'https://st.depositphotos.com/1224365/2498/i/450/depositphotos_24980235-stock-photo-portrait-of-a-normal-man.jpg',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYrO5dmObUx0dRh5ho5RuAlCF0RYGkFApUrA0uquFuVU5j3d9RS7FG7BnE5IZx4z9Wp_c&usqp=CAU',
+    'https://media.istockphoto.com/photos/mature-businessman-smiling-over-white-background-picture-id685132245?k=20&m=685132245&s=612x612&w=0&h=oKxgMF_dOhoGJtd_YxhbmpK4qFvcl-0s0NFmxuh7IKA=',
+    'https://image.shutterstock.com/mosaic_250/101595/1123160147/stock-photo-portrait-of-beautiful-african-american-woman-smiling-and-looking-away-at-park-during-sunset-1123160147.jpg',
+    'https://www.stockphotosecrets.com/wp-content/uploads/2018/11/dreamstime2.jpg',
+    'https://images.pexels.com/photos/8035299/pexels-photo-8035299.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+    'https://media.istockphoto.com/photos/young-woman-portrait-in-the-city-picture-id1009749608?k=20&m=1009749608&s=612x612&w=0&h=3bnVp0Y1625uKkSwnp7Uh2_y_prWbgRBH6a_6jRew3g=',
+    'https://images.pexels.com/photos/948873/pexels-photo-948873.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+    'https://www.freedigitalphotos.net/images/category-images/397.jpg',
+    'https://media.istockphoto.com/photos/productivity-powered-by-digital-technology-picture-id1330965067?b=1&k=20&m=1330965067&s=170667a&w=0&h=ys_MV3zYkn2HJCtHC4s_03Sz1MUC2BZv6PcDdk__XSc=',
+    'https://media.gettyimages.com/photos/smiling-african-american-woman-wearing-glasses-and-wireless-earphones-picture-id1287492741?s=612x612',
+    'https://static.wikia.nocookie.net/141d1a9b-2dcc-41c1-8328-eb79c7c5ffa6',
+    'https://image1.masterfile.com/getImage/NjQwLTAzMjYyNTIyZW4uMDAwMDAwMDA=AMitEr/640-03262522en_Masterfile.jpg',
+    'https://static9.depositphotos.com/1005893/1189/i/600/depositphotos_11897391-stock-photo-thumb-up-southeast-asian-man.jpg',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQU3PUktMckoXSEItSMbNDaFNZwiMJ0w00KAdMMo1dfzy3VcdbzbvSmQmdsdwcpJ1JOI2c&usqp=CAU',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0dyxfpnYfFjyeg1YvjJiaeaY-m0Uh92kAcp1yiEUErg2cGZb8-uwsJCaULcmbQb6eulc&usqp=CAU',
+    'https://image.shutterstock.com/mosaic_250/2939305/1545395876/stock-photo-teenager-asian-woman-feeling-happy-smiling-and-looking-to-camera-while-relax-in-living-room-at-home-1545395876.jpg',
+    'https://res.cloudinary.com/twenty20/private_images/t_watermark-criss-cross-10/v1632812918000/photosp/7fc519d0-430f-47bc-9e91-00c0b5f90f7f/stock-photo-outdoors-portrait-one-person-smiling-chinese-real-people-asian-man-asian-people-real-portraits-7fc519d0-430f-47bc-9e91-00c0b5f90f7f.jpg',
+    'https://media.istockphoto.com/photos/japanese-woman-outdoors-in-the-city-picture-id922663578?k=20&m=922663578&s=612x612&w=0&h=u6o8tcRQWAmUDksW-6SiZvV3NWB3vHAWbQrGNuGX1ws=',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTN1YCzmeJ-c2hPwZV4vOwWT5nG53M9wfa3uqhQOErByZJzJFHSmjvBuVY-85C7Zss5xF8&usqp=CAU',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREXiu2KQpy8Nn3MRBfZesJkq1NpFpa8RlQPw&usqp=CAU',
+    'https://www.creativeboom.com/uploads/articles/07/076a72cc349f89bdb32276285a07e2a2d99d51e1_810.jpeg',
+    'https://images.stockfreeimages.com/858/sfi226w/8585833.jpg',
+]
 
 listing_exterior_images = [
     'http://cdn.home-designing.com/wp-content/uploads/2017/05/wood-white-and-charcoal-modern-exterior-paint-themes.jpg',
@@ -82,7 +116,6 @@ listing_exterior_images = [
     'https://cdn.decoist.com/wp-content/uploads/2021/06/Modular-black-house-with-balcony-49706.jpg',
     'https://res.cloudinary.com/brickandbatten/images/w_2560,h_1370/v1640973465/wordpress_assets/53642-Anonymous-A/53642-Anonymous-A.jpg?_i=AA',
     'https://d1gcvgm4klzto4.cloudfront.net/web/general-images/banners/new_thumbnail.jpg?auto=compress%2Cformat&crop=focalpoint&fit=crop&fp-x=0.5&fp-y=0.5&h=630&q=100&w=1200&s=cb693c063724402cb30b556d77fbc862',
-
 ]
 
 listing_interior_images = [
@@ -195,7 +228,7 @@ num_users.times do
         password: "password",
         about: Faker::JapaneseMedia::StudioGhibli.quote
     })
-    # rand_user.photos.attach(io: open(pro_pic.sample()), filename: "#{rand_user.fname + rand_user.lname}ProPic")
+    rand_user.photo.attach(io: open(profile_pictures.pop()), filename: "#{rand_user.fname + rand_user.lname}ProPic")
 end
 
 # Create random listings
@@ -222,7 +255,7 @@ locations.each_key do |city|
 
         currListing.photos.attach(io: open(listing_exterior_images.sample()), filename: "#{currListing[:title]} exterior")
         
-        2.times do |i|
+        4.times do |i|
             currListing.photos.attach(io: open(listing_interior_images.sample()), filename: "#{currListing[:title] + i.to_s}")
         end
 

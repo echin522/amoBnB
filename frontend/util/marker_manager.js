@@ -1,4 +1,5 @@
 /* global google:false */
+import Marker from "../components/map/map_marker";
 
 class MarkerManager {
     constructor(map, handleClick){
@@ -28,6 +29,9 @@ class MarkerManager {
             listingId: listing.id
         });
     
+        // const marker = new Marker({
+
+        // });
         marker.addListener('click', () => this.handleClick(listing));
         this.markers[marker.listingId] = marker;
     }

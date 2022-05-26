@@ -18,8 +18,25 @@
   font-family: "airbnb";
 } */
 
+@font-face {
+  font-family: "Cereal";
+  src: url("Cereal_Book.woff2");
+}
+
+@font-face {
+  font-family: "Cereal-Medium";
+  src: url("Cereal_Medium.woff2");
+}
+
+@font-face {
+  font-family: "Cereal-Bold";
+  src: url("Cereal_Bold.woff2");
+}
+
 * {
   z-index: 1;
+  font-family: Cereal;
+  transition: all 0.5s;
 }
 
 :root {
@@ -67,7 +84,7 @@ input:hover {
 
 .content {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1600px;
   margin-top: 30px;
 }
 
@@ -75,4 +92,25 @@ input:hover {
   margin-left: 50px;
   margin-right: 50px;
   margin-top: 0px;
+}
+
+h1 {
+  font-size: 28px;
+  font-family: Cereal-Medium;
+}
+
+h2 {
+  font-size: 22px;
+}
+
+h4 {
+  font-size: 14px;
+}
+
+.hidden {
+  display: none;
+  transition: all 0.2s ease-in-out;
+  height: 0px !important;
+  width: 0px !important;
+  opacity: 0 !important;
 }

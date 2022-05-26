@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Redirect, Switch, Link, HashRouter } from "react-router-dom";
 import Modal from "./session_modal/session_modal";
+import ReviewModal from "./listing/listing_reviews/reviews_modal";
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import Banner from "./banner/banner_container";
 import ListingShow from "./listing/listing_show/listing_show_container";
@@ -19,11 +20,12 @@ const App = () => (
         </header>
         
         < Modal />
+        <Route path="/listings" component={ReviewModal}/>
         
         <Switch>
             <Route exact path="/" component={ListingIndex} />
             <Route exact path="/browse/:filter" component={ListingIndex} />
-            {/* <Route exact path="listings" component={} /> */}
+            {/* <Route exact path="/reviews/new" component={Reviews} /> */}
             <Route exact path="/listings/new" component={ListingForm} />
             <Route exact path="/listings/:listingId" component={ListingShow} />
             {/* <Route exact path="/users/:userId" component={} /> */}

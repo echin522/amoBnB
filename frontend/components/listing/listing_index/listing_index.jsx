@@ -13,7 +13,6 @@ class ListingIndex extends React.Component {
 
     render() {
         const { listings, filters, updateFilter } = this.props;
-        console.log(this.props)
         let indexHeader = filters
             ? <h1 className="filtered-listing-index-header">{Object.length(listings)} stays in this area</h1>
             : <h1 className="unfiltered-listing-index-header">Our top stays</h1>

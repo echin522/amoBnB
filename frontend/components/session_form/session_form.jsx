@@ -31,15 +31,15 @@ class SessionForm extends React.Component {
     }
 
     renderErrors() {
-        console.log("ERRORS ERRORS", this.props.errors)
-        if (this.props.errors.session) {
+        if (this.props.errors.responseText) {
             return (
                 <ul className="session-errors">
-                    {this.props.errors.map((error, i) => (
+                    {this.props.errors.responseText}
+                    {/* {this.props.errors.map((error, i) => (
                         <li key={i}>
                             {error}
                         </li>
-                    ))}
+                    ))} */}
                 </ul>
             );
         }
@@ -47,7 +47,10 @@ class SessionForm extends React.Component {
 
     render() {
         let nameInfo;
+        let otherFormText = "Sign up instead";
+
         if (this.props.formType === "signup") {
+            otherFormText = "Log in instead"
             nameInfo = (
                 <>
                     <input 
@@ -68,7 +71,7 @@ class SessionForm extends React.Component {
 
         let formInfo;
         formInfo = (
-            <>
+            <div id="form-info">
                 { nameInfo }
                 <input 
                     type="text"
@@ -84,7 +87,7 @@ class SessionForm extends React.Component {
                     className="password-info"
                     placeholder="Password"
                 />
-            </>
+            </div>
         )
 
         return (
@@ -97,16 +100,17 @@ class SessionForm extends React.Component {
                     <div></div>
                 </div>
                 <form onSubmit={this.handleSubmit} className="login-form">
-                    <h1>AmoBnB</h1>
+                    <h1>Welcome to AmoBnB</h1>
                     {this.renderErrors()}
                     { formInfo }
                     <button type="submit" className="session-submit">
                         {this.props.formType.charAt(0).toUpperCase() + this.props.formType.slice(1)}
                     </button>
+                    <button onClick={this.loginAsDemo} id="demo-button">
+                        Log in as Demo User
+                    </button>
                 </form>
-                <button onClick={this.loginAsDemo} id="demo-button">
-                    Log in as Demo User
-                </button>
+                <p id="other-form" onClick={() => this.props.openModal(this.props.otherForm)}>{otherFormText}</p>
             </div>
         )
     }

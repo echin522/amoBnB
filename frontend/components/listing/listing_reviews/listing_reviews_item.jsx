@@ -10,8 +10,7 @@ class ListingReviewsItem extends React.Component {
     
     componentDidMount() {
         this.props.fetchUser(this.props.reviewer_id)
-            .then(reviewer => this.setState({reviewer: reviewer}))
-            .then(() => console.log("STATE: ", this.props));
+            .then(reviewer => this.setState({reviewer: reviewer}));
     }
     
     render() {
@@ -21,7 +20,7 @@ class ListingReviewsItem extends React.Component {
         return(
             <li className="review">
                 <div className="reviewer-header">
-                    <img className="reviewer-propic" src={window.icon}/>
+                    <img className="reviewer-propic" src={reviewer.proPicUrl}/>
                     <div>
                         <h3 className="reviewer-name">{`${reviewer.user.fname}`}</h3>
                         <p className="review-create-date">May 2022</p>

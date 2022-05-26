@@ -16,8 +16,9 @@ header {
     align-items: center;
     background-color: white;
     z-index: 100;
-    max-width: 1200px;
+    max-width: 1600px;
     width: 100%;
+    font-family: Cereal-Bold;
 }
 
 .banner > * {
@@ -43,7 +44,7 @@ header {
     align-items: center;
     justify-content: space-between;
     object-fit: contain;
-    color: #FF5A5F;
+    color: #FF375D;
     margin-left: 50px;
 }
 
@@ -60,6 +61,15 @@ header {
     justify-content: space-between;
     height: 50px;
     min-width: 300px;
+    transition: all 0.2s ease-out;
+}
+
+#mini-search-bar.hidden {
+    transform: translateY(30px);
+}
+
+#mini-search-bar:hover {
+    box-shadow: 0 0 3px rgba(33, 33, 33, .2); 
 }
 
 #mini-search-bar > p{
@@ -112,7 +122,7 @@ header {
 }
 
 .search-bar {
-    display: none;
+    display: flex;
     flex: 1;
     justify-content: center;
     align-items: center;
@@ -122,10 +132,15 @@ header {
     border: 1px solid lightgray;
     border-radius: 1000px;
     margin-bottom: 40px;
+    transition: all 0.2s ease-in-out;
+}
+
+.search-bar.hidden {
+    transform: translateY(-30px);
 }
 
 .search-bar:hover {
-    -shadow: 0 0 3px rgba(33,33,33,.2);
+    box-shadow: 0 0 3px rgba(33,33,33,.2);
 }
 
 .search-bar > * {
@@ -136,7 +151,6 @@ header {
     width: 100%;
     top: 50%;
     border-radius: 1000px;
-    // border-right: 1px solid lightgrey;
 }
 
 .search-bar h3 {
@@ -183,9 +197,6 @@ header {
 }
 
 .user-drop-down {
-    display: flex;
-    justify-content: space-evenly;
-    justify-self: right;
     position: absolute;
     width: 200px;
     height: 80px;
@@ -198,20 +209,32 @@ header {
     background-color: white;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     border-radius: 15px;
-    z-index: 1;
-    margin: auto;
-
 }
 
-.user-drop-down button {
+.dropdown-option {
+    cursor: pointer;
     width: 100%;
     height: 40px;
     background-color: white;
     padding: 0px;
     border: none;
     border-radius: 2px;
+    padding-left: 15px;
+    text-align: start;
 }
 
-.user-drop-down button:hover {
+.dropdown-option:hover {
     background-color: lightgrey;
+}
+
+@media (max-width: 500px) {
+    .header-link h1 {
+        display: none;
+    }
+}
+
+@media (max-width: 700px) {
+    #mini-search-bar {
+        display: none;
+    }
 }

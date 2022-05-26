@@ -1,28 +1,18 @@
 .listing-index-and-map {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
     grid-template-rows: auto;
-    // flex-wrap: wrap;
-    // justify-content: center;
 }
 
 .listing-item {
     margin: 10px;
     margin-bottom: 20px;
-    // width: 30vw;
-    // min-width: 150px;
-    max-width: 250px;
-    // max-width: 25%;
 }
 
 .listing-item img {
-    width: inherit;
+    width: 100%;
     aspect-ratio: 1 / 1;
     object-fit: cover;
-    background-color: black;
     border-radius: 15px;
-    max-width: 250px;
-    // min-height: 150px;
 }
 
 .listing-item p {
@@ -36,7 +26,6 @@
 .listing-item > * > * {
     display: flex;
     justify-content: space-between;
-    // height: 40px;
     margin-top: 5px;
 }
 
@@ -48,4 +37,28 @@
     font-size: 14px;
     margin-top: 0px;
     color: grey;
+}
+
+// @media (max-width: 550px) {
+//     .listing-index-and-map {
+//         grid-template-columns: 1fr;
+//     }
+// }
+
+@media (min-width: 550px) {
+    .listing-index-and-map {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 950px) {
+    .listing-index-and-map {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 1120px) {
+    .listing-index-and-map {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }

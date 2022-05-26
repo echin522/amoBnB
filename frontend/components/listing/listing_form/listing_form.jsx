@@ -1,4 +1,5 @@
 import React from "react";
+import FormBackground from "./form_background";
 import { withRouter } from "react-router-dom";
 
 class ListingForm extends React.Component {
@@ -7,21 +8,30 @@ class ListingForm extends React.Component {
         // this.coords = { lat: props.lat, lng: props.lng };
         this.state = {
             title: "",
-            max_guests: 5,
-            price_per_night: 100,
-            address: "",
             description: "",
+            address: "",
+            location: "San Francisco",
             lat: 37.798635,
             lng: -122.402313,
+            max_guests: 0,
+            num_rooms: 0,
+            num_beds: 0,
+            num_baths: 0,
+            price_per_night: 0,
+            photoFiles: [],
             // photoFile: window.defaultListingImg,
             // photoUrl: null,
         };
+
         this.inputNames = {
-            title: "Name of Home",
-            description: "Brief Description",
-            max_guests: "Max Occupancy",
-            price_per_night: "Price per Night",
+            title: "Name of home",
             address: "Address",
+            description: "Brief description",
+            max_guests: "Max Occupancy",
+            num_rooms: "Number of rooms",
+            num_beds: "Number of beds",
+            num_baths:"Number of baths",
+            price_per_night: "Price per night",
             lat: "Latitude",
             lng: "Longitude",
         }
@@ -30,9 +40,25 @@ class ListingForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    componentDidMount() {
+        document.querySelector(".banner").classList.add("hidden");
+        let mapOptions = {
+            center: {
+                lat: 37.773972,
+                lng: -122.431297
+            },
+            zoom: 13,
+        };
+        this.map = new google.maps.Map(this.mapNode, mapOptions);
+    }
+    
+    componentWillUnmount() {
+        document.querySelector(".banner").classList.remove("hidden");
+    }
+
     navigateToListing() {
         // Change this to render the listing show page
-        this.props.history.push(`/`);
+        this.props.history.push(`/listings`);
     }
 
     update(field) {
@@ -40,38 +66,31 @@ class ListingForm extends React.Component {
     }
 
     handleFile(e) {
-        const file = e.currentTarget.files[0];
-        const fileReader = new FileReader();
-        // fileReader.onloadend = () => {
-        //     this.setState({ photoFile: file, photoUrl: fileReader.result });
-        // }
-        // if (file) {
-        //     fileReader.readAsDataURL(file);
-        // }
+        this.state.photoFiles.push(...e.currentTarget.files);
     }
 
     handleSubmit(e) {
         e.preventDefault();
         const formData = new FormData();
-        
-        // Object.keys(this.state).map(key => {
-        //     formData.append(`listing[${key}]`, this.state[key])
-        // });
 
-        formData.append("listing[title]", this.state.title);
-        formData.append("listing[description]", this.state.description);
-        formData.append("listing[max_guests]", this.state.max_guests);
-        formData.append("listing[price_per_night]", this.state.price_per_night);
-        formData.append("listing[address]", this.state.address)
-        formData.append("listing[lat]", this.state.lat);
-        formData.append("listing[lng]", this.state.lng);
+        formData.append(`listing[title]`, this.state.title);
+        formData.append(`listing[description]`, this.state.description);
+        formData.append(`listing[address]`, this.state.address);
+        formData.append(`listing[location]`, this.state.location);
+        formData.append(`listing[lat]`, this.state.lat);
+        formData.append(`listing[lng]`, this.state.lng);
+        formData.append(`listing[max_guests]`, this.state.max_guests);
+        formData.append(`listing[num_rooms]`, this.state.num_rooms);
+        formData.append(`listing[num_beds]`, this.state.num_beds);
+        formData.append(`listing[num_baths]`, this.state.num_baths);
+        formData.append(`listing[price_per_night]`, this.state.price_per_night);
 
-        if (this.state.photoFile) {
-            formData.append("bench[photo]", this.state.photoFile)
-        }
+        this.state.photoFiles.forEach(photo => {
+            formData.append(`listing[photos][]`, photo);
+        });
 
-        this.props.createListing(formData);
-        // this.navigateToListing();
+        this.props.createListing(formData)
+            .then(listing => this.props.history.push(`/listings/${listing.listing.id}`))
     }
 
     formInput = ( type, field ) => (
@@ -86,12 +105,16 @@ class ListingForm extends React.Component {
     )
 
     render() {
-        const preview = this.state.photoUrl 
-            ? <img src={this.state.photoUrl} height="200px" width="200px" />
+        const preview = this.state.photoUrls
+            ? <img src={this.state.photoUrls} height="200px" width="200px" />
             : null;
 
         return (
             <div className="listing-form-container">
+                <FormBackground/>
+                <div className="map" ref={map => this.mapNode = map}>
+                    Map
+                </div>
                 <div className="listing-form">
                     <div className="home-button">
                         <i onClick={() => this.props.history.push("/")} className="fa-solid fa-chevron-left"></i>
@@ -100,15 +123,17 @@ class ListingForm extends React.Component {
                     </div>
                     <form onSubmit={this.handleSubmit}>
                         <div>
-                            {Object.keys(this.state).map( field => (
-                                this.formInput("text", field)
-                            ))}
+                            {Object.keys(this.state).map( field => {
+                                let type;
+                                typeof (this.state[field]) === "string" ? type = "text" : type = "number"
+                                return this.formInput(type, field)
+                            })}
                         </div>
                         <div className="form-button-holder">
                             <h3>Image preview </h3>
                             {preview}
-                            <h3 className="button-holder">Add a Picture</h3>
-                            <input type="file" className="new-photo-button"
+                            <h3 className="button-holder">Please add at least five pictures</h3>
+                            <input type="file" className="new-photo-button" multiple
                                 onChange={this.handleFile.bind(this)}/>
                         </div>
                         <div className="form-button-holder" id="new-listing-button-container">

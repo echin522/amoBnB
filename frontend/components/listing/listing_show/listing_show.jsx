@@ -1,7 +1,7 @@
 import React from "react";
 import ListingMap from "../listing_map/listing_map";
 import Amenities from "./listing_amenities";
-import ListingReviewsItem from "./listing_reviews_item_container";
+import ListingReviewsItem from "../listing_reviews/listing_reviews_item_container";
 import ProgressBar from "./progress_bar";
 
 class ListingShow extends React.Component {
@@ -11,7 +11,7 @@ class ListingShow extends React.Component {
             start_date: "",
             end_date: "",
             num_nights: 3,
-            num_guests: 1,
+            num_guests: "",
             listing_id: this.props.match.params.listingId,
             cleaning_fee: 0,
             reviewModal: false,
@@ -25,10 +25,12 @@ class ListingShow extends React.Component {
         this.props.fetchListing(this.props.match.params.listingId)
             .then(listing => this.setState({ cleaning_fee: Math.ceil(listing.price_per_night * 0.05) }));
         document.querySelector("header").style.position = "static";
+        document.querySelector(".banner").style.maxWidth = "1300px";
     }
     
     componentWillUnmount() {
         document.querySelector("header").style.position = "sticky";
+        document.querySelector(".banner").style.removeProperty("max-width");
     }
 
     update(field) {
@@ -38,6 +40,7 @@ class ListingShow extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         // const reservation = Object.assign({}, this.state);
+        // this.props.createReservation
         // this.props.processForm(user).then(this.props.closeModal);
     }
 
@@ -49,6 +52,10 @@ class ListingShow extends React.Component {
         let listing = this.props.listing;
         if (!listing) return null;
         let averageRating = parseFloat(listing.average_rating).toFixed(2);
+        let subTotal = listing.price_per_night * this.state.num_nights;
+        let cleaningFee = parseFloat(listing.price_per_night * 0.08);
+        let serviceFee = parseFloat(subTotal * 0.035);
+        let totalFee = (subTotal + cleaningFee + serviceFee).toFixed(2)
         
         return(
             <div className="listing-show-container content">
@@ -60,28 +67,25 @@ class ListingShow extends React.Component {
                     <h4 className="reserve-block-price">
                         ${listing.price_per_night} night · <i className="fa-solid fa-star"></i> {averageRating} · {listing.num_reviews} reviews
                     </h4>
-                    
                 </div>
-                
-                {/* REPLACE */}
                 
                 <div id="listing-show-photos">
-                    {Object.values(listing.photoUrls).map(photoUrl => (
-                        <img src={photoUrl}/>
+                    {Object.values(listing.photoUrls).map((photoUrl, i) => (
+                        <img 
+                            src={photoUrl}
+                            key={`photo${i}`}
+                        />
                     ))}
                 </div>
-                
-                {/* REPLACE */}
 
                 <div className="listing-show-info">
                     <div className="listing-show-offerings-block">
                         <div className="show-block-title">
                             <div>
                                 <h1>{`${listing.title.split(" ").slice(0, 2).join(" ")} by ${listing.owner.fname} ${listing.owner.lname}`}</h1>
-                                {/* <i class="fa-solid fa-people-group"></i> */}
                                 <h4>{`${listing.max_guests} guests`} · {`${listing.num_rooms} bedrooms`} · {`${listing.num_beds} beds`} · {`${listing.num_baths} baths`}</h4>
                             </div>
-                            <div className="owner-pro-pic"><img src={window.icon} /></div>
+                            <div className="owner-pro-pic"><img src={listing.owner.proPicUrl} /></div>
                         </div>
                         <div className="listing-description">
                             <h2>About this home</h2>
@@ -99,6 +103,8 @@ class ListingShow extends React.Component {
                                 <h2>CHECK-IN</h2>
                                 <input 
                                     type="date"
+                                    value={this.state.start_date}
+                                    onChange={this.update("start_date")}
                                     placeholder="Add dates" 
                                 />
                             </label>
@@ -106,6 +112,8 @@ class ListingShow extends React.Component {
                                 <h2>CHECKOUT</h2>
                                 <input 
                                     type="date"
+                                    value={this.state.end_date}
+                                    onChange={this.update("end_date")}
                                     placeholder="Add dates" 
                                 />
                             </label>
@@ -113,6 +121,8 @@ class ListingShow extends React.Component {
                                 <h2>GUESTS</h2>
                                 <input 
                                     type="text"
+                                    value={this.state.num_guests}
+                                    onChange={this.update("num_guests")}
                                     placeholder="1 guest"
                                 />
                             </label>
@@ -125,22 +135,22 @@ class ListingShow extends React.Component {
                             <div className="fee">
                                 {/* replace this with the actual number of nights later */}
                                 <p>${listing.price_per_night} x {this.state.num_nights} nights</p>
-                                <p>${listing.price_per_night * this.state.num_nights}</p>
+                                <p>${subTotal}</p>
                             </div>
                             <div className="fee">
                                 {/* replace this with the actual number of nights later */}
                                 <p>Cleaning fee</p>
-                                <p>${this.state.cleaning_fee}</p>
+                                <p>${cleaningFee.toFixed(2)}</p>
                             </div>
                             <div className="fee">
                                 {/* replace this with the actual number of nights later */}
                                 <p>Service fee</p>
-                                <p>$0</p>
+                                <p>${serviceFee.toFixed(2)}</p>
                             </div>
                         </div>
-                        <div className="reserve-block-total">
+                        <div className="fee reserve-block-total">
                             <p>Total before taxes</p>
-
+                            <p>${totalFee}</p>
                         </div>
                     </div>
                 </div>
@@ -149,7 +159,7 @@ class ListingShow extends React.Component {
                 <div className="reviews-overview">
                     <div className="reviews-header">
                         <h2>Reviews</h2>
-                        <h4 id="leave-review" onClick={this.toggleReviewModal}>Leave a review</h4>
+                        <h4 id="leave-review" onClick={() => this.props.openModal("review")}>Leave a review</h4>
                     </div>
                     <p id="reviews-scores">
                         <i className="fa-solid fa-star"></i> {averageRating} · {listing.num_reviews} reviews

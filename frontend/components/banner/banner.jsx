@@ -8,16 +8,17 @@ class Banner extends React.Component {
     }
 
     dropDown(e) {
+        debugger
         if (!e.target.closest(".user-options") && !e.target.closest(".dropdown-option")) {
-            document.querySelector(".user-drop-down").style.display = 'none';
+            document.querySelector(".user-drop-down").classList.add("hidden");
             document.removeEventListener("click", this.dropDown);
         }
     }
 
     dropSearch(e) {
         if (!e.target.closest(".search-bar") && !e.target.closest("#mini-search-bar")) {
-            document.getElementById("mini-search-bar").style.display = "flex"
-            document.querySelector(".search-bar").style.display = 'none';
+            document.getElementById("mini-search-bar").classList.remove("hidden");
+            document.querySelector(".search-bar").classList.add("hidden");
             document.removeEventListener("click", this.dropSearch);
         }
     }
@@ -25,17 +26,17 @@ class Banner extends React.Component {
     toggleUserOptions() {
         let userDropDown = document.querySelector(".user-drop-down");
         if (userDropDown.style.display === "none") {
-            userDropDown.style.display = "flex";
+            userDropDown.classList.remove("hidden");
             document.addEventListener("click", this.dropDown);
         } else {
-            userDropDown.style.display = "none";
+            userDropDown.classList.add("hidden");
             document.removeEventListener("click", this.dropDown);
         }
     }
     
     toggleSearchBar() {
-        document.getElementById("mini-search-bar").style.display = "none"
-        document.querySelector(".search-bar").style.display = 'flex';
+        document.getElementById("mini-search-bar").classList.add("hidden")
+        document.querySelector(".search-bar").classList.remove("hidden");
         document.addEventListener("click", this.dropSearch);
     }
 
@@ -44,7 +45,7 @@ class Banner extends React.Component {
         let dropDownOptions = this.props.currentUser ?
             <>
                 <button onClick={() => this.props.logout()} className="dropdown-option">Log out</button>
-                <button onClick={() => this.props.history.push("/listings/new")} className="dropdown-option">Add your home!</button>
+                <button onClick={() => this.props.history.push("/listings/new")} className="dropdown-option">Become a host!</button>
             </> :
             <>
                 <button onClick={() => openModal("login")} className="dropdown-option">Log In</button>
@@ -65,9 +66,11 @@ class Banner extends React.Component {
                 <div onClick={() => this.toggleUserOptions()} className='user-options'>
                     <i className="fa-solid fa-bars"></i>
                     <i className="fa-solid fa-user-astronaut"></i>
-                    <div className="user-drop-down" style={{display: "none"}}>
+
+                    <div className="user-drop-down">
                         {dropDownOptions}
                     </div>
+
                 </div>
             </div>
         )

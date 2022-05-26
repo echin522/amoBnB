@@ -5,10 +5,11 @@ import ListingForm from './listing_form';
 const mSTP = (state, { location }) => ({
     // lat: new URLSearchParams(location.search).get('lat'),
     // lng: new URLSearchParams(location.search).get('lng')
+    currentUserId: state.session.id,
 });
 
 const mDTP = dispatch => ({
-    createListing: listing => dispatch(createListing(listing))
+    createListing: listing => dispatch(createListing(listing)),
 });
 
 export default connect(mSTP, mDTP)(ListingForm);

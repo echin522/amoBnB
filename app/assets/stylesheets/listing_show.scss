@@ -1,5 +1,6 @@
 .listing-show-container {
     justify-content: center;
+    max-width: 1300px !important;
 }
 
 .listing-show-container * {
@@ -41,7 +42,6 @@
     padding-top: 0px;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
     padding-bottom: 20px;
 }
 
@@ -69,12 +69,6 @@
     grid-area: reservation;
 }
 
-@media (min-width: 700px) {
-    .listing-show-info{
-        grid-template-areas: 
-            'info info reservation';
-    }
-}
 
 // @media {
 //     .listing-show-info {
@@ -209,6 +203,7 @@
 .fee {
     flex-direction: row;
     justify-content: space-between;
+    margin-bottom: 5px;
 }
 
 .fee > *:first-child {
@@ -218,4 +213,48 @@
 .fa-star {
     margin-left: 3px;
     margin-right: 3px;
+}
+
+.reserve-block-total > p {
+    text-decoration: none !important; 
+    font-family: Cereal-Medium;
+}
+
+@media (max-width: 700px) {
+    .listing-show-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 2rem;
+    }
+
+    .listing-show-reservation-block {
+        position: static;
+        margin-bottom: 30px;
+    }
+    
+    .reviews-overview {
+        padding-top: 30px;
+        border-top: 1px solid lightgrey;
+    }
+
+    .listing-reviews {
+        display: flex !important;
+        flex-direction: column;
+    }
+}
+
+
+@media (min-width: 700px) {
+    .listing-show-info{
+        grid-template-areas: 
+            'info info reservation';
+    }
+}
+
+@media (min-width: 1300px) {
+    .listing-show-info{
+        grid-template-areas: 
+            'info info info info reservation';
+    }
 }
