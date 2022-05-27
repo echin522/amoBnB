@@ -5,10 +5,11 @@ class UserShow extends React.Component {
         super(props);
     }
 
-    render() {
-        const { reservations, listings } = this.props;
-        if (!this.props.reservations) return;
+    componentDidMount() {
+        console.log(this.props);
+    }
 
+    render() {
         return (
             <div id="user-show-content">
                 <div className="trips">

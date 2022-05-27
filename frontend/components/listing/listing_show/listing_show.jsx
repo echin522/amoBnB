@@ -50,22 +50,25 @@ class ListingShow extends React.Component {
             let endDate = new Date(this.state.end_date);
             numNights = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24))
         }
+
+        // I tried using typeof and I would vastly prefer refactoring htis to use it
+        // but I am too lazy and the project is due in 13 hours
         let averageRating = parseFloat(listing.average_rating).toFixed(2);
-        if (typeof averageRating !== "number") {averageRating = "-"};
+        if (averageRating === "NaN") {averageRating = "-"};
         let averageCleanlinessRating = parseFloat(listing.average_cleanliness_rating).toFixed(2);
-        if (typeof averageCleanlinessRating !== "number") {averageCleanlinessRating = "-"};
+        if (averageCleanlinessRating === "NaN") {averageCleanlinessRating = "-"};
         let averageCheckInRating = parseFloat(listing.average_check_in_rating).toFixed(2);
-        if (typeof averageCheckInRating !== "number") {averageCheckInRating = "-"};
+        if (averageCheckInRating === "NaN") {averageCheckInRating = "-"};
         let averageLocationRating = parseFloat(listing.average_location_rating).toFixed(2);
-        if (typeof averageLocationRating !== "number") {averageLocationRating = "-"};
+        if (averageLocationRating === "NaN") {averageLocationRating = "-"};
         let averageCommunicationRating = parseFloat(listing.average_communication_rating).toFixed(2);
-        if (typeof averageCommunicationRating !== "number") {averageCommunicationRating = "-"};
+        if (averageCommunicationRating === "NaN") {averageCommunicationRating = "-"};
         let averageAccuracyRating = parseFloat(listing.average_accuracy_rating).toFixed(2);
-        if (typeof averageAccuracyRating !== "number") {averageAccuracyRating = "-"};
+        if (averageAccuracyRating === "NaN") {averageAccuracyRating = "-"};
         let averageValueRating = parseFloat(listing.average_value_rating).toFixed(2);
-        if (typeof averageValueRating !== "number") {averageValueRating = "-"};
+        if (averageValueRating === "NaN") {averageValueRating = "-"};
         let subTotal = listing.price_per_night * numNights;
-        if (typeof subTotal !== "number") {subTotal = "-"};
+        if (subTotal === "NaN") {subTotal = "-"};
         let cleaningFee = parseFloat(listing.price_per_night * 0.08);
         if (numNights < 1) {
             cleaningFee = 0;

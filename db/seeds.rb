@@ -28,7 +28,7 @@ test_listing = Listing.create!(
     num_rooms: 4,
     num_beds: 6,
     num_baths: 3,
-    price_per_night: 420,
+    price_per_night: 117,
     lat: 37.804, lng: -122.419651,
     address: "404 0th Street",
     location: "San Francisco",
@@ -45,11 +45,21 @@ test_listing.photos.attach(io: open("https://s.wsj.net/public/resources/images/B
 test_listing.photos.attach(io: open("http://cdn.home-designing.com/wp-content/uploads/2018/03/Retractable-doors-1.jpg"), filename: "testListingInterior6")
 test_listing.photos.attach(io: open("https://dailydesignews.com/wp-content/uploads/2021/03/4-8.jpg"), filename: "testListingInterior7")
 
-
 num_users = 20
-num_listings_per_city = 30
-num_reviews_per_listing = 10
-num_reservations_per_listing = 5
+num_listings_per_city = 1 #30
+num_reviews_per_listing = 1 #10
+num_reservations_per_listing = 1 #5
+today = Date.today
+
+review_bodies = [
+    "This home and it’s hosts have thought of everything that a high-expectation traveler could ever want. This place is cozy, chic, welcoming, romantic and the ideal get-away. We travelled with our two children, aged 9 and 11, and it comfortably hosted us all. We made s’mores, hikes volcano (only a three minute drive), enjoyed the hot tub, and relaxed completely. I only wish we could have stayed longer.",
+    "Wonderful escape!",
+    "Thanks, great stay! A little pricey per night but the spot was fantastic.",
+    "Exactly what you would expect looking at the photos. Demo's place is outstanding. Just book it.",
+    "I give this place a 5/7. A perfect score",
+    "Sus",
+    ""
+]
 
 locations = {
     "San Francisco" => "CA",
@@ -291,6 +301,34 @@ num_users.times do
     rand_user.photo.attach(io: open(profile_pictures.pop()), filename: "#{rand_user.fname + rand_user.lname}ProPic")
 end
 
+review_bodies.each do |review|
+    Review.create!(
+        body: review,
+        listing_id: 1,
+        reviewer_id: rand(2..20),
+        cleanliness_rating: rand(4..5),
+        check_in_rating: rand(4..5),
+        location_rating: rand(4..5),
+        communication_rating: rand(4..5),
+        accuracy_rating: rand(4..5),
+        value_rating: rand(4..5)
+    )
+end
+
+days = (0..730).to_a
+15.times do
+    start_date = ((7..365) * rand(0..2))
+    end_date = start_date + rand(1..7)
+    Reservation.create!(
+        start_date: today - start_date,
+        end_date: today - end_date,
+        num_guests: (0..10),
+        listing_id: 1,
+        user_id: rand(2..20)
+    )
+    date = (7..start_date)
+end
+
 # Create random listings
 locations.each_key do |city|
     num_listings_per_city.times do
@@ -337,12 +375,13 @@ locations.each_key do |city|
             )
         end
 
+        days = (8...730)
         # Generate reservations here
         rand(0..num_reservations_per_listing).times do
-            start_date = Date.today - ((7..365) * rand(0..2))
-            end_date = start_date + rand(0..7)
+            start_date = today - (rand(days))
+            end_date = start_date + rand(1..7)
             Reservation.create!(
-                start_date: start_date,
+                start_date: Date.today - start_date,
                 end_date: end_date,
                 num_guests: (1..currListing.max_guests),
                 listing_id: currListing.id,

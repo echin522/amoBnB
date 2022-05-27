@@ -23,7 +23,6 @@ class SearchBar extends React.Component {
     }
 
     render() {
-        console.log(this.state);
         return(
             <form onSubmit={this.handleSubmit} className="search-bar hidden">
                 <label className="location">

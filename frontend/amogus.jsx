@@ -25,18 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // TESTING ON WINDOW
     window.getState = store.getState;
-    window.dispatch = store.dispatch;
-    window.login = login;
-    window.logout = logout;
-    window.signup = signup;
-    window.createReview = createReview;
-    window.createListing = createListing;
-    window.fetchListing = fetchListing;
-    window.fetchListings = fetchListings;
-    window.fetchUser = fetchUser;
-    window.createReservation = createReservation;
-    window.fetchReservation = fetchReservation;
     //
-
+    
     ReactDOM.render(<Root store={store}/>, root);
 });

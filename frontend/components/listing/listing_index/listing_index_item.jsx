@@ -6,13 +6,12 @@ class ListingIndexItem extends React.Component {
         super(props);
     }
 
-    redirectToShow() {
-        const listingId = this.props.listing.id;
-        // this.props.history.push(`/listings/`)
-    }
-
     render() {
         let listing = this.props.listing;
+        let averageRating;
+        (typeof listing.average_rating !== "string")
+            ? averageRating = "-"
+            : averageRating = parseFloat(listing.average_rating).toFixed(2)
         return (
             <div className="listing-item">
                 <Link to={`/listings/${listing.id}`}>
@@ -20,8 +19,10 @@ class ListingIndexItem extends React.Component {
                         <img src={this.props.listing.photoUrls[0]}/>
                     </div>
                     <div className="listing-title">
-                        <h4 className="listing-name">{listing.title.split(" ").slice(0, 3).join(" ")}</h4>
-                        <p>{parseFloat(listing.average_rating).toFixed(2)} <i className="fa-solid fa-star"></i></p>
+                        <h4 className="listing-name">
+                            {listing.title.split(" ").slice(0, 3).join(" ")}
+                        </h4>
+                        <p>{averageRating} <i className="fa-solid fa-star"></i></p>
                     </div>
                     <div className="listing-capacity">
                         {`${listing.num_rooms} room, ${listing.num_beds} bed`}
