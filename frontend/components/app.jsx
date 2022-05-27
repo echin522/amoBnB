@@ -20,7 +20,6 @@ const App = () => (
         </header>
         
         < Modal />
-        <Route path="/listings" component={ReviewModal}/>
         
         <Switch>
             <Route exact path="/" component={ListingIndex} />

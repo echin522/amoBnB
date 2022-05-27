@@ -36,7 +36,7 @@ class Listing < ApplicationRecord
         
     has_many :reservations,
         primary_key: :id,
-        primary_key: :listing_id,
+        foreign_key: :listing_id,
         class_name: :Reservation
 
     has_many_attached :photos
@@ -52,8 +52,31 @@ class Listing < ApplicationRecord
         return reviews.average(:rating)
     end
 
-    def num_reviews
-        return reviews.count(:rating)
+    def average_cleanliness_rating
+        return reviews.average(:cleanliness_rating)
     end
-    
+
+    def average_check_in_rating
+        return reviews.average(:check_in_rating)
+    end
+
+    def average_location_rating
+        return reviews.average(:location_rating)
+    end
+
+    def average_communication_rating
+        return reviews.average(:communication_rating)
+    end
+
+    def average_accuracy_rating
+        return reviews.average(:accuracy_rating)
+    end
+
+    def average_value_rating
+        return reviews.average(:value_rating)
+    end
+
+    def num_reviews
+        return reviews.count
+    end
 end

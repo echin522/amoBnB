@@ -1,11 +1,19 @@
 .listing-index-and-map {
     display: grid;
     grid-template-rows: auto;
+    column-gap: 0.7rem;
+    row-gap: 1.5rem;
 }
 
 .listing-item {
-    margin: 10px;
-    margin-bottom: 20px;
+    // margin: 10px 10px 20px 10px;
+    padding: 8px;
+    border-radius: 15px;
+}
+
+.listing-item:hover {
+    transform: scale(1.03);
+    box-shadow: 0px 5px 10px rgba(33, 33, 33, .2);
 }
 
 .listing-item img {
@@ -27,6 +35,10 @@
     display: flex;
     justify-content: space-between;
     margin-top: 5px;
+}
+
+.listing-image-container {
+    margin: 0px;
 }
 
 .listing-name {

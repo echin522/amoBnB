@@ -3,6 +3,7 @@ import ListingMap from "../listing_map/listing_map";
 import Amenities from "./listing_amenities";
 import ListingReviewsItem from "../listing_reviews/listing_reviews_item_container";
 import ProgressBar from "./progress_bar";
+import ReviewModal from "../listing_reviews/reviews_modal";
 
 class ListingShow extends React.Component {
     constructor(props) {
@@ -10,20 +11,15 @@ class ListingShow extends React.Component {
         this.state = {
             start_date: "",
             end_date: "",
-            num_nights: 3,
             num_guests: "",
             listing_id: this.props.match.params.listingId,
-            cleaning_fee: 0,
-            reviewModal: false,
-            // user_id: this.props.currentUser.id,
         }
-        this.reviews = []
-        this.toggleReviewModal = this.toggleReviewModal.bind(this);
+        this.reviews = [];
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount() {
         this.props.fetchListing(this.props.match.params.listingId)
-            .then(listing => this.setState({ cleaning_fee: Math.ceil(listing.price_per_night * 0.05) }));
         document.querySelector("header").style.position = "static";
         document.querySelector(".banner").style.maxWidth = "1300px";
     }
@@ -39,29 +35,47 @@ class ListingShow extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        // const reservation = Object.assign({}, this.state);
-        // this.props.createReservation
-        // this.props.processForm(user).then(this.props.closeModal);
-    }
-
-    toggleReviewModal() {
-        this.setState({reviewModal: !this.state.reviewModal})
+        const reservation = Object.assign({}, this.state);
+        this.props.createReservation(reservation);
     }
 
     render() {
         let listing = this.props.listing;
         if (!listing) return null;
+        let numNights;
+        if (!this.state.start_date || !this.state.end_date) { 
+            numNights = 0
+        } else {
+            let startDate = new Date(this.state.start_date);
+            let endDate = new Date(this.state.end_date);
+            numNights = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24))
+        }
         let averageRating = parseFloat(listing.average_rating).toFixed(2);
-        let subTotal = listing.price_per_night * this.state.num_nights;
+        if (typeof averageRating !== "number") {averageRating = "-"};
+        let averageCleanlinessRating = parseFloat(listing.average_cleanliness_rating).toFixed(2);
+        if (typeof averageCleanlinessRating !== "number") {averageCleanlinessRating = "-"};
+        let averageCheckInRating = parseFloat(listing.average_check_in_rating).toFixed(2);
+        if (typeof averageCheckInRating !== "number") {averageCheckInRating = "-"};
+        let averageLocationRating = parseFloat(listing.average_location_rating).toFixed(2);
+        if (typeof averageLocationRating !== "number") {averageLocationRating = "-"};
+        let averageCommunicationRating = parseFloat(listing.average_communication_rating).toFixed(2);
+        if (typeof averageCommunicationRating !== "number") {averageCommunicationRating = "-"};
+        let averageAccuracyRating = parseFloat(listing.average_accuracy_rating).toFixed(2);
+        if (typeof averageAccuracyRating !== "number") {averageAccuracyRating = "-"};
+        let averageValueRating = parseFloat(listing.average_value_rating).toFixed(2);
+        if (typeof averageValueRating !== "number") {averageValueRating = "-"};
+        let subTotal = listing.price_per_night * numNights;
+        if (typeof subTotal !== "number") {subTotal = "-"};
         let cleaningFee = parseFloat(listing.price_per_night * 0.08);
+        if (numNights < 1) {
+            cleaningFee = 0;
+        }
         let serviceFee = parseFloat(subTotal * 0.035);
         let totalFee = (subTotal + cleaningFee + serviceFee).toFixed(2)
         
-        return(
+        return (
             <div className="listing-show-container content">
-                {/* {this.state.reviewModal && (
-                    <ReviewModal />
-                )} */}
+                <ReviewModal listingId={listing.id}/>
                 <div className="listing-show-title">
                     <h1>{listing.title}</h1>
                     <h4 className="reserve-block-price">
@@ -169,42 +183,42 @@ class ListingShow extends React.Component {
                             <p>Cleanliness</p>
                             <ProgressBar 
                                 bgcolor="black"
-                                progress="76"
+                                progress={`${(averageCleanlinessRating / 5) * 100}`}
                             />
                         </li>
                         <li className="metric">
                             <p>Communication</p>
                             <ProgressBar 
                                 bgcolor="black"
-                                progress="42"
+                                progress={`${(averageCommunicationRating / 5) * 100}`}
                             />
                         </li>
                         <li className="metric">
                             <p>Check-in</p>
                             <ProgressBar 
                                 bgcolor="black"
-                                progress="71"
+                                progress={`${(averageCheckInRating / 5) * 100}`}
                             />
                         </li>
                         <li className="metric">
                             <p>Accuracy</p>
                             <ProgressBar 
                                 bgcolor="black"
-                                progress="23"
+                                progress={`${(averageAccuracyRating / 5) * 100}`}
                             />
                         </li>
                         <li className="metric">
                             <p>Location</p>
                             <ProgressBar 
                                 bgcolor="black"
-                                progress="98"
+                                progress={`${(averageLocationRating / 5) * 100}`}
                             />
                         </li>
                         <li className="metric">
                             <p>Value</p>
                             <ProgressBar 
                                 bgcolor="black"
-                                progress="12"
+                                progress={`${(averageValueRating / 5) * 100}`}
                             />
                         </li>
                     </ul>

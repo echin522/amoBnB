@@ -30,7 +30,7 @@ test_listing = Listing.create!(
     num_baths: 3,
     price_per_night: 420,
     lat: 37.804, lng: -122.419651,
-    address: "42 0th Street",
+    address: "404 0th Street",
     location: "San Francisco",
     owner_id: 1
 )
@@ -42,20 +42,37 @@ test_listing.photos.attach(io: open("https://www.impressiveinteriordesign.com/wp
 test_listing.photos.attach(io: open("https://media.istockphoto.com/photos/contemporary-island-villa-picture-id154952872?k=20&m=154952872&s=612x612&w=0&h=u9cCS_5SxbVlU227abjUC9cyG0FrCFeM2BwfMYA62Fc="), filename: "testListingInterior3")
 test_listing.photos.attach(io: open("https://i.imgur.com/HRxo7lY.jpg"), filename: "testListingInterior4")
 test_listing.photos.attach(io: open("https://s.wsj.net/public/resources/images/BN-IG334_0507MR_M_20150505130415.jpg"), filename: "testListingInterior5")
+test_listing.photos.attach(io: open("http://cdn.home-designing.com/wp-content/uploads/2018/03/Retractable-doors-1.jpg"), filename: "testListingInterior6")
+test_listing.photos.attach(io: open("https://dailydesignews.com/wp-content/uploads/2021/03/4-8.jpg"), filename: "testListingInterior7")
 
-num_users = 10
-num_listings_per_city = 7
-num_reviews_per_listing = 1
-num_reservations_per_listing = 1
+
+num_users = 20
+num_listings_per_city = 30
+num_reviews_per_listing = 10
+num_reservations_per_listing = 5
 
 locations = {
     "San Francisco" => "CA",
-    # "New York" => "NY",
-    # "Seattle" => "WA"
+    "Los Angeles" => "CA",
+    "San Diego" => "CA",
+    "New York" => "NY",
+    "Seattle" => "WA",
+    "Austin" => "TX",
+    "Las Vegas" => "NV",
+    "Tampa" => "FL",
+    "Chicago" => "IL"
 }
 
 city_coords = {
-    "San Francisco" => {:lat => (37.7513212..37.999122), :lng =>(-122.447897..-122.391135)}
+    "San Francisco" => {:lat => (37.753001..37.805001), :lng =>(-122.447897..-122.391135)},
+    "Los Angeles" => {:lat => (33.91635..33.93599), :lng => (-118.181554..-118.210061)},
+    "San Diego" => {:lat => (32.63916..32.852512), :lng => (-117.246096..-116.9247)},
+    "Seattle" => {:lat => (47.29385..47.8699), :lng => (-122.62334..-121.99999)},
+    "Austin" => {:lat => (30.0984..30.5973), :lng => (-97.92339..-97.51296)},
+    "Las Vegas" => {:lat => (36.0071..36.2849), :lng => (-115.293881..-115.073374)},
+    "Tampa" => {:lat => (27.9123..28.05641), :lng => (-82.525..-82.35343)},
+    "Chicago" => {:lat => (41.5923..41.9821), :lng => (-88.0225..-87.5023)},
+    "New York" => {:lat => (40.61154..40.78739), :lng => (-74.030482..-73.78242)}
 }
 
 profile_pictures = [
@@ -115,7 +132,7 @@ listing_exterior_images = [
     'https://tillydesign.com/blog/wp-content/uploads/2021/08/26868-Paint-FR-scaled-1-1024x760.jpg',
     'https://cdn.decoist.com/wp-content/uploads/2021/06/Modular-black-house-with-balcony-49706.jpg',
     'https://res.cloudinary.com/brickandbatten/images/w_2560,h_1370/v1640973465/wordpress_assets/53642-Anonymous-A/53642-Anonymous-A.jpg?_i=AA',
-    'https://d1gcvgm4klzto4.cloudfront.net/web/general-images/banners/new_thumbnail.jpg?auto=compress%2Cformat&crop=focalpoint&fit=crop&fp-x=0.5&fp-y=0.5&h=630&q=100&w=1200&s=cb693c063724402cb30b556d77fbc862',
+    'https://d1gcvgm4klzto4.cloudfront.net/web/general-images/banners/new_thumbnail.jpg?auto=compress%2Cformat&crop=focalpoint&fit=crop&fp-x=0.5&fp-y=0.5&h=630&q=100&w=1200&s=cb693c063724402cb30b556d77fbc862'
 ]
 
 listing_interior_images = [
@@ -217,6 +234,49 @@ listing_interior_images = [
     'https://www.contemporist.com/wp-content/uploads/2020/10/modern-grey-wood-interior-design-161020-1233-01.jpg',
     'https://i.ytimg.com/vi/jTGxxD3XNDs/maxresdefault.jpg',
     'https://cdn.decoist.com/wp-content/uploads/2017/11/Living-room-of-the-Japanese-home-connected-with-the-wooden-deck-outside.jpg',
+    'https://www.scullyandscully.com/blog/wp-content/uploads/2020/03/roomideasnet.png',
+    'https://www.homebunch.com/wp-content/uploads/2020/12/interior-design-ideas-Classic-interior-design.jpg',
+    'https://i.pinimg.com/originals/36/4c/c2/364cc2f934dd4c5f57aa17469f5b708b.jpg',
+    'https://hgtvhome.sndimg.com/content/dam/images/hgtv/fullset/2007/12/17/1/hdivd-1109-after-living.jpg.rend.hgtvcom.1280.960.suffix/1400942543326.jpeg',
+    'https://www.impressiveinteriordesign.com/wp-content/uploads/2016/08/Modern-European-Style-And-European-Interior-Design4.jpg',
+    'https://i.pinimg.com/736x/b3/59/1f/b3591fd3bf5192b52746bb3467a7457d.jpg',
+    'https://www.impressiveinteriordesign.com/wp-content/uploads/2016/08/Modern-European-Style-And-European-Interior-Design2.jpg',
+    'https://somuchbetterwithage.com/wp-content/uploads/2021/05/vogue-marie-flanigan-2-700x1050.jpeg',
+    'https://www.homebunch.com/wp-content/uploads/2020/12/interior-design-ideas-Benjamin-Moore-popular-paint-color.jpg',
+    'https://i.ytimg.com/vi/rqUk-x06_HY/hqdefault.jpg',
+    'https://www.hellolovelystudio.com/wp-content/uploads/2020/06/004-fixer-upper-tudor-cottage-kitchen-breakfast-nook-hgtv-joanna-gaines.jpg',
+    'https://i.pinimg.com/originals/b2/62/1d/b2621d2c73de5ccbe26e01e54da3c10a.jpg',
+    'https://www.impressiveinteriordesign.com/wp-content/uploads/2016/08/Modern-European-Style-And-European-Interior-Design5.jpg',
+    'https://bhgrelife.beta.cyberitas.com/bhgrelife/wp-content/uploads/2016/01/CountryFrench_featuredimage.jpg',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkrwLD2n98kwocRP9w7chDvoArITFJ-YViPw&usqp=CAU',
+    'https://www.homebunch.com/wp-content/uploads/2020/12/interior-design-ideas-Benjamin-Moore-liivng-room-paint-color.jpg',
+    'https://i.imgur.com/mtDkNct.jpg',
+    'https://i.pinimg.com/236x/6b/c6/0d/6bc60da6cadf34bbd38ecc13e572db26--farmhouse-living-rooms-country-living-rooms.jpg',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAt4VkknRu4uF2hI-z6D14UmSaxFLBzSguqg&usqp=CAU',
+    'https://hgtvhome.sndimg.com/content/dam/images/hgtv/fullset/2011/2/25/0/DP_Thomas-Oppelt-old-world-master-retreat-with-chandelier-fireplace_s4s3.jpg.rend.hgtvcom.966.725.suffix/1400961682821.jpeg',
+    'https://st.hzcdn.com/simgs/d151fd750baf32e6_4-8493/home-design.jpg',
+    'https://weandthecolor.com/wp-content/uploads/2019/12/Interior-Design-Around-Europe-Image-by-Scandinavian-Homes.jpg',
+    'https://media.remodelista.com/wp-content/uploads/2016/06/Ellen-Hamilton-Spring-Hill-2-Remodelista.jpg',
+    'https://s30965.pcdn.co/blogs/the-study/wp-content/uploads/contemporary-living-room-paris-france-by-isabelle-stanislas-architecture-2.jpg',
+    'https://www.hellolovelystudio.com/wp-content/uploads/2020/06/001-eleanor-cummings-modern-french-farmhouse-living-room-round-top-milieu.jpg',
+    'https://somuchbetterwithage.com/wp-content/uploads/2021/05/paige-kontrafouris-interiors2.jpeg',
+    'https://st.hzcdn.com/simgs/88011ede00a35ab1_4-8450/contemporary.jpg',
+    'https://www.impressiveinteriordesign.com/wp-content/uploads/2016/08/Modern-European-Style-And-European-Interior-Design13.jpg',
+    'https://cdn.onekindesign.com/wp-content/uploads/2019/09/European-Cottage-Style-Home-JCD-Custom-Home-Design-16-1-Kindesign.jpg',
+    'https://europeword.com/wp-content/uploads/2021/02/fe96e9bde68f3ab35b25f881b1cb7a89.jpg',
+    'https://uploads-ssl.webflow.com/5894a32730554b620f7bf36d/5fa13aaef9f406482ab1de11_Interior-Design-Differences-Between-Europe-and-the-United-States.jpg',
+    'https://freedesignfile.com/upload/2018/11/Modern-European-interior-design-Stock-Photo-06.jpg',
+    'https://bocadolobo.com/en/inspiration-and-ideas/wp-content/uploads/2021/03/06_800.jpg',
+    'https://s30965.pcdn.co/blogs/the-study/wp-content/uploads/hubert_living_4.jpg',
+    'https://www.impressiveinteriordesign.com/wp-content/uploads/2016/08/Modern-European-Style-And-European-Interior-Design7.jpg',
+    'https://previews.123rf.com/images/zstockphotos/zstockphotos1706/zstockphotos170600181/81557144-empty-freshly-renovated-old-style-european-home-interior.jpg',
+    'https://i.pinimg.com/736x/84/25/80/842580136814df12f3e9038cbd8bfe68.jpg',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAVElR5TNYBLlQ13Qg7zFBcvhSL0jzOMkonw&usqp=CAU',
+    'https://christinamariablog.com/wp-content/uploads/2021/03/mg-0595_3b1c326e-768x1024.jpeg',
+    'https://www.europeanhome.com/wp-content/uploads/2018/05/Lookbooks_4-e1527620603696-1360x670.jpg',
+    'https://i.pinimg.com/564x/9a/6d/95/9a6d95e07eccb05d5d41b749fd834b2a.jpg',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQc-9kUjIqwwDL1nXerf1AA_tqw_YnmyvrefA&usqp=CAU',
+    'https://www.pufikhomes.com/wp-content/uploads/2017/09/family-home-with-athmosphere-of-old-Europe-pufikhomes-4.jpg'
 ]
 
 # Create a bunch of random users
@@ -234,13 +294,17 @@ end
 # Create random listings
 locations.each_key do |city|
     num_listings_per_city.times do
-        guests = rand(1..50)
+        guests = rand(1..15)
         beds = rand(1..guests)
         rooms = rand(1..beds)
         baths = rand(1..rooms)
+        description = []
+        rand(0..5).times do 
+            description.push(Faker::Lorem.paragraph(sentence_count: 3, supplemental: false, random_sentences_to_add: 10))
+        end
         currListing = Listing.create!(
             title: "#{Faker::Space.meteorite} #{Faker::Space.star_cluster}",
-            description: Faker::Lorem.paragraph(sentence_count: 3, supplemental: false, random_sentences_to_add: 10),
+            description: description.join("\n")
             max_guests: guests,
             num_beds: beds,
             num_rooms: rooms,
@@ -259,17 +323,31 @@ locations.each_key do |city|
             currListing.photos.attach(io: open(listing_interior_images.sample()), filename: "#{currListing[:title] + i.to_s}")
         end
 
-        # rand(0..num_reviews_per_listing).times do
-        #     Review.create!(
-        #         rating: rand(1..5),
-        #         body: Faker::Games::LeagueOfLegends.quote,
-        #         listing_id: currListing.id,
-        #         reviewer_id: rand(1..num_users)
-        #     )
-        # end
+        rand(0..num_reviews_per_listing).times do
+            Review.create!(
+                cleanliness_rating: rand(3..5),
+                check_in_rating: rand(3..5),
+                location_rating: rand(3..5),
+                communication_rating: rand(3..5),
+                accuracy_rating: rand(3..5),
+                value_rating: rand(3..5),
+                body: Faker::Games::LeagueOfLegends.quote,
+                listing_id: currListing.id,
+                reviewer_id: rand(1..num_users)
+            )
+        end
 
         # Generate reservations here
-
-        #
+        rand(0..num_reservations_per_listing).times do
+            start_date = Date.today - ((7..365) * rand(0..2))
+            end_date = start_date + rand(0..7)
+            Reservation.create!(
+                start_date: start_date,
+                end_date: end_date,
+                num_guests: (1..currListing.max_guests),
+                listing_id: currListing.id,
+                user_id: rand(0..num_users)
+            )
+        end
     end
 end

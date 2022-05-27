@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_23_085136) do
+ActiveRecord::Schema.define(version: 2022_05_26_205130) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,8 +57,8 @@ ActiveRecord::Schema.define(version: 2022_05_23_085136) do
   end
 
   create_table "reservations", force: :cascade do |t|
-    t.datetime "start_date", null: false
-    t.datetime "end_date", null: false
+    t.date "start_date", null: false
+    t.date "end_date", null: false
     t.integer "num_guests", null: false
     t.integer "listing_id", null: false
     t.integer "user_id", null: false
@@ -67,10 +67,16 @@ ActiveRecord::Schema.define(version: 2022_05_23_085136) do
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.integer "rating", null: false
     t.text "body"
     t.integer "listing_id"
     t.integer "reviewer_id", null: false
+    t.integer "cleanliness_rating", null: false
+    t.integer "check_in_rating", null: false
+    t.integer "location_rating", null: false
+    t.integer "communication_rating", null: false
+    t.integer "accuracy_rating", null: false
+    t.integer "value_rating", null: false
+    t.float "rating"
     t.index ["listing_id"], name: "index_reviews_on_listing_id"
     t.index ["reviewer_id"], name: "index_reviews_on_reviewer_id"
   end

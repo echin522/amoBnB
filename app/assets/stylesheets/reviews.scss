@@ -5,8 +5,11 @@
     margin-bottom: 8px;
 }
 
-#leave-review {
+#leave-review:hover {
+    transition: all 0.1s;
+
     cursor: pointer;
+    border-bottom: 2px solid black;
 }
 
 .listing-reviews {
@@ -75,9 +78,9 @@
     z-index: 3;
     left: 0;
     top: 0;
+    margin: 0px;
     width: 100%;
     height: 100%;
-    overflow: auto;
     background-color: rgba(0, 0, 0 , 0.4);
 }
 
@@ -85,11 +88,62 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     width: 50%;
     max-width: 600px;
     background-color: white;
     border-radius: 15px;
     margin: 15% auto;
+
+    .rating-container {
+        display: flex;
+        flex-direction: row;
+    }
+
+    form {
+        display: grid;
+        grid-template-areas:
+            'cleanliness cleanliness checkin checkin'
+            'location location communication communication'
+            'accuracy accuracy value value'
+            'description description description description'
+            'nothing button button alsoNothing';
+        gap: 2rem;
+        width: 90%;
+        justify-self: center;
+    }
+
+    div:nth-child(1) {
+        grid-area: cleanliness;
+    }
+
+    div:nth-child(2) {
+        grid-area: checkin;
+    }
+
+    div:nth-child(3) {
+        grid-area: location;
+    }
+
+    div:nth-child(4) {
+        grid-area: communication;
+    }
+
+    div:nth-child(5) {
+        grid-area: accuracy;
+    }
+
+    div:nth-child(6) {
+        grid-area: value;
+    }
+
+    label {
+        grid-area: description;
+    }
+
+    button {
+        grid-area: button;
+    }
 }
 
 .new-review-container > * {
@@ -103,15 +157,15 @@
     display: flex;
     flex-direction: row-reverse;
     justify-content: center;
-}
-
-.star-wrapper label {
-    cursor: pointer;
-    font-size: 2em;
-    text-decoration: none;
-    transition: all 0.5s;
-    margin: 4px;
-    color: black;
+    
+    label {
+        cursor: pointer;
+        font-size: 2em;
+        text-decoration: none;
+        transition: all 0.5s;
+        margin: 4px;
+        color: black;
+    }
 }
 
 .star-wrapper label:hover {

@@ -8,9 +8,9 @@ class Banner extends React.Component {
     }
 
     dropDown(e) {
-        debugger
-        if (!e.target.closest(".user-options") && !e.target.closest(".dropdown-option")) {
-            document.querySelector(".user-drop-down").classList.add("hidden");
+        if (!e.target.closest(".search-bar") && !e.target.closest("#mini-search-bar")) {
+            // document.getElementById("mini-search-bar").classList.remove("hidden");
+            document.querySelector(".user-drop-down").classList.remove("hidden");
             document.removeEventListener("click", this.dropDown);
         }
     }
@@ -24,14 +24,9 @@ class Banner extends React.Component {
     }
     
     toggleUserOptions() {
-        let userDropDown = document.querySelector(".user-drop-down");
-        if (userDropDown.style.display === "none") {
-            userDropDown.classList.remove("hidden");
-            document.addEventListener("click", this.dropDown);
-        } else {
-            userDropDown.classList.add("hidden");
-            document.removeEventListener("click", this.dropDown);
-        }
+        document.querySelector(".user-drop-down").classList.toggle("hidden");
+        // document.querySelector(".user-drop-down").classList.add("hidden");
+        // document.addEventListener("click", this.dropDown);
     }
     
     toggleSearchBar() {
@@ -67,7 +62,7 @@ class Banner extends React.Component {
                     <i className="fa-solid fa-bars"></i>
                     <i className="fa-solid fa-user-astronaut"></i>
 
-                    <div className="user-drop-down">
+                    <div className="user-drop-down hidden">
                         {dropDownOptions}
                     </div>
 

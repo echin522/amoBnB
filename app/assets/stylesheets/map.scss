@@ -1,10 +1,16 @@
 .map {
     display: flex;
-    width: 100%;
+    width: 90%;
     height: 600px;
     z-index: 0;
-}
+    border-radius: 15px;
+    
+    * {
+        z-index: -100;
+    }
 
-.map * {
-    z-index: -100;
+    button {
+        display: none !important;
+    }
+
 }

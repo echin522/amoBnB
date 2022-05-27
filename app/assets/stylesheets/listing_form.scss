@@ -1,59 +1,55 @@
 .listing-form-container {
     position: relative;
-    padding-top: 80px;
-    width: 100%;
-    height: 86.9vh;
-    min-height: 1000px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    border-top: 1px solid lightgrey;
-    background-color: red;
+    width: 90%;
+    max-width: 1100px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    padding-top: 40px;
+
+    h1 {
+        margin: 0;
+        font-size: 30px;
+    }
+
+    .map {
+        z-index: 1;
+        border-radius: 20px;
+        margin-top: 20px;
+        height: 65vh;
+        box-shadow: -8px -8px 7px rgba(33,33,33,.2);
+    }
 }
 
 .listing-form {
-    position: absolute;
-    width: 40%;
-    min-width: 500px;
-    max-width: 650px;
-    // border: 3px solid #FF385C;
-    border-radius: 25px;
-}
+    margin-top: 59.5px;
+    
+    form {
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        height: 63vh;
+        padding: 1vh 0 1vh 0;
+        border-radius: 20px;
+        overflow: auto;
+        box-shadow: -8px -8px 6px rgba(33,33,33,.2);
 
-.listing-form form {
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    justify-content: space-between;
-    min-height: 900px;
-    border: 4px solid lightgrey;
-    border-radius: 20px;
+    }
 }
 
 .home-button {
-    display: flex;
-    align-items: center;
-    text-align: center;
-    font-weight: bold;
-    justify-content: space-between;
-}
-
-.home-button i {
-    display: flex;
-    align-items: center;
-    text-align: center;
-    margin-left: 25px;
-    // padding-left: 20px;
-    height: 30px;
-    width: 30px;
-    border-radius: 1000px;
-}
-
-.home-button i:hover {
+    position: absolute;
+    top: 35px;
     cursor: pointer;
-    background-color: lightgrey;
+    width: 50px;
+    aspect-ratio: 1 / 1;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100px;
+    display: flex;
+    &:hover {
+        background-color: rgba(33,33,33,.2);
+    }
 }
 
 .listing-name {
@@ -105,6 +101,7 @@
 
 .new-listing-button:hover {
     background-color: black;
+    transform: scale(1.02);
     cursor: pointer;
 }
 

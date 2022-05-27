@@ -15,11 +15,9 @@ export const receiveListing = ({ listing, reviews }) => ({
     reviews,
 });
 
-export const receiveReview = ({ review, average_rating, reviewer }) => ({
+export const receiveReview = (review) => ({
     type: RECEIVE_REVIEW,
-    review,
-    average_rating,
-    reviewer,
+    review
 });
 
 export const createReview = review => dispatch => (
@@ -29,8 +27,8 @@ export const createReview = review => dispatch => (
 );
 
 // Add filters to this later
-export const fetchListings = () => dispatch => (
-    listingAPIUtil.fetchListings()
+export const fetchListings = search => dispatch => (
+    listingAPIUtil.fetchListings(search)
         .then(listings => (dispatch(receiveListings(listings))
     ))
 );

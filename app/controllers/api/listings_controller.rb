@@ -5,7 +5,13 @@ class Api::ListingsController < ApplicationController
     end
 
     def index
-        @listings = Listing.all
+        if params[:location]
+            @listings = Listing.where("location LIKE '%#{params[:location]}%'").where("max_guests >= #{params[:max_guests]}")
+        else
+            @listings = Listing.all
+        end
+        
+        # @listings = Listing.
         render :index
     end
 
@@ -33,6 +39,10 @@ class Api::ListingsController < ApplicationController
     
     def listing_params
         params.require(:listing).permit(:title, :description, :address, :lat, :lng, :max_guests, :num_rooms, :num_beds, :num_baths, :owner_id, :price_per_night, :location, photos: [])
+    end
+
+    def search_params
+        params.permit(:location, :max_guests)
     end
 
     def bounds

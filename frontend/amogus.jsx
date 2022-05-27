@@ -5,6 +5,7 @@ import Root from "./components/root";
 import { login, logout, signup } from "./actions/session_actions";
 import { createReview, fetchListings, fetchListing, createListing } from "./actions/listing_actions";
 import { fetchUser } from "./actions/user_actions"
+import { createReservation, fetchReservation } from "./actions/reservation_actions";
 
 document.addEventListener("DOMContentLoaded", () => {
     const root = document.getElementById("root");
@@ -32,7 +33,9 @@ document.addEventListener("DOMContentLoaded", () => {
     window.createListing = createListing;
     window.fetchListing = fetchListing;
     window.fetchListings = fetchListings;
-    window.fetchUser = fetchUser
+    window.fetchUser = fetchUser;
+    window.createReservation = createReservation;
+    window.fetchReservation = fetchReservation;
     //
 
     ReactDOM.render(<Root store={store}/>, root);

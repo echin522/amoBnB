@@ -5,13 +5,25 @@ class SearchBar extends React.Component {
     constructor(props) {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.state = {
+            location: "",
+            start_date: "",
+            end_date: "",
+            max_guests: "",
+        }
     }
 
-    handleSubmit() {
+    handleSubmit(e) {
+        e.preventDefault();
+        this.props.fetchListings(this.state);
+    }
 
+    handleChange(field) {
+        return e => this.setState({ [field]: e.currentTarget.value })
     }
 
     render() {
+        console.log(this.state);
         return(
             <form onSubmit={this.handleSubmit} className="search-bar hidden">
                 <label className="location">
@@ -19,6 +31,7 @@ class SearchBar extends React.Component {
                     <input
                         type="text"
                         placeholder="Search destinations"
+                        onChange={this.handleChange("location")}
                     />
                 </label>
                 <label className="check-in">
@@ -26,6 +39,7 @@ class SearchBar extends React.Component {
                     <input 
                         type="date"
                         placeholder="Add dates" 
+                        onChange={this.handleChange("start_date")}
                     />
                 </label>
                 <label className="check-out">
@@ -33,6 +47,7 @@ class SearchBar extends React.Component {
                     <input 
                         type="date"
                         placeholder="Add dates" 
+                        onChange={this.handleChange("end_date")}
                     />
                 </label>
                 <label>
@@ -42,6 +57,7 @@ class SearchBar extends React.Component {
                             <input 
                                 type="text"
                                 placeholder="Add guests" 
+                                onChange={this.handleChange("max_guests")}
                             />
                         </div>
                         <button onClick={this.handleSubmit} className="banner-search-button">

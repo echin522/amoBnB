@@ -45,11 +45,14 @@ class ListingForm extends React.Component {
         let mapOptions = {
             center: {
                 lat: 37.773972,
-                lng: -122.431297
+                lng: -122.431297,
             },
-            zoom: 13,
+            zoom: 12,
         };
         this.map = new google.maps.Map(this.mapNode, mapOptions);
+        this.map.addListener("click", (e) => {
+            this.setState({lat: e.latLng.lat(), lng: e.latLng.lng()})
+        })
     }
     
     componentWillUnmount() {
@@ -110,38 +113,41 @@ class ListingForm extends React.Component {
             : null;
 
         return (
-            <div className="listing-form-container">
+            <>
                 <FormBackground/>
-                <div className="map" ref={map => this.mapNode = map}>
-                    Map
-                </div>
-                <div className="listing-form">
-                    <div className="home-button">
-                        <i onClick={() => this.props.history.push("/")} className="fa-solid fa-chevron-left"></i>
-                        <p>{/* Tell us about your home!</p> */}</p>
-                        <p></p>
+                <div className="listing-form-container">
+                    <div id="map-container">
+                        <h1>Tell us about your home!</h1>
+                        <div className="map" ref={map => this.mapNode = map}>
+                            Map
+                        </div>
                     </div>
-                    <form onSubmit={this.handleSubmit}>
-                        <div>
-                            {Object.keys(this.state).map( field => {
-                                let type;
-                                typeof (this.state[field]) === "string" ? type = "text" : type = "number"
-                                return this.formInput(type, field)
-                            })}
+                    <div className="listing-form">
+                        <div className="home-button" onClick={() => this.props.history.push("/")}>
+                            <i className="fa-solid fa-chevron-left"></i>
                         </div>
-                        <div className="form-button-holder">
-                            <h3>Image preview </h3>
-                            {preview}
-                            <h3 className="button-holder">Please add at least five pictures</h3>
-                            <input type="file" className="new-photo-button" multiple
-                                onChange={this.handleFile.bind(this)}/>
-                        </div>
-                        <div className="form-button-holder" id="new-listing-button-container">
-                            <input type="submit" value="Looks Good" className="new-listing-button"/>
-                        </div>
-                    </form>
+                        <form onSubmit={this.handleSubmit}>
+                            <div>
+                                {Object.keys(this.state).map( field => {
+                                    let type;
+                                    typeof (this.state[field]) === "string" ? type = "text" : type = "number"
+                                    return this.formInput(type, field)
+                                })}
+                            </div>
+                            <div className="form-button-holder">
+                                <h3>Image preview </h3>
+                                {preview}
+                                <h3 className="button-holder">Please add at least five pictures</h3>
+                                <input type="file" className="new-photo-button" multiple
+                                    onChange={this.handleFile.bind(this)}/>
+                            </div>
+                            <div className="form-button-holder" id="new-listing-button-container">
+                                <input type="submit" value="Looks Good" className="new-listing-button"/>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </div>
+            </>
         )
     }
 }
