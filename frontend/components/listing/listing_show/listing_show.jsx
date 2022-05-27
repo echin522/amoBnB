@@ -108,12 +108,28 @@ class ListingShow extends React.Component {
                 </div>
                 
                 <div id="listing-show-photos">
-                    {Object.values(listing.photoUrls).map((photoUrl, i) => (
+                    {/* {Object.values(listing.photoUrls).map((photoUrl, i) => ( */}
                         <img 
-                            src={photoUrl}
-                            key={`photo${i}`}
+                            src={listing.photoUrls[0]}
+                            key={`photo${0}`}
                         />
-                    ))}
+                <img
+                            src={listing.photoUrls[1]}
+                            key={`photo${1}`}
+                        />
+                <img
+                            src={listing.photoUrls[2]}
+                            key={`photo${2}`}
+                        />
+                <img
+                            src={listing.photoUrls[3]}
+                            key={`photo${3}`}
+                        />
+                <img
+                            src={listing.photoUrls[4]}
+                            key={`photo${4}`}
+                        />
+                    {/* ))} */}
                 </div>
 
                 <div className="listing-show-info">
