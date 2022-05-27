@@ -5,8 +5,8 @@ class MarkerManager {
         this.map = map;
         this.handleClick = handleClick;
         this.markers = [];
-        this.icon = icon;
-        this.hoverIcon = icon;
+        this.icon = "";
+        this.hoverIcon = "";
     }
   
     clearMarkers() {
