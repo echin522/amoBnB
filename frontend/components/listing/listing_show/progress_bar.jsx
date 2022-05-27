@@ -4,13 +4,13 @@ const Progress_bar = ({bgcolor, progress}) => {
 	
 	let progressNumber;
 	let innerProgress;
-	if (typeof progress !== "number") {
-		innerProgress = 0;
-		progressNumber = "-";
-	} else {
+	// if (typeof progress !== "number") {
+	// 	innerProgress = 0;
+	// 	progressNumber = "-";
+	// } else {
 		innerProgress = progress;
 		progressNumber = parseFloat(progress).toFixed(1);
-	}
+	// }
 		
 
 	const progressContainer = {
