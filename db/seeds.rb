@@ -23,7 +23,7 @@ demo_user = User.create!(
 
 test_listing = Listing.create!(
     title: "Big house",
-    description: "Extremely big house",
+    description: "Morbius is a fantasy-action film set in modern times, which is based off of Morbius, the Living Vampire made by Roy Thomas and Gil Kane from the Marvel Comics. The film was directed by Daniel Espinosa and had Jared Leto star as Dr. Micheal Morbius. The film is about a successful doctor who has cured many diseases, except for the disease he and his friend Milo have. Fortunately, he has found a cure for the disease, with the drawback being that he turns into a vampire and needs to consume blood to survive. For Morbius, this is a problem since he doesn’t want people to get hurt, however Milo sees it differently, and takes the cure to become a vampire. Because of this, the two of the friends soon become enemies. The film was very beautiful and there was a lot of impressive cinematography. The voice acting by all of the actors was perfect. My favourite part of the movie was when Morbius said “It’s Morbin’ time!”.",
     max_guests: 10,
     num_rooms: 4,
     num_beds: 6,
@@ -45,7 +45,7 @@ test_listing.photos.attach(io: open("https://s.wsj.net/public/resources/images/B
 test_listing.photos.attach(io: open("http://cdn.home-designing.com/wp-content/uploads/2018/03/Retractable-doors-1.jpg"), filename: "testListingInterior6")
 test_listing.photos.attach(io: open("https://dailydesignews.com/wp-content/uploads/2021/03/4-8.jpg"), filename: "testListingInterior7")
 
-num_users = 20
+num_users = 10
 num_listings_per_city = 1 #30
 num_reviews_per_listing = 1 #10
 num_reservations_per_listing = 1 #5
@@ -117,6 +117,7 @@ profile_pictures = [
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREXiu2KQpy8Nn3MRBfZesJkq1NpFpa8RlQPw&usqp=CAU',
     'https://www.creativeboom.com/uploads/articles/07/076a72cc349f89bdb32276285a07e2a2d99d51e1_810.jpeg',
     'https://images.stockfreeimages.com/858/sfi226w/8585833.jpg',
+    'https://static.wikia.nocookie.net/twitch_gamepedia/images/1/1a/Imaqtpie.PNG/revision/latest/scale-to-width-down/1200?cb=20150520213424'
 ]
 
 listing_exterior_images = [
@@ -291,7 +292,7 @@ listing_interior_images = [
 
 # Create a bunch of random users
 num_users.times do
-    rand_user = User.create! ({
+    rand_user = User.create!({
         fname: Faker::Name.unique.first_name,
         lname: Faker::Name.unique.last_name,
         email: Faker::Internet.unique.email,
@@ -301,29 +302,39 @@ num_users.times do
     rand_user.photo.attach(io: open(profile_pictures.pop()), filename: "#{rand_user.fname + rand_user.lname}ProPic")
 end
 
+reviewer_id = rand(2...num_users)
+cleanliness_rating = rand(4..5)
+check_in_rating = rand(4..5)
+location_rating = rand(4..5)
+communication_rating = rand(4..5)
+accuracy_rating = rand(4..5)
+value_rating = rand(4..5)
+rating = (cleanliness_rating + check_in_rating + location_rating + communication_rating + accuracy_rating + value_rating) / 6.0
+
 review_bodies.each do |review|
     Review.create!(
         body: review,
         listing_id: 1,
-        reviewer_id: rand(2..20),
-        cleanliness_rating: rand(4..5),
-        check_in_rating: rand(4..5),
-        location_rating: rand(4..5),
-        communication_rating: rand(4..5),
-        accuracy_rating: rand(4..5),
-        value_rating: rand(4..5)
+        reviewer_id: reviewer_id,
+        cleanliness_rating: cleanliness_rating,
+        check_in_rating: check_in_rating,
+        location_rating: location_rating,
+        communication_rating: communication_rating,
+        accuracy_rating: accuracy_rating,
+        value_rating: value_rating,
+        rating: rating
     )
 end
 
 15.times do |i|
-    start_date = ((1..23) + (i * 30))
+    start_date = (rand(1..23) + (i * 30))
     end_date = start_date + rand(1..7)
     Reservation.create!(
         start_date: today - start_date,
         end_date: today - end_date,
-        num_guests: (0..10),
+        num_guests: rand(1..10),
         listing_id: 1,
-        user_id: rand(2..20)
+        user_id: rand(2..num_users)
     )
 end
 
@@ -335,28 +346,30 @@ locations.each_key do |city|
         rooms = rand(1..beds)
         baths = rand(1..rooms)
         description = []
-        rand(0..5).times do 
+
+        rand(1..5).times do 
             description.push(Faker::Lorem.paragraph(sentence_count: 3, supplemental: false, random_sentences_to_add: 10))
         end
-        currListing = Listing.create!(
+
+        curr_listing = Listing.create!(
             title: "#{Faker::Space.meteorite} #{Faker::Space.star_cluster}",
             description: description.join("\n"),
-            max_guests: guests,
-            num_beds: beds,
-            num_rooms: rooms,
-            num_baths: baths,
-            price_per_night: rand(20..500),
+            address: "#{Faker::Address.street_address}, #{city}, #{locations[city]}, #{Faker::Address.zip}",
             lat: rand(city_coords[city][:lat]),
             lng: rand(city_coords[city][:lng]),
-            location: city,
-            address: "#{Faker::Address.street_address}, #{city}, #{locations[city]}, #{Faker::Address.zip}",
-            owner_id: rand(1..num_users)
+            max_guests: guests,
+            num_rooms: rooms,
+            num_beds: beds,
+            num_baths: baths,
+            owner_id: rand(2..num_users),
+            price_per_night: rand(20..500),
+            location: city
         )
 
-        currListing.photos.attach(io: open(listing_exterior_images.sample()), filename: "#{currListing[:title]} exterior")
+        curr_listing.photos.attach(io: open(listing_exterior_images.sample()), filename: "#{curr_listing[:title]} exterior")
         
         4.times do |i|
-            currListing.photos.attach(io: open(listing_interior_images.sample()), filename: "#{currListing[:title] + i.to_s}")
+            curr_listing.photos.attach(io: open(listing_interior_images.sample()), filename: "#{curr_listing[:title] + i.to_s}")
         end
 
         rand(0..num_reviews_per_listing).times do
@@ -368,21 +381,21 @@ locations.each_key do |city|
                 accuracy_rating: rand(3..5),
                 value_rating: rand(3..5),
                 body: Faker::Games::LeagueOfLegends.quote,
-                listing_id: currListing.id,
+                listing_id: curr_listing.id,
                 reviewer_id: rand(1..num_users)
             )
         end
 
         # Generate reservations here
         rand(0..num_reservations_per_listing).times do |i|
-            start_date = ((1..23) + (i * 30))
+            start_date = (rand(1..23) + (i * 30))
             end_date = start_date + rand(1..7)
             Reservation.create!(
                 start_date: today - start_date,
                 end_date: today - end_date,
-                num_guests: (1..currListing.max_guests),
-                listing_id: currListing.id,
-                user_id: rand(0..num_users)
+                num_guests: rand(1..curr_listing.max_guests),
+                listing_id: curr_listing.id,
+                user_id: rand(1..num_users)
             )
         end
     end

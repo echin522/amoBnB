@@ -48,6 +48,7 @@ class ListingShow extends React.Component {
     }
 
     renderDeleteButton() {
+        if (!this.props.currentUser) return
         if (this.props.listing.owner_id === this.props.currentUser.id) {
             return (
                 <button onClick={this.handleDelete} id="delete-button">
@@ -71,19 +72,19 @@ class ListingShow extends React.Component {
 
         // I tried using typeof and I would vastly prefer refactoring htis to use it
         // but I am too lazy and the project is due in 13 hours
-        let averageRating = parseFloat(listing.average_rating).toFixed(2);
+        let averageRating = parseFloat(parseInt(listing.average_rating)).toFixed(2);
         if (averageRating === "NaN") {averageRating = "-"};
-        let averageCleanlinessRating = parseFloat(listing.average_cleanliness_rating).toFixed(2);
+        let averageCleanlinessRating = parseFloat(parseInt(listing.average_cleanliness_rating)).toFixed(2);
         if (averageCleanlinessRating === "NaN") {averageCleanlinessRating = "-"};
-        let averageCheckInRating = parseFloat(listing.average_check_in_rating).toFixed(2);
+        let averageCheckInRating = parseFloat(parseInt(listing.average_check_in_rating)).toFixed(2);
         if (averageCheckInRating === "NaN") {averageCheckInRating = "-"};
-        let averageLocationRating = parseFloat(listing.average_location_rating).toFixed(2);
+        let averageLocationRating = parseFloat(parseInt(listing.average_location_rating)).toFixed(2);
         if (averageLocationRating === "NaN") {averageLocationRating = "-"};
-        let averageCommunicationRating = parseFloat(listing.average_communication_rating).toFixed(2);
+        let averageCommunicationRating = parseFloat(parseInt(listing.average_communication_rating)).toFixed(2);
         if (averageCommunicationRating === "NaN") {averageCommunicationRating = "-"};
-        let averageAccuracyRating = parseFloat(listing.average_accuracy_rating).toFixed(2);
+        let averageAccuracyRating = parseFloat(parseInt(listing.average_accuracy_rating)).toFixed(2);
         if (averageAccuracyRating === "NaN") {averageAccuracyRating = "-"};
-        let averageValueRating = parseFloat(listing.average_value_rating).toFixed(2);
+        let averageValueRating = parseFloat(parseInt(listing.average_value_rating)).toFixed(2);
         if (averageValueRating === "NaN") {averageValueRating = "-"};
         let subTotal = listing.price_per_night * numNights;
         if (subTotal === "NaN") {subTotal = "-"};
@@ -94,6 +95,8 @@ class ListingShow extends React.Component {
         let serviceFee = parseFloat(subTotal * 0.035);
         let totalFee = (subTotal + cleaningFee + serviceFee).toFixed(2)
         
+        console.log(averageAccuracyRating)
+
         return (
             <div className="listing-show-container content">
                 <ReviewModal listingId={listing.id}/>
