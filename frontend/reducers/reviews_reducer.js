@@ -10,7 +10,7 @@ const reviewsReducer = ( oldState = {}, action ) => {
             newState[action.review.id] = action.review;
             return newState;
         case RECEIVE_LISTING:
-            return Object.assign({}, newState, action.reviews);
+            return Object.assign({}, action.reviews);
         case REMOVE_REVIEW:
             newState = Object.assign({}, oldState);
             delete newState[action.reviewId];
