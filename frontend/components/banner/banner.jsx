@@ -8,11 +8,11 @@ class Banner extends React.Component {
     }
 
     dropDown(e) {
-        if (!e.target.closest(".search-bar") && !e.target.closest("#mini-search-bar")) {
+        // if (!e.target.closest(".search-bar") && !e.target.closest("#mini-search-bar")) {
             // document.getElementById("mini-search-bar").classList.remove("hidden");
             document.querySelector(".user-drop-down").classList.remove("hidden");
             document.removeEventListener("click", this.dropDown);
-        }
+        // }
     }
 
     dropSearch(e) {
@@ -32,7 +32,7 @@ class Banner extends React.Component {
     toggleSearchBar() {
         document.getElementById("mini-search-bar").classList.add("hidden")
         document.querySelector(".search-bar").classList.remove("hidden");
-        document.addEventListener("click", this.dropSearch);
+        document.querySelector(".content").addEventListener("click", this.dropSearch);
     }
 
     render() {

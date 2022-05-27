@@ -39,7 +39,7 @@ class ReviewModal extends React.Component {
                 <div className="new-review-container" >
                     <div className="modal-header">
                         <div onClick={this.props.closeModal} className="x">X</div>
-                        <p>Leave a review!</p>
+                        <h3>Leave a review!</h3>
                     </div>
                     <form onClick={e => e.stopPropagation()} onSubmit={this.handleSubmit}>
                         {/* Make this more DRY one day :) */}

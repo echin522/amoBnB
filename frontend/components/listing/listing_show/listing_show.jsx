@@ -16,12 +16,14 @@ class ListingShow extends React.Component {
         }
         this.reviews = [];
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
     }
 
     componentDidMount() {
         this.props.fetchListing(this.props.match.params.listingId)
         document.querySelector("header").style.position = "static";
         document.querySelector(".banner").style.maxWidth = "1300px";
+        console.log(this.props)
     }
     
     componentWillUnmount() {
@@ -37,6 +39,22 @@ class ListingShow extends React.Component {
         e.preventDefault();
         const reservation = Object.assign({}, this.state);
         this.props.createReservation(reservation);
+    }
+
+    handleDelete(e) {
+        e.preventDefault();
+        this.props.deleteListing(this.props.listing.id);
+        this.props.history.push("/");
+    }
+
+    renderDeleteButton() {
+        if (this.props.listing.owner_id === this.props.currentUser.id) {
+            return (
+                <button onClick={this.handleDelete} id="delete-button">
+                    Delete this listing
+                </button>
+            )
+        }
     }
 
     render() {
@@ -186,42 +204,42 @@ class ListingShow extends React.Component {
                             <p>Cleanliness</p>
                             <ProgressBar 
                                 bgcolor="black"
-                                progress={`${(averageCleanlinessRating / 5) * 100}`}
+                                progress={averageCleanlinessRating}
                             />
                         </li>
                         <li className="metric">
                             <p>Communication</p>
                             <ProgressBar 
                                 bgcolor="black"
-                                progress={`${(averageCommunicationRating / 5) * 100}`}
+                                progress={averageCommunicationRating}
                             />
                         </li>
                         <li className="metric">
                             <p>Check-in</p>
                             <ProgressBar 
                                 bgcolor="black"
-                                progress={`${(averageCheckInRating / 5) * 100}`}
+                                progress={averageCheckInRating}
                             />
                         </li>
                         <li className="metric">
                             <p>Accuracy</p>
                             <ProgressBar 
                                 bgcolor="black"
-                                progress={`${(averageAccuracyRating / 5) * 100}`}
+                                progress={averageAccuracyRating}
                             />
                         </li>
                         <li className="metric">
                             <p>Location</p>
                             <ProgressBar 
                                 bgcolor="black"
-                                progress={`${(averageLocationRating / 5) * 100}`}
+                                progress={averageLocationRating}
                             />
                         </li>
                         <li className="metric">
                             <p>Value</p>
                             <ProgressBar 
                                 bgcolor="black"
-                                progress={`${(averageValueRating / 5) * 100}`}
+                                progress={averageValueRating}
                             />
                         </li>
                     </ul>
@@ -230,6 +248,7 @@ class ListingShow extends React.Component {
                     {Object.values(this.props.reviews).map(review => (
                         <ListingReviewsItem
                             key={review.id}
+                            reviewId={review.id}
                             reviewer_id={review.reviewer_id}
                             rating={review.rating}
                             body={review.body}
@@ -246,6 +265,7 @@ class ListingShow extends React.Component {
                         singleListing={true}
                     />
                 </div>
+                {this.renderDeleteButton()}
             </div>
         )
     }

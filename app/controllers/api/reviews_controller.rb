@@ -17,6 +17,13 @@ class Api::ReviewsController < ApplicationController
         end
     end
 
+    def index
+        if current_user
+            @reviews = Review.where(reviewer_id: current_user.id)
+        end
+        render :index
+    end
+
     def destroy
         @review = Review.find_by(id: params[:id])
         if current_user

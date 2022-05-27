@@ -1,58 +1,65 @@
 import React from "react";
 import FormBackground from "./form_background";
+import MarkerManager from "../../../util/marker_manager";
 import { withRouter } from "react-router-dom";
 
 class ListingForm extends React.Component {
     constructor(props) {
         super(props);
         // this.coords = { lat: props.lat, lng: props.lng };
-        this.state = {
-            title: "",
-            description: "",
-            address: "",
-            location: "San Francisco",
-            lat: 37.798635,
-            lng: -122.402313,
-            max_guests: 0,
-            num_rooms: 0,
-            num_beds: 0,
-            num_baths: 0,
-            price_per_night: 0,
-            photoFiles: [],
-            // photoFile: window.defaultListingImg,
-            // photoUrl: null,
-        };
+        this.state = props.listing
 
         this.inputNames = {
             title: "Name of home",
-            address: "Address",
             description: "Brief description",
+            address: "Address",
+            location: "Location",
             max_guests: "Max Occupancy",
             num_rooms: "Number of rooms",
             num_beds: "Number of beds",
             num_baths:"Number of baths",
             price_per_night: "Price per night",
-            lat: "Latitude",
-            lng: "Longitude",
         }
+
         this.navigateToListing = this.navigateToListing.bind(this);
         this.handleFile = this.handleFile.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount() {
+        let mapOptions;
+        (this.props.formType === 'update')
+            ? mapOptions = {
+                center: { 
+                    lat: this.props.listing.latitude, 
+                    lng: this.props.listing.longitude 
+                },    
+                zoom: 15
+            } 
+            : mapOptions = {
+                center: {
+                    lat: 37.773972, 
+                    lng: -122.431297,
+                },
+                zoom: 12,
+            };
         document.querySelector(".banner").classList.add("hidden");
-        let mapOptions = {
-            center: {
-                lat: 37.773972,
-                lng: -122.431297,
-            },
-            zoom: 12,
-        };
         this.map = new google.maps.Map(this.mapNode, mapOptions);
         this.map.addListener("click", (e) => {
             this.setState({lat: e.latLng.lat(), lng: e.latLng.lng()})
         })
+        this.MarkerManager = new MarkerManager(this.map, "", 'pin');
+        // add conditional to have the click listener only when creating new form
+        
+        
+        if (this.props.formType === 'update' ){
+            this.MarkerManager.createMarkerFromForm(this.state.lat, this.state.lng);
+        } else {
+            this.mapHeader = 'Place pin on map to get coordinates';
+            this.map.addListener("click", (e) => {
+                this.MarkerManager.createMarkerFromForm(this.state.lat, this.state.lng);
+            });
+        }
     }
     
     componentWillUnmount() {
@@ -92,25 +99,53 @@ class ListingForm extends React.Component {
             formData.append(`listing[photos][]`, photo);
         });
 
-        this.props.createListing(formData)
-            .then(listing => this.props.history.push(`/listings/${listing.listing.id}`))
+        if (this.props.formType === "update") {
+            this.props.action(formData, this.state.id)
+                .then(listing => this.props.history.push(`/listings/${listing.listing.id}`));
+        } else {
+            this.props.action(formData)
+                .then(listing => this.props.history.push(`/listings/${listing.listing.id}`));
+        }
     }
 
     formInput = ( type, field ) => (
-        <div key={field} className="listing-field">
-            <label>{this.inputNames[field]}</label>
+        <label key={field} className="listing-field">
+            <label htmlFor={field}>{this.inputNames[field]}</label>
             <input 
+                id={field}
                 type={type}
                 value={this.state[field]}
                 onChange={this.update(field)}
             />
-        </div>
+        </label>
     )
 
+    formComponent() {
+        return(
+            <div id="form-content">
+                {/* <div id="form-first-half"> */}
+                    {this.formInput("text", "title")}
+                    {this.formInput("text", "address")}
+                    {this.formInput("text", "location")}
+                    {this.formInput("textarea", "description")}
+                        {/* {preview} */}
+                {/* </div> */}
+                {/* <div id="form-second-half"> */}
+                    {this.formInput("number", "max_guests")}
+                    {this.formInput("number", "num_rooms")}
+                    {this.formInput("number", "num_beds")}
+                    {this.formInput("number", "num_baths")}
+                    {this.formInput("number", "price_per_night")}
+                {/* </div> */}
+            </div>               
+        )
+    }
+
     render() {
-        const preview = this.state.photoUrls
-            ? <img src={this.state.photoUrls} height="200px" width="200px" />
-            : null;
+        // Eventually this will be a carousel of preview images or something
+        // const preview = this.state.photoUrls
+        //     ? <img src={this.state.photoUrls} height="200px" width="200px" />
+        //     : null;
 
         return (
             <>
@@ -127,19 +162,18 @@ class ListingForm extends React.Component {
                             <i className="fa-solid fa-chevron-left"></i>
                         </div>
                         <form onSubmit={this.handleSubmit}>
-                            <div>
-                                {Object.keys(this.state).map( field => {
-                                    let type;
-                                    typeof (this.state[field]) === "string" ? type = "text" : type = "number"
-                                    return this.formInput(type, field)
-                                })}
-                            </div>
+                            {this.formComponent()}
                             <div className="form-button-holder">
-                                <h3>Image preview </h3>
-                                {preview}
-                                <h3 className="button-holder">Please add at least five pictures</h3>
-                                <input type="file" className="new-photo-button" multiple
-                                    onChange={this.handleFile.bind(this)}/>
+                                {/* <h3>Image preview </h3> */}
+                            <h3 className="button-holder">Please add at least five pictures</h3>
+                            <label id="photo-drop-area">
+                                <input 
+                                    type="file" 
+                                    className="new-photo-button" 
+                                    multiple
+                                    onChange={this.handleFile.bind(this)}
+                                />
+                            </label>
                             </div>
                             <div className="form-button-holder" id="new-listing-button-container">
                                 <input type="submit" value="Looks Good" className="new-listing-button"/>

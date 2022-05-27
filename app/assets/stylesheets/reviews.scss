@@ -16,8 +16,7 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     column-gap: 4rem;
-    row-gap: .5rem;
-    grid-auto-rows: 200px, auto;
+    row-gap: 1rem;
     margin-bottom: 40px;
 }
 
@@ -28,13 +27,22 @@
 }
 
 .review {
-    min-height: 156px;
+    height: 156px;
+    .review-body {
+        overflow: auto;
+        border-radius: 10px;
+
+        &:hover {
+            box-shadow: 0 0 7px 8px rgba(33, 33, 33, .1);
+        }
+    }
 }
 
 .reviewer-header {
     flex-direction: row;
     align-items: center;
     margin-bottom: 15px;
+    position: relative;
 }
 
 .reviewer-propic {
@@ -69,6 +77,29 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    position: relative;
+
+    .progress-bar {
+        margin-right: 30px;
+    }
+
+    .progress-number {
+        position: absolute;
+        right: 0;
+    }
+}
+
+
+#review-delete-button {
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    transition: all 0.1s ease-in-out;
+    font-size: 14px;
+    
+    &:hover {
+        border-bottom: 1px solid black;
+    }
 }
 
 // MODAL
@@ -96,8 +127,9 @@
     margin: 15% auto;
 
     .rating-container {
-        display: flex;
         flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
     }
 
     form {
@@ -154,13 +186,12 @@
 // STAR RATING STUFF
 
 .star-wrapper {
-    display: flex;
     flex-direction: row-reverse;
     justify-content: center;
     
     label {
         cursor: pointer;
-        font-size: 2em;
+        font-size: 1em;
         text-decoration: none;
         transition: all 0.5s;
         margin: 4px;
@@ -205,15 +236,27 @@
     width: 100%;
     resize: none;
     padding: 0px;
+
+    &:focus {
+        height: 10em;
+    }
 }
 
 #submit-review-button {
+    cursor: pointer;
+    font-family: Cereal-Medium;
+    height: 50px;
     width: 100%;
     font-size: 16px;
+    justify-content: center;
+    align-items: center;
     background-image: linear-gradient(to right, #e51f4e, #d60567);
     border: none;
     border-radius: 7px;
-    height: 50px;
-    padding-left: 30px;
-    padding-right: 30px;
+    padding: 0 30px 0 30px;
+
+    &:hover {
+        transform: scale(1.03);
+        box-shadow: 0 0 7px 1px rgba(33, 33, 33, .1);
+    }
 }

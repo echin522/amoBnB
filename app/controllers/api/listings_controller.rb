@@ -10,8 +10,6 @@ class Api::ListingsController < ApplicationController
         else
             @listings = Listing.all
         end
-        
-        # @listings = Listing.
         render :index
     end
 

@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import configureStore from "./store/store";
 import Root from "./components/root";
 import { login, logout, signup } from "./actions/session_actions";
-import { createReview, fetchListings, fetchListing, createListing } from "./actions/listing_actions";
+import { createReview, fetchListings, fetchListing, createListing, fetchReviews } from "./actions/listing_actions";
 import { fetchUser } from "./actions/user_actions"
 import { createReservation, fetchReservation } from "./actions/reservation_actions";
 
@@ -25,7 +25,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // TESTING ON WINDOW
     window.getState = store.getState;
+    window.dispatch = store.dispatch;
+    window.fetchReviews = fetchReviews;
+    window.createReview = createReview;
     //
-    
+
     ReactDOM.render(<Root store={store}/>, root);
 });

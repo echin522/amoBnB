@@ -221,6 +221,23 @@
     font-family: Cereal-Medium;
 }
 
+#delete-button {
+    cursor: pointer;
+    height: 50px;
+    width: 150px;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    background-color: #1f1f1f;
+    color: white;
+    
+
+    &:hover {
+        transform: scale(1.02);
+        background-color: black;
+    }
+}
+
 @media (max-width: 700px) {
     .listing-show-info {
         display: flex;

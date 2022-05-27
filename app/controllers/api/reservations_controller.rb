@@ -5,7 +5,9 @@ class Api::ReservationsController < ApplicationController
     end
 
     def index
-        @reservations = Reservation.all
+        if current_user
+            @reservations = Reservation.where(user_id: current_user.id)
+        end
         render :index
     end
 

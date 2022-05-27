@@ -2,6 +2,17 @@ import React from 'react'
 
 const Progress_bar = ({bgcolor, progress}) => {
 	
+	let progressNumber;
+	let innerProgress;
+	if (typeof progress !== "number") {
+		innerProgress = 0;
+		progressNumber = "-";
+	} else {
+		innerProgress = progress;
+		progressNumber = parseFloat(progress).toFixed(1);
+	}
+		
+
 	const progressContainer = {
 		height: "4px",
 		width: '30%',
@@ -11,18 +22,20 @@ const Progress_bar = ({bgcolor, progress}) => {
 	
 	const innerProgressBar = {
 		height: '100%',
-		width: `${progress}%`,
+		width: `${(innerProgress / 5) * 100}%`,
 		backgroundColor: bgcolor,
 	    borderRadius:40,
 		textAlign: 'right'
 	}
-		
+
 	return (
-        <div style={progressContainer}>
-            <div style={innerProgressBar}>
-                {/* <p>{progress}</p> */}
-            </div>
-        </div>
+		<>
+			<div className='progress-bar' style={progressContainer}>
+				<div style={innerProgressBar}>
+				</div>
+			</div>
+			<p className='progress-number'>{progressNumber}</p>
+		</>
 	)
 }
 

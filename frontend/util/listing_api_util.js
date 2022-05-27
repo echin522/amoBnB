@@ -22,6 +22,14 @@ export const createReview = review => {
     })
 )};
 
+export const fetchReviews = (search) => (
+    $.ajax({
+        method: 'GET',
+        url: 'api/reviews',
+        data: search
+    })
+);
+
 export const createListing = listingForm => (
     $.ajax({
         method: 'POST',
@@ -32,3 +40,13 @@ export const createListing = listingForm => (
         processData: false,
     })
 );
+
+export const deleteListing = listingId => $.ajax({
+    url: `/api/listings/${listingId}`,
+    method: 'DELETE'
+});
+
+export const deleteReview = reviewId => $.ajax({
+    url: `/api/reviews/${reviewId}`,
+    method: 'DELETE'
+});

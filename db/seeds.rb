@@ -315,9 +315,8 @@ review_bodies.each do |review|
     )
 end
 
-days = (0..730).to_a
-15.times do
-    start_date = ((7..365) * rand(0..2))
+15.times do |i|
+    start_date = ((1..23) + (i * 30))
     end_date = start_date + rand(1..7)
     Reservation.create!(
         start_date: today - start_date,
@@ -326,7 +325,6 @@ days = (0..730).to_a
         listing_id: 1,
         user_id: rand(2..20)
     )
-    date = (7..start_date)
 end
 
 # Create random listings
@@ -342,7 +340,7 @@ locations.each_key do |city|
         end
         currListing = Listing.create!(
             title: "#{Faker::Space.meteorite} #{Faker::Space.star_cluster}",
-            description: description.join("\n")
+            description: description.join("\n"),
             max_guests: guests,
             num_beds: beds,
             num_rooms: rooms,
@@ -375,14 +373,13 @@ locations.each_key do |city|
             )
         end
 
-        days = (8...730)
         # Generate reservations here
-        rand(0..num_reservations_per_listing).times do
-            start_date = today - (rand(days))
+        rand(0..num_reservations_per_listing).times do |i|
+            start_date = ((1..23) + (i * 30))
             end_date = start_date + rand(1..7)
             Reservation.create!(
-                start_date: Date.today - start_date,
-                end_date: end_date,
+                start_date: today - start_date,
+                end_date: today - end_date,
                 num_guests: (1..currListing.max_guests),
                 listing_id: currListing.id,
                 user_id: rand(0..num_users)
