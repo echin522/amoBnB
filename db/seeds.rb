@@ -125,7 +125,6 @@ listing_exterior_images = [
     'https://www.homestratosphere.com/wp-content/uploads/2017/12/blue-house-exterior-dec21.jpg',
     'https://www.jameshardie.com/JamesHardieNorthAmerica/media/BlogPost/2021-design-trends/exterior-design-and-home-color-trends-for-2021.jpg',
     'https://i.pinimg.com/originals/82/61/7a/82617ab59bb7bcc43e05335e2235476a.jpg',
-    'https://mywallworks.com/wp-content/uploads/2019/08/architectural-design-architecture-country-home-2287310-min-e1569791982979.jpghttps://www.build-review.com/wp-content/uploads/2021/05/House.jpg',
     'https://www.thespruce.com/thmb/KTNQ8vamKvpvTJD6M45OS1bQWWg=/1500x844/smart/filters:no_upscale()/best-exterior-house-colors-3990375-hero-d3c123ce71ec4e0d9161b2ca6b2f14e3.jpg',
     'https://cdn.houseplansservices.com/content/98tbl8e736nqpe5k89c3urpdms/w991x660.jpg?v=10',
     'https://cdn.vox-cdn.com/thumbor/myGshFoucO0CQjZQVgOufIVveA0=/1400x1050/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/21849222/iStock_1223022367.jpg',
