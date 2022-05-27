@@ -166,7 +166,6 @@ listing_interior_images = [
     'https://ellecordesign.com/wp-content/uploads/2020/03/house-on-the-hill-13.jpg',
     'https://cdnassets.hw.net/ab/75/a4bc752f41f288d3e45c29454cdb/9b03a91b55f5408980862881d9255102.jpg',
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBG0Tub40ylM-aE1oyte7lpawPvi_SfWkkGw&usqp=CAU',
-    'https://assets-news.housing.com/news/wp-content/uploads/2020/04/22184310/Check-out-these-duplex-interior-design-ideas-FB-1200x700-compressed.jpg,https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRFP1Q7R0emDl0Ssj0ogCBA_JekdYFtVjwFg&usqp=CAU',
     'https://s3images.coroflot.com/user_files/individual_files/large_444208_m_hlsgxamutawrmhlrpqu2omb.jpg',
     'http://twhinteriors.com/wp-content/uploads/2020/02/TWHI-Store-PhotosFeb20-scaled.jpg',
     'https://media.istockphoto.com/photos/modern-luxury-home-interior-picture-id1311356176?b=1&k=20&m=1311356176&s=170667a&w=0&h=qBWA2Tf3PzXV8MlClXYYGzZV1kelXzI2EDc41mInMo0=',
