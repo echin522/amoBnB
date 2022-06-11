@@ -94,8 +94,6 @@ class ListingShow extends React.Component {
         }
         let serviceFee = parseFloat(subTotal * 0.035);
         let totalFee = (subTotal + cleaningFee + serviceFee).toFixed(2)
-        
-        console.log(averageAccuracyRating)
 
         return (
             <div className="listing-show-container content">

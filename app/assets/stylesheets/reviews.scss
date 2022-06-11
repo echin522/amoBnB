@@ -117,6 +117,7 @@
 
 .new-review-container {
     display: flex;
+    min-width: 525px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -236,9 +237,10 @@
     width: 100%;
     resize: none;
     padding: 0px;
+    height: 10em;
 
     &:focus {
-        height: 10em;
+        
     }
 }
 
