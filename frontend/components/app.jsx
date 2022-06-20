@@ -8,7 +8,7 @@ import ListingShow from "./listing/listing_show/listing_show_container";
 import ListingForm from "./listing/listing_form/listing_form_container";
 import ListingIndex from "./listing/listing_index/listing_index_container";
 import SearchBar from './search_bar/search_bar_container';
-import UserShowPage from "./user/user_show_container";
+import UserShowPage from "./user/user_show/user_show_container";
 
 // Auth routes redirect to homepage while Protected routes
 // redirect to the login page

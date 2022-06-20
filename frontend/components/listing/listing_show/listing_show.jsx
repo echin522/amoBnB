@@ -23,7 +23,6 @@ class ListingShow extends React.Component {
         this.props.fetchListing(this.props.match.params.listingId)
         document.querySelector("header").style.position = "static";
         document.querySelector(".banner").style.maxWidth = "1300px";
-        console.log(this.props)
     }
     
     componentWillUnmount() {
@@ -146,6 +145,9 @@ class ListingShow extends React.Component {
                         <Amenities/>
                     </div>
                     <div className="listing-show-reservation-block">
+                        <div className="reservation-header">
+                            <h2>Make a Reservation</h2>
+                        </div>
                         <div className="reserve-block-listing-info">
                             <h2 className="reserve-block-price">${listing.price_per_night} <span>night</span></h2>
                             <p><i className="fa-solid fa-star"></i> {averageRating} · {listing.num_reviews} reviews</p>

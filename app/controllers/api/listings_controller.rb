@@ -7,6 +7,8 @@ class Api::ListingsController < ApplicationController
     def index
         if params[:location]
             @listings = Listing.where("location LIKE '%#{params[:location]}%'").where("max_guests >= #{params[:max_guests]}")
+        elsif params[:owner_id]
+            @listings = Listing.where("owner_id LIKE '%#{params[:owner_id]}%'")
         else
             @listings = Listing.all
         end

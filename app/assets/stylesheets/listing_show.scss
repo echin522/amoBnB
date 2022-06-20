@@ -88,6 +88,11 @@
     box-shadow: 0px 3px 15px lightgrey;
     border-radius: 10px;
     padding: 20px;
+
+    .reservation-header {
+        display: none;
+        margin-bottom: 16px;
+    }
 }
 
 .reserve-block-listing-info {
@@ -259,6 +264,20 @@
     .listing-reviews {
         display: flex !important;
         flex-direction: column;
+    }
+
+    .listing-show-reservation-block {
+        border: none;
+        box-shadow: none;
+        padding: 0px;
+
+        .reservation-header {
+            display: block;
+        }
+
+        .reserve-block-subtotal {
+            border: none;
+        }
     }
 }
 

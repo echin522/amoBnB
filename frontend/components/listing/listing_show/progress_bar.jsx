@@ -4,7 +4,6 @@ const Progress_bar = ({bgcolor, progress}) => {
 	
 	let progressNumber;
 	let innerProgress;
-	console.log(progress)
 	if (typeof progress !== "undefined") {
 		innerProgress = 0;
 		progressNumber = "-";

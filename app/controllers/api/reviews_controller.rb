@@ -24,10 +24,15 @@ class Api::ReviewsController < ApplicationController
         render :index
     end
 
+    def update
+
+    end
+
     def destroy
         @review = Review.find_by(id: params[:id])
         if current_user
             @review.destroy
+            render json: @review
         else
             render json: "You cannot delete this review", status: 404
         end
