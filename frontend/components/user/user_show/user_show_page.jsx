@@ -9,7 +9,6 @@ class UserShow extends React.Component {
     componentDidMount() {
         if (parseInt(this.props.match.params.userId) === this.props.currentUser.id) {
             this.props.fetchReservations(this.props.currentUser.id)
-                .then(reservations => console.log(reservations))
         }
     }
 
@@ -18,13 +17,8 @@ class UserShow extends React.Component {
     }
 
     render() {
-        const { currentUser, fetchListing, reservations } = this.props;
+        const { currentUser, fetchListing, deleteReservation, updateReservation, reservations } = this.props;
         if (parseInt(this.props.match.params.userId) !== currentUser.id) return <div id="user-show-content">You must be logged in, idiot</div>
-        let tripsContainer;
-        let listing;
-        // if () {
-
-        // }
         return (
             <div id="user-show-content">
                 <section className="about-user">
@@ -32,22 +26,23 @@ class UserShow extends React.Component {
                 </section>
                 <section className="trips">
                     <h2>Upcoming Trips</h2>
-                    <ul className="user-trips">
-                        {
-                            reservations.map(reservation => {
-                                // fetchListing(reservation.listing_id)
-                                //     .then(listing => listing = listing);
+                    <div>
 
-                                return(
-
-                                    <ReservationItem
-                                        key={reservation.id}
-                                        reservation={reservation}
-                                    />
-                                )
-                            })
-                        }
-                    </ul>
+                        <ul className="user-trips">
+                            {
+                                reservations.map(reservation => {
+                                    return(
+                                        <ReservationItem
+                                            key={reservation.id}
+                                            reservation={reservation}
+                                            deleteReservation={deleteReservation}
+                                            updateReservation={updateReservation}
+                                        />
+                                        )
+                                    })
+                                }
+                        </ul>
+                    </div>
                 </section>
                 <section>
                     <h2>Past Trips</h2>

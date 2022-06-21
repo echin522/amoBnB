@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { openModal, closeModal } from "../../../actions/modal_actions";
 import UserShow from "./user_show_page";
 import { fetchReviews, fetchListings, fetchListing } from "../../../actions/listing_actions";
-import { fetchReservations } from "../../../actions/reservation_actions";
+import { fetchReservations, deleteReservation, updateReservation } from "../../../actions/reservation_actions";
 
 const mSTP = (state, ownProps) => ({
     currentUser: state.entities.users[state.session.id],
@@ -16,6 +16,8 @@ const mDTP = (dispatch, ownProps) => ({
     fetchListings: () => dispatch(fetchListings(ownProps.userId)),
     fetchReviews: () => dispatch(fetchReviews(ownProps.userId)),
     fetchReservations: () => dispatch(fetchReservations(ownProps.userId)),
+    deleteReservation: reservationId => dispatch(deleteReservation(reservationId)),
+    updateReservation: () => dispatch(fetchReservations(ownProps.userId)),
     openModal: otherForm => dispatch(openModal(otherForm)),
     closeModal: () => dispatch(closeModal()),
 });

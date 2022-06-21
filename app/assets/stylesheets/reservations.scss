@@ -1,5 +1,6 @@
 #user-show-content {
-    max-width: 80%;
+    width: 90vw;
+    max-width: 1500px;
     .about-user {
 
     }
@@ -9,7 +10,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 1em;
+            gap: 3rem;
         
             > * {
                 // margin: 1em 0 1em 0;
@@ -21,67 +22,109 @@
 .reservation-item {
 
     display: grid;
-    height: 30vh;
+    height: 300px;
     width: 100%;
     justify-content: center;
     grid-template-areas:
         "header image"
         "address image";
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr .6fr;
+    // column-gap: 2em;
     border-radius: 1em;
     border: lightgrey 1px solid;
     box-shadow: 0px 5px 10px rgba(33, 33, 33, .2);
 
+    > * {
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        padding: 2rem;
+    }
+
     .reservation-item-header {
+        padding: 2rem 0 2rem 0;
+        margin: 0 2rem 0 2rem;
+        width: calc(100% - 4rem);
         grid-area: header;
         display: flex;
         flex-direction: column;
         gap: .2em;
         justify-content: center;
-        padding: 3%;
         border-bottom: lightgrey 1px solid;
-
+        
         h1 {
             margin: 0;
         }
-
+        
         h3 {
             margin: 0;
+            // padding-bottom: 1rem;
         }
     }
 
     .reservation-body {
         grid-area: address;
         display: flex;
+        gap: 30px;
         // flex-direction: row;
         .reservation-dates {
-            .dates {
+            width: 25%;
+            min-width: 80px;
+            border-right: lightgrey 1px solid;
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
 
+            * {
+                margin: 0%;
+            }
+            .dates {
             }
 
             .year {
-
+                font-size: small;
             }
         }
 
         .reservation-address {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
             .address {
-
+                margin: 0%;
             }
 
             .country {
-
+                margin: 0%;
             }
         }
     }
 
     .reservation-image {
+        padding: 0%;
         grid-area: image;
         object-fit: cover;
-        width: 100%;
-        height: 100%;
         border-top-right-radius: 1em;
         border-bottom-right-radius: 1em;
+    }
+}
+
+// Change reservation item layout
+@media (max-width: 900px) {
+    .reservation-item {
+        grid-template-areas:
+            'header'
+            'address'
+            'image'
+            'image';
+        grid-template-columns: 1fr;
+        height: fit-content;
+
+        .reservation-image {
+            border-top-right-radius: 0px;
+            border-bottom-left-radius: 1em;
+        }
     }
 }

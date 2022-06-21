@@ -27,9 +27,8 @@ class ReservationItem extends React.Component {
                 </div>
                 <div className="reservation-body">
                     <div className="reservation-dates">
-                        <p className="dates">
-                            { `${startDate} - ${endDate}` }
-                        </p>
+                        <p className="dates">{ `${startDate} -`}</p>
+                            <p>{endDate}</p>
                         <p className="year">{endRes[0]}</p>
                     </div>
                     <div className="reservation-address">
