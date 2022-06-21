@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // TESTING ON WINDOW
     window.getState = store.getState;
     window.dispatch = store.dispatch;
+    window.fetchListing = fetchListing;
     window.fetchReviews = fetchReviews;
     window.createReview = createReview;
     window.fetchReservations = fetchReservations;

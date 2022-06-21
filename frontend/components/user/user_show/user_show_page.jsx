@@ -1,5 +1,5 @@
 import React from "react";
-import ListingItem from "../listing_item/listing_item";
+import ReservationItem from "../reservation/reservation_item";
 
 class UserShow extends React.Component {
     constructor(props) {
@@ -10,10 +10,6 @@ class UserShow extends React.Component {
         if (parseInt(this.props.match.params.userId) === this.props.currentUser.id) {
             this.props.fetchReservations(this.props.currentUser.id)
                 .then(reservations => console.log(reservations))
-            // this.props.fetchListings({owner_id: this.props.currentUser.id})
-            //     .then(listings => console.log(listings))
-            // this.props.fetchReviews(this.props.currentUser.id)
-            //     .then(reviews => console.log(reviews))
         }
     }
 
@@ -44,7 +40,7 @@ class UserShow extends React.Component {
 
                                 return(
 
-                                    <ListingItem
+                                    <ReservationItem
                                         key={reservation.id}
                                         reservation={reservation}
                                     />

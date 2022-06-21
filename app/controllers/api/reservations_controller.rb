@@ -1,12 +1,14 @@
 class Api::ReservationsController < ApplicationController
     def show
         @reservation = Reservation.find_by(id: params[:id])
-        listing = Listing.where(id: @reservation.listing_id)
-        owner = User.where(id: listing.owner_id)
-        @reservation.address = listing.address
-        @reservation.location = listing.address.split[1]
-        @reservation.owner_name = owner.fname + " " + owner.lname
-        @reservation.photo = 
+        # listing = Listing.where(id: @reservation.listing_id)
+        # owner = User.where(id: listing.owner_id)
+        # @reservation.listing = listing
+        # @reservation.owner = owner
+        # @reservation.owner_name = owner.fname + " " + owner.lname
+        # @reservation.address = listing.address
+        # @reservation.location = listing.address.split[1]
+        # @reservation.photos = listing.photos
         render :show
     end
 
