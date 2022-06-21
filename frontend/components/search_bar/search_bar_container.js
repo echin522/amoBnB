@@ -6,9 +6,9 @@ const mSTP = ({ session, entities: { users }, errors }) => ({
     currentUser: users[session.id],
     errors: errors.session,
 });
-  
+
 const mDTP = dispatch => ({
     fetchListings: search => dispatch(fetchListings(search))
 });
-  
+
 export default connect(mSTP, mDTP)(SearchBar);

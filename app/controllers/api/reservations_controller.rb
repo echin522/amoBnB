@@ -1,12 +1,20 @@
 class Api::ReservationsController < ApplicationController
     def show
         @reservation = Reservation.find_by(id: params[:id])
+        listing = Listing.where(id: @reservation.listing_id)
+        owner = User.where(id: listing.owner_id)
+        @reservation.address = listing.address
+        @reservation.location = listing.address.split[1]
+        @reservation.owner_name = owner.fname + " " + owner.lname
+        @reservation.photo = 
         render :show
     end
 
     def index
         if current_user
             @reservations = Reservation.where(user_id: current_user.id)
+        else
+            @reservations = Reservation.all
         end
         render :index
     end

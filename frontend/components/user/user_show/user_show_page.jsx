@@ -22,9 +22,10 @@ class UserShow extends React.Component {
     }
 
     render() {
-        const { currentUser, reviews, reservations } = this.props;
+        const { currentUser, fetchListing, reservations } = this.props;
         if (parseInt(this.props.match.params.userId) !== currentUser.id) return <div id="user-show-content">You must be logged in, idiot</div>
         let tripsContainer;
+        let listing;
         // if () {
 
         // }
@@ -36,18 +37,24 @@ class UserShow extends React.Component {
                 <section className="trips">
                     <h2>Upcoming Trips</h2>
                     <ul className="user-trips">
-                        {/* {
+                        {
                             reservations.map(reservation => {
-                                <ListingItem
-                                    reservation={reservation}
+                                // fetchListing(reservation.listing_id)
+                                //     .then(listing => listing = listing);
 
-                                />
+                                return(
+
+                                    <ListingItem
+                                        key={reservation.id}
+                                        reservation={reservation}
+                                    />
+                                )
                             })
-                        } */}
+                        }
                     </ul>
                 </section>
                 <section>
-                    Unfortunately, I ran out of time :(
+                    <h2>Past Trips</h2>
                 </section>
             </div>
         )
