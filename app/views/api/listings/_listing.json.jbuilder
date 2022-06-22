@@ -13,7 +13,12 @@ json.extract! listing,
     :owner_id,
     :price_per_night,
     :amenities
-json.owner User.find_by(id: listing.owner_id)
+json.owner do
+    json.extract! User.find_by(id: listing.owner_id),
+        :fname,
+        :lname,
+        :id
+end
 # json.owner User.find_by(id: listing.owner_id).fname
 json.num_reviews listing.num_reviews
 json.average_rating listing.average_rating

@@ -17,19 +17,26 @@ demo_user = User.create!(
     lname: "User",
     email: "demo@email.com",
     password: "asdf1234",
-    about: "Testing123!",
+    about: "Thank you for coming to my website! I hope you enjoy your stay :)",
     location: "San Francisco"
 )
 
+amenities = [
+    "Beach view","Sea view","Sunset view","Courtyard view","Kitchen","Air conditioning","Essential toiletries","Cleaning products","Hot water","Bed linens","Pillows","Closet","Washing machine","Dryer","Fireplace","Heating","Smoke alarm","Fire alarm","Fire extinguisher","Refrigerator","Microwave","Silverware","Oven","Stove","Coffee maker","Wine glasses","Blender","Free parking","Pets allowed","Wifi","TV"
+]
+
+these_amenities = []
+
 test_listing = Listing.create!(
     title: "Big house",
-    description: "Morbius is a fantasy-action film set in modern times, which is based off of Morbius, the Living Vampire made by Roy Thomas and Gil Kane from the Marvel Comics. The film was directed by Daniel Espinosa and had Jared Leto star as Dr. Micheal Morbius. The film is about a successful doctor who has cured many diseases, except for the disease he and his friend Milo have. Fortunately, he has found a cure for the disease, with the drawback being that he turns into a vampire and needs to consume blood to survive. For Morbius, this is a problem since he doesn’t want people to get hurt, however Milo sees it differently, and takes the cure to become a vampire. Because of this, the two of the friends soon become enemies. The film was very beautiful and there was a lot of impressive cinematography. The voice acting by all of the actors was perfect. My favourite part of the movie was when Morbius said “It’s Morbin’ time!”.",
+    description: "Morbius is a fantasy-action film set in modern times, which is based off of Morbius, the Living Vampire made by Roy Thomas and Gil Kane from the Marvel Comics. The film was directed by Daniel Espinosa and had Jared Leto star as Dr. Micheal Morbius.123The film is about a successful doctor who has cured many diseases, except for the disease he and his friend Milo have. Fortunately, he has found a cure for the disease, with the drawback being that he turns into a vampire and needs to consume blood to survive.123For Morbius, this is a problem since he doesn’t want people to get hurt, however Milo sees it differently, and takes the cure to become a vampire. Because of this, the two of the friends soon become enemies. The film was very beautiful and there was a lot of impressive cinematography. The voice acting by all of the actors was perfect. My favourite part of the movie was when Morbius said “It’s Morbin’ time!”.",
     max_guests: 10,
     num_rooms: 4,
     num_beds: 6,
     num_baths: 3,
     price_per_night: 117,
     lat: 37.804, lng: -122.419651,
+    amenities: these_amenities.push(amenities.shuffle!.pop),
     address: "404 0th Street",
     location: "San Francisco",
     owner_id: 1
@@ -45,9 +52,9 @@ test_listing.photos.attach(io: open("https://s.wsj.net/public/resources/images/B
 test_listing.photos.attach(io: open("http://cdn.home-designing.com/wp-content/uploads/2018/03/Retractable-doors-1.jpg"), filename: "testListingInterior6")
 test_listing.photos.attach(io: open("https://dailydesignews.com/wp-content/uploads/2021/03/4-8.jpg"), filename: "testListingInterior7")
 
-num_users = 10
-num_listings_per_city = 1 #30
-num_reviews_per_listing = 1 #10
+num_users = 20
+num_listings_per_city = 3 #30
+num_reviews_per_listing = 6 #10
 num_reservations_per_listing = 1 #5
 today = Date.today
 
@@ -58,7 +65,7 @@ review_bodies = [
     "Exactly what you would expect looking at the photos. Demo's place is outstanding. Just book it.",
     "I give this place a 5/7. A perfect score",
     "Sus",
-    ""
+    "Very nice! I like a lot!"
 ]
 
 locations = {
@@ -288,6 +295,63 @@ listing_interior_images = [
     'https://www.pufikhomes.com/wp-content/uploads/2017/09/family-home-with-athmosphere-of-old-Europe-pufikhomes-4.jpg'
 ]
 
+house_descriptions = [
+    "Make memories with family and friends with the pine forests and clear waters of Lake Tahoe as a backdrop at Villa De Lago. This expansive waterfront vacation rental, whose name means “the lake house,” gives you the quintessential experience: a private dock for dipping your feet, a bouldered shoreline to explore and a quiet location near South Lake Tahoe, north of Cave Rock, Nevada.123
+    Whether you want to relax by the water or get out and explore the lake, Villa De Lago makes it easy with a convenient dock, provided kayaks, and a furnished terrace with space for lounging and dining, plus a barbecue. After the sun sets over the mountains on the other side of the lake, gather around the pool table, flip on the streaming TV or share holiday photos via Wi-Fi.123
+    The villa’s incredible great room puts a modern spin on the classic California mountain lodge. Vaulted ceilings soar over the open-concept living room, dining room and fully equipped kitchen. Floor-to-ceiling windows overlooking the lake steal focus during the day; at night, the double-height fireplace becomes the focal point.123
+    While Villa De Lago has its own access to the lake, it’s also easy to drive to nearby sights, shopping, dining and more. The villa is a 10-minute drive to the waterfront village of Zephyr Cove, and a 10-minute drive or less to both Zephyr Cove and Nevada beaches. In the summer, golfers will find three courses within 16 miles; in the winter, plan to spend your stay skiing at one of several nearby resorts.",
+    "With walls of windows that soar above the lake, this light-filled villa looks like it's floating on water. Wander from the full cinema, wet bar, and pool table to a deluxe spa with a sauna, hot tub, salt room, and even a nail and hair salon. A large terrace lead to a pool, sandy beach and private pier, and the balconies seem endless. You're just minutes from Zephyr Cove Beach and Edgewood Tahoe Golf Course.",
+    "A private pier, swim platform, and fire pit fill 200 feet of lake frontage at this secluded villa built in the mold of a classic Old Tahoe manor. Awake to panoramic lake and mountain views from a round room atop a tower, then play shuffleboard in the games room or billiards in the library. You're just steps from a plunge in the water, 10 minutes to Tahoe City, and 15 to multiple ski resorts.",
+    "Gorgeous luxury smart cabin complete with gourmet kitchen, extremely large outdoor deck, paved driveway and hot tub.123
+    Gas fireplace, mini bar, surround sound, beautiful furnishings, and perks of the lake make this cabin a true Tahoe gem! Upstairs bedroom with queen bed, pull out sofa bed and pull out twin bed in the loft.123
+    Please note NO PETS and NO SMOKING",
+    "Beautiful 3 bedroom lake home with amazing views of the lake year around. Central location with close by access to several ski resorts, public beaches, hiking/walking trails, shopping, dining and water sports.123
+    The space123
+    Nicely appointed living spaces with fully stocked kitchen, K-cup or ground style pot coffee maker, BBQ grill as well out outdoor dining and lounge area. Enjoy views of the lake from nearly all areas inside as well as outside. Enjoy some quiet time while lounging in a cozy hillside hammock or Adirondack seating scattered up the hillside.123
+    Excellent wifi thru Spectrum with 200 mbps makes it easy to work if you need to while on your getaway.123
+    Guest access123
+    Full home, please do not attempt to enter local private HOA pier.",
+    "Unique Property situated in a very private location at the end of one of the only points on the Lake in the vibrant town of Lakeport.123
+    The home provides every amenity that you would have in your own home including a private Hot Tub and dock",
+    "RIVERFRONT dog friendly 1.5 acre oasis on the Russian River. The property is private, lush, serene & sunny. The backyard is a quarter mile long stretch of beach. The house is modern yet rustic and is said to be magical. It has gorgeous river/redwood/bridge views, decks, boats, spa, fireplace, serious kitchen, fruit trees, grapevines & wildlife. Centrally located between Healdsburg, Sebastopol & the Coast. There are fantastic wineries and redwoods minutes away. 4 beaches & a park are steps away.",
+    "Need to unplug? Burned out? Crave quiet and beauty? Summerset is the cure. Lakehouse on private 3 acres. Exquisite top of the world panoramic water views, magical Mt. Konocti, epic sunsets and stars. 2B 2Bath, open great room, stocked kitchen. Designed for rest and recharging the soul. Do absolutely nothing...or visit wineries, yoga on the deck, (mats provided) fish, hike, bike and boat. Enhanced cleaning, peaceful surroundings for sound sleeping. Park the car and your cell. Time to reboot.123
+    The space123
+    Summerset sits on a plateau above and overlooking water and the mountain purposely isolated from neighbors. Your companions are birds, water, fresh air breezes and stars.123
+    The expansive sundeck and garden provide a second living area complete with comfy furniture for lazy days.123
+    The courtyard is the backdrop for BBQ dining.123
+    Magnificent outdoor views are enjoyed inside through walls of glass and french doors in every room. Simple, clean, biophilic design, modern farmhouse decor, art filled with creative touches, central air and heat in case open windows and a fireplace isn't enough.123
+    A fully stocked kitchen including all appliances, spices and oils, BBQ tools and coal, linens galore, movies, books, games, telescope, fishing rods, picnic basket, beach towels, sundries, extra toiletries and more.123
+    Enhanced cleaning and disinfecting before and after each guest is standard procedure. The 2 bedrooms, each with your own private bathroom, have queen beds.123
+    Fifteen minutes away, you'll find a boat launch, fishing pier, gas pump and the nearest town for shopping.123
+    The focus is on you, family and friends and yes, one well behaved pet is allowed with a pet fee of 65.00 for the stay. Waste baggies and food bowls provided.123
+    Summerset is meant to bring together the people you care about to reconnect and create happy lasting memories in your own private natural setting.123
+    Guest access123
+    The entire main house and its grounds are yours to roam. The garage and caretaker's cottage are locked off for private use.123
+    Although I continue to add amenities or refresh the art filled decor, I purposely keep Summerset slow, calm, and restful. A place to unplug from technology and recharge the soul.123
+    Picnic on the hill, lunch in the courtyard, nap in the middle of the day, sip wine on the deck at sunset.123
+    No matter which direction you decide to travel, the road to Summerset is paved, winding and scenic with a short dirt road to the main gate.",
+    "MAXIMUM OCCUPANCY LIMIT IS FIRM.123
+    Sleeps up to 10 in beds.123
+    Maximum occupancy 10, which includes children & infants of any age.123
+    AGE RESTRICTION IS FIRM.123
+    Due to local laws or HOA requirements, guests must be at least 25 years of age at the time of booking.123
+    Guests under 25 must be accompanied by a parent or legal guardian for the duration of the reservation.123
+    A copy of your drivers license will be required within 24 hours of booking.123
+    PONTOON BOAT IN THE PHOTOS:123
+    The pontoon boat is not available for guest use.123
+    HOT TUB IN THE PHOTOS:123
+    The hot tub is not available for Summer 2022.123
+    NO SHOES INSIDE THE HOME PLEASE:123
+    Please remove shoes inside the house at all times.",
+    "Experience Frank Lloyd Wright's modern architecture in this grand mansion overlooking the hills of Sonoma. With a lighted, scalloped roof, multicolored tile work, and a cascading pool fountain, entering “Iconia” is like stepping into the 1960’s.123
+    Amenities include: brand new furnishings, gas-heated saltwater pool, 100 palm trees, 9 bedrooms, large chef's kitchen, 7 desks, gigabit internet with enterprise wifi, 120 inch 4K projector, dining room for 18, 2 gas fireplaces, and playroom with 65 inch 4K TV.",
+    "Welcome to the Tumbleweed Room of our boutique hotel, located right in the heart of Sedona! This one of a kind room features cozy touches, unbeatable Red Rock views, and classic Southwest-themes throughout. When you're here, you'll experience Sedona like you never have before. Join us for a romantic weekend getaway or use our space as a relaxing stop during your travels.123
+    Our common areas include the best amenities around, such as our large firepit for nighttime relaxation, our pebble-textured hot tub for unwinding after a long day, or our large patio for a scenic cup of coffee in the morning.",
+    "Contemporary farmhouse chic - the Peacock Room is an airy and bright getaway. Enjoy your own private bedroom with a private entryway and parking as well as a stunning bathroom. Self- check in.123
+    We maintain clean and sterilized environments for our guests, using current industry standards for sterilizing hard surfaces, appliances and guest areas.123
+    We are a licensed short term rental."123
+]
+
 # Create a bunch of random users
 num_users.times do
     rand_user = User.create!({
@@ -295,25 +359,24 @@ num_users.times do
         lname: Faker::Name.unique.last_name,
         email: Faker::Internet.unique.email,
         password: "password",
-        about: Faker::JapaneseMedia::StudioGhibli.quote
+        about: Faker::Games::LeagueOfLegends.quote
     })
-    rand_user.photo.attach(io: open(profile_pictures.pop()), filename: "#{rand_user.fname + rand_user.lname}ProPic")
+    # rand_user.photo.attach(io: open(profile_pictures.pop()), filename: "#{rand_user.fname + rand_user.lname}ProPic")
 end
 
-reviewer_id = rand(2...num_users)
-cleanliness_rating = rand(4..5)
-check_in_rating = rand(4..5)
-location_rating = rand(4..5)
-communication_rating = rand(4..5)
-accuracy_rating = rand(4..5)
-value_rating = rand(4..5)
-rating = (cleanliness_rating + check_in_rating + location_rating + communication_rating + accuracy_rating + value_rating) / 6.0
 
 review_bodies.each do |review|
+    cleanliness_rating = rand(4..5)
+    check_in_rating = rand(3..5)
+    location_rating = rand(4..5)
+    communication_rating = rand(4..5)
+    accuracy_rating = rand(4..5)
+    value_rating = rand(3..5)
+    rating = (cleanliness_rating + check_in_rating + location_rating + communication_rating + accuracy_rating + value_rating) / 6.0
     Review.create!(
         body: review,
         listing_id: 1,
-        reviewer_id: reviewer_id,
+        reviewer_id: rand(2...num_users),
         cleanliness_rating: cleanliness_rating,
         check_in_rating: check_in_rating,
         location_rating: location_rating,
@@ -324,43 +387,52 @@ review_bodies.each do |review|
     )
 end
 
-15.times do |i|
+5.times do |i|
     start_date = (rand(1..23) + (i * 30))
     end_date = start_date + rand(1..7)
     Reservation.create!(
         start_date: today - start_date,
         end_date: today - end_date,
         num_guests: rand(1..10),
-        listing_id: 1,
-        user_id: rand(2..num_users)
+        listing_id: rand(2..(num_listings_per_city * locations.length()),
+        user_id: 1
     )
 end
 
 # Create random listings
 locations.each_key do |city|
     num_listings_per_city.times do
+        amenities = [
+            "Beach view","Sea view","Sunset view","Courtyard view","Kitchen","Air conditioning","Essential toiletries","Cleaning products","Hot water","Bed linens","Pillows","Closet","Washing machine","Dryer","Fireplace","Heating","Smoke alarm","Fire alarm","Fire extinguisher","Refrigerator","Microwave","Silverware","Oven","Stove","Coffee maker","Wine glasses","Blender","Free parking","Pets allowed","Wifi","TV"
+        ]
         guests = rand(1..15)
         beds = rand(1..guests)
         rooms = rand(1..beds)
         baths = rand(1..rooms)
         description = []
+        these_amenities = []
 
         rand(1..5).times do 
-            description.push(Faker::Lorem.paragraph(sentence_count: 3, supplemental: false, random_sentences_to_add: 10))
+            description.push(house_descriptions.sample())
+        end
+
+        8.times do
+            these_amenities.push(amenities.shuffle!.pop)
         end
 
         curr_listing = Listing.create!(
             title: "#{Faker::Space.meteorite} #{Faker::Space.star_cluster}",
-            description: description.join("\n"),
+            description: description.join(""),
             address: "#{Faker::Address.street_address}, #{city}, #{locations[city]}, #{Faker::Address.zip}",
             lat: rand(city_coords[city][:lat]),
             lng: rand(city_coords[city][:lng]),
+            amenities: these_amenities.join(","),
             max_guests: guests,
             num_rooms: rooms,
             num_beds: beds,
             num_baths: baths,
             owner_id: rand(2..num_users),
-            price_per_night: rand(20..500),
+            price_per_night: rand(50..500),
             location: city
         )
 
@@ -371,30 +443,38 @@ locations.each_key do |city|
         end
 
         rand(0..num_reviews_per_listing).times do
+            cleanliness_rating = rand(3..5)
+            check_in_rating = rand(3..5)
+            location_rating = rand(3..5)
+            communication_rating = rand(3..5)
+            accuracy_rating = rand(3..5)
+            value_rating = rand(3..5)
+            average_rating = (cleanliness_rating + check_in_rating + location_rating + communication_rating + accuracy_rating + value_rating) / 6.0
             Review.create!(
-                cleanliness_rating: rand(3..5),
-                check_in_rating: rand(3..5),
-                location_rating: rand(3..5),
-                communication_rating: rand(3..5),
-                accuracy_rating: rand(3..5),
-                value_rating: rand(3..5),
-                body: Faker::Games::LeagueOfLegends.quote,
+                cleanliness_rating: cleanliness_rating,
+                check_in_rating: check_in_rating,
+                location_rating: location_rating,
+                communication_rating: communication_rating,
+                accuracy_rating: accuracy_rating,
+                value_rating: value_rating,
+                rating: average_rating,
+                body: Faker::JapaneseMedia::StudioGhibli.quote,
                 listing_id: curr_listing.id,
                 reviewer_id: rand(1..num_users)
             )
         end
 
         # Generate reservations here
-        rand(0..num_reservations_per_listing).times do |i|
-            start_date = (rand(1..23) + (i * 30))
-            end_date = start_date + rand(1..7)
-            Reservation.create!(
-                start_date: today - start_date,
-                end_date: today - end_date,
-                num_guests: rand(1..curr_listing.max_guests),
-                listing_id: curr_listing.id,
-                user_id: rand(1..num_users)
-            )
-        end
+        # rand(0..num_reservations_per_listing).times do |i|
+        #     start_date = (rand(1..23) + (i * 30))
+        #     end_date = start_date + rand(1..7)
+        #     Reservation.create!(
+        #         start_date: today - start_date,
+        #         end_date: today - end_date,
+        #         num_guests: rand(1..curr_listing.max_guests),
+        #         listing_id: curr_listing.id,
+        #         user_id: rand(1..num_users)
+        #     )
+        # end
     end
 end

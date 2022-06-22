@@ -4,7 +4,7 @@ const Progress_bar = ({bgcolor, progress}) => {
 	
 	let progressNumber;
 	let innerProgress;
-	if (typeof progress !== "undefined") {
+	if (typeof progress === "undefined") {
 		innerProgress = 0;
 		progressNumber = "-";
 	} else if (typeof progress === "string") {
@@ -24,15 +24,14 @@ const Progress_bar = ({bgcolor, progress}) => {
 		height: '100%',
 		width: `${(innerProgress / 5) * 100}%`,
 		backgroundColor: bgcolor,
-	    borderRadius:40,
+		borderRadius:40,
 		textAlign: 'right'
 	}
-
+	console.log("progress bar: ", innerProgress)
 	return (
 		<>
 			<div className='progress-bar' style={progressContainer}>
-				<div style={innerProgressBar}>
-				</div>
+				<div style={innerProgressBar}></div>
 			</div>
 			<p className='progress-number'>{progressNumber}</p>
 		</>

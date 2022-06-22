@@ -23,6 +23,7 @@ class ListingShow extends React.Component {
         this.props.fetchListing(this.props.match.params.listingId)
         document.querySelector("header").style.position = "static";
         document.querySelector(".banner").style.maxWidth = "1300px";
+        console.log("props: ", this.props);
     }
     
     componentWillUnmount() {
@@ -71,20 +72,23 @@ class ListingShow extends React.Component {
 
         // I tried using typeof and I would vastly prefer refactoring htis to use it
         // but I am too lazy and the project is due in 13 hours
-        let averageRating = parseFloat(parseInt(listing.average_rating)).toFixed(2);
-        if (averageRating === "NaN") {averageRating = "-"};
-        let averageCleanlinessRating = parseFloat(parseInt(listing.average_cleanliness_rating)).toFixed(2);
+        
+        let averageCleanlinessRating = parseFloat(listing.average_cleanliness_rating).toFixed(2);
         if (averageCleanlinessRating === "NaN") {averageCleanlinessRating = "-"};
-        let averageCheckInRating = parseFloat(parseInt(listing.average_check_in_rating)).toFixed(2);
+        let averageCheckInRating = parseFloat(listing.average_check_in_rating).toFixed(2);
         if (averageCheckInRating === "NaN") {averageCheckInRating = "-"};
-        let averageLocationRating = parseFloat(parseInt(listing.average_location_rating)).toFixed(2);
+        let averageLocationRating = parseFloat(listing.average_location_rating).toFixed(2);
         if (averageLocationRating === "NaN") {averageLocationRating = "-"};
-        let averageCommunicationRating = parseFloat(parseInt(listing.average_communication_rating)).toFixed(2);
+        let averageCommunicationRating = parseFloat(listing.average_communication_rating).toFixed(2);
         if (averageCommunicationRating === "NaN") {averageCommunicationRating = "-"};
-        let averageAccuracyRating = parseFloat(parseInt(listing.average_accuracy_rating)).toFixed(2);
+        let averageAccuracyRating = parseFloat(listing.average_accuracy_rating).toFixed(2);
         if (averageAccuracyRating === "NaN") {averageAccuracyRating = "-"};
-        let averageValueRating = parseFloat(parseInt(listing.average_value_rating)).toFixed(2);
+        let averageValueRating = parseFloat(listing.average_value_rating).toFixed(2);
         if (averageValueRating === "NaN") {averageValueRating = "-"};
+        let averageRating = parseFloat(
+            (parseFloat(averageAccuracyRating) + parseFloat(averageCheckInRating) + parseFloat(averageCleanlinessRating) + parseFloat(averageCommunicationRating) + parseFloat(averageLocationRating) + parseFloat(averageValueRating)) / 6
+        ).toFixed(2);
+        if (averageRating === "NaN") {averageRating = "-"};
         let subTotal = listing.price_per_night * numNights;
         if (subTotal === "NaN") {subTotal = "-"};
         let cleaningFee = parseFloat(listing.price_per_night * 0.08);
@@ -106,27 +110,26 @@ class ListingShow extends React.Component {
                 
                 <div id="listing-show-photos">
                     {/* {Object.values(listing.photoUrls).map((photoUrl, i) => ( */}
-                        <img 
-                            src={listing.photoUrls[0]}
-                            key={`photo${0}`}
-                        />
-                <img
-                            src={listing.photoUrls[1]}
-                            key={`photo${1}`}
-                        />
-                <img
-                            src={listing.photoUrls[2]}
-                            key={`photo${2}`}
-                        />
-                <img
-                            src={listing.photoUrls[3]}
-                            key={`photo${3}`}
-                        />
-                <img
-                            src={listing.photoUrls[4]}
-                            key={`photo${4}`}
-                        />
-                    {/* ))} */}
+                    <img 
+                        src={listing.photoUrls[0]}
+                        key={`photo${0}`}
+                    />
+                    <img
+                        src={listing.photoUrls[1]}
+                        key={`photo${1}`}
+                    />
+                    <img
+                        src={listing.photoUrls[2]}
+                        key={`photo${2}`}
+                    />
+                    <img
+                        src={listing.photoUrls[3]}
+                        key={`photo${3}`}
+                    />
+                    <img
+                        src={listing.photoUrls[4]}
+                        key={`photo${4}`}
+                    />
                 </div>
 
                 <div className="listing-show-info">
@@ -140,7 +143,11 @@ class ListingShow extends React.Component {
                         </div>
                         <div className="listing-description">
                             <h2>About this home</h2>
-                            <p>{listing.description}</p>
+                            {
+                                listing.description.split("123").map(paragraph => (
+                                    <p>{paragraph}</p>
+                                ))
+                            }
                         </div>
                         <Amenities/>
                     </div>
