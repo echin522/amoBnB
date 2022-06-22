@@ -27,7 +27,7 @@ const Progress_bar = ({bgcolor, progress}) => {
 		borderRadius:40,
 		textAlign: 'right'
 	}
-	console.log("progress bar: ", innerProgress)
+	
 	return (
 		<>
 			<div className='progress-bar' style={progressContainer}>

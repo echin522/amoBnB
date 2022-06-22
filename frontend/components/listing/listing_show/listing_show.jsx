@@ -274,6 +274,7 @@ class ListingShow extends React.Component {
                     {Object.values(this.props.reviews).map(review => (
                         <ListingReviewsItem
                             key={review.id}
+                            review={review}
                             reviewId={review.id}
                             reviewer_id={review.reviewer_id}
                             rating={review.rating}
