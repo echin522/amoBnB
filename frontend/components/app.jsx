@@ -1,7 +1,6 @@
 import React from "react";
 import { Route, Redirect, Switch, Link, HashRouter } from "react-router-dom";
 import Modal from "./session_modal/session_modal";
-import ReviewModal from "./listing/listing_reviews/reviews_modal";
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import Banner from "./banner/banner_container";
 import ListingShow from "./listing/listing_show/listing_show_container";

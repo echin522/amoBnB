@@ -98,8 +98,8 @@ export const fetchReviews = search => dispatch => (
     ))
 );
 
-export const updateReview = (review, id) => dispatch => (
-    reviewAPIUtil.updateReview(review, id)
+export const updateReview = review => dispatch => (
+    listingAPIUtil.updateReview(review)
         .then(review => dispatch(receiveReview(review)),
         err => dispatch(receiveReviewErrors(err)))
 );

@@ -72,7 +72,6 @@ class ListingForm extends React.Component {
     }
 
     update(field) {
-        console.log(this.state);
         return e => this.setState({ [field]: e.target.value })
     }
 
@@ -84,6 +83,7 @@ class ListingForm extends React.Component {
         e.preventDefault();
         const formData = new FormData();
 
+        if (this.props.formType === "update") formData.append(`listing[id]`, this.state.id);
         formData.append(`listing[title]`, this.state.title);
         formData.append(`listing[description]`, this.state.description);
         formData.append(`listing[address]`, this.state.address);
@@ -102,10 +102,10 @@ class ListingForm extends React.Component {
 
         if (this.props.formType === "update") {
             this.props.action(formData, this.state.id)
-                .then(listing => this.props.history.push(`/listings/${listing.id}`));
+                .then(listing => this.props.history.push(`/listings/${listing.listing.id}`));
         } else {
             this.props.action(formData)
-                .then(listing => this.props.history.push(`/listings/${listing.id}`));
+                .then(listing => this.props.history.push(`/listings/${listing.listing.id}`));
         }
     }
 
@@ -152,7 +152,7 @@ class ListingForm extends React.Component {
     }
 
     renderErrors() {
-        
+
     }
 
     render() {
@@ -160,6 +160,8 @@ class ListingForm extends React.Component {
         // const preview = this.state.photoUrls
         //     ? <img src={this.state.photoUrls} height="200px" width="200px" />
         //     : null;
+
+        // if ()
 
         return (
             <>

@@ -3,7 +3,8 @@ import ListingMap from "../listing_map/listing_map";
 import Amenities from "./listing_amenities";
 import ListingReviewsItem from "../listing_reviews/listing_reviews_item_container";
 import ProgressBar from "./progress_bar";
-import ReviewModal from "../listing_reviews/reviews_modal";
+import ReviewFormModal from "../listing_reviews/review_form_container";
+import EditReviewModal from "../listing_reviews/edit_review_container";
 
 class ListingShow extends React.Component {
     constructor(props) {
@@ -39,7 +40,8 @@ class ListingShow extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         const reservation = Object.assign({}, this.state);
-        this.props.createReservation(reservation);
+        this.props.createReservation(reservation)
+            .then(() => this.props.history.push(`/users/${this.props.currentUser.id}`))
     }
 
     handleDelete(e) {
@@ -81,6 +83,17 @@ class ListingShow extends React.Component {
                 </div>
             )
         }
+    }
+
+    renderReservationErrors() {
+        if (!this.props.errors.reservations) return
+        return (
+            <ul className="reservation-errors">
+                {this.props.errors.reservations.map((err, idx) => (
+                    <li key={idx} className="reservation-error">{err}</li>
+                ))}
+            </ul>
+        )
     }
 
     render() {
@@ -125,7 +138,7 @@ class ListingShow extends React.Component {
 
         return (
             <div className="listing-show-container content">
-                <ReviewModal listingId={listing.id}/>
+                <ReviewFormModal listingId={listing.id}/>
                 <div className="listing-show-title">
                     <h1>{listing.title}</h1>
                     <h4 className="reserve-block-price">
@@ -217,6 +230,9 @@ class ListingShow extends React.Component {
                             </button>
                             <p id="charge-notice">You won't be charged</p>
                         </form>
+
+                        {this.renderReservationErrors()}
+
                         <div className="reserve-block-subtotal">
                             <div className="fee">
                                 {/* replace this with the actual number of nights later */}

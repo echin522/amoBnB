@@ -11,8 +11,10 @@ class EditListingForm extends React.Component {
     }
     
     render() {
+        if (!this.props.listing) return null;
+
         const { action, formType, listing, history, errors } = this.props;
-        if (!listing) return null;
+
         return (
             <ListingForm
                 action={action}
@@ -33,10 +35,10 @@ const mSTP = (state, ownProps) => ({
     errors: state.errors.listingErrors,
 });
 
-const mDTP = dispatch => ({
+const mDTP = (dispatch, ownProps) => ({
     // clearErrors: .......
     fetchListing: listingId => dispatch(fetchListing(listingId)),
-    action: (listing, id) => dispatch(updateListing(listing, id)), 
+    action: (listing) => dispatch(updateListing(listing, ownProps.match.params.listingId)), 
 });
 
 export default connect(mSTP, mDTP)(EditListingForm);

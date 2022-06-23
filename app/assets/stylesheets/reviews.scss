@@ -93,8 +93,7 @@
     }
 }
 
-
-#review-delete-button {
+.review-button {
     cursor: pointer;
     position: absolute;
     right: 0;
@@ -103,6 +102,14 @@
     
     &:hover {
         border-bottom: 1px solid black;
+    }
+
+    &.delete-button {
+        top: 20%;
+    }
+
+    &.edit-button {
+        top: 50%;
     }
 }
 
@@ -240,11 +247,12 @@
 #review-description {
     width: 100%;
     resize: none;
-    padding: 0px;
     height: 10em;
+    padding: 10px;
+    box-sizing: border-box;
 
     &:focus {
-        
+        border: none;
     }
 }
 

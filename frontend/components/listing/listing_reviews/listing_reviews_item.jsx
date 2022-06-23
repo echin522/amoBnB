@@ -17,11 +17,16 @@ class ListingReviewsItem extends React.Component {
         return months[parseInt(monthNum) - 1];
     }
 
-    renderDeleteButton() {
+    renderReviewButtons() {
         if (this.props.reviewer_id === this.props.currentUserId) {
             return (
-                <div onClick={this.handleDelete} id="review-delete-button">
-                    Delete this review
+                <div className="review-buttons">
+                    <div onClick={this.handleDelete} className="review-button delete-button">
+                        Delete this review
+                    </div>
+                    <div className="review-button edit-button">
+                        Edit this review
+                    </div>
                 </div>
             )
         }
@@ -48,7 +53,7 @@ class ListingReviewsItem extends React.Component {
                         </p>
                         {/* <p className="review-create-date">{listing.date_created}</p> */}
                     </div>
-                    {this.renderDeleteButton()}
+                    {this.renderReviewButtons()}
                 </div>
                 <p className="review-body">{body}</p>
             </li>

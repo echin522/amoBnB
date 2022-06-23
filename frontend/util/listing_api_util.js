@@ -51,18 +51,20 @@ export const deleteReview = reviewId => $.ajax({
     method: 'DELETE'
 });
 
-export const updateListing = (listing, listingId) => (
+export const updateListing = (listingForm, listingId) => (
     $.ajax({
         method: 'PATCH',
         url: `api/listings/${listingId}`,
-        data: { listing }
+        data: listingForm,
+        contentType: false,
+        processData: false,
     })
 )
 
-export const updateReview = (review, reviewId) => (
+export const updateReview = review => (
     $.ajax({
         method: 'PATCH',
-        url: `api/reviews/${reviewId}`,
+        url: `api/reviews/${review.id}`,
         data: { review }
     })
 )

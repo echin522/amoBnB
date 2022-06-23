@@ -45,8 +45,8 @@ export const createReservation = reservation => dispatch => (
     ))
 );
 
-export const updateReservation = (reservation, id) => dispatch => {
-    return reservationAPIUtil.updateReservation(reservation, id)
+export const updateReservation = reservation => dispatch => {
+    return reservationAPIUtil.updateReservation(reservation)
         .then(reservation => dispatch(receiveReservation(reservation),
         (err) => dispatch(receiveReservationErrors(err.responseJSON))
     ))

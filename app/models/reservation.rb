@@ -8,6 +8,8 @@
 #  num_guests :integer          not null
 #  listing_id :integer          not null
 #  user_id    :integer          not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
 #
 class Reservation < ApplicationRecord
     validates :start_date, :end_date, :num_guests, :listing_id, :user_id, presence: true

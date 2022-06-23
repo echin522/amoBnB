@@ -10,7 +10,7 @@ const mSTP = ({ errors }) => {
         errors: errors.session,
     };
 };
-  
+
 const mDTP = dispatch => {
     return {
         processForm: (user) => dispatch(login(user)),
@@ -19,5 +19,5 @@ const mDTP = dispatch => {
         otherForm: "signup"
     };
 };
-  
-  export default connect(mSTP, mDTP)(SessionForm);
+
+export default connect(mSTP, mDTP)(SessionForm);
