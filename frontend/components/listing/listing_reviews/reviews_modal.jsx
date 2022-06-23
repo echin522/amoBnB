@@ -151,10 +151,10 @@ const mSTP = ( state, ownProps) => ({
     listingId: ownProps.listingId,
     errors: state.errors.session,
 });
-  
+
 const mDTP = dispatch => ({
     processForm: review => dispatch(createReview(review)),
     closeModal: () => dispatch(closeModal()),
 })
-  
+
 export default connect(mSTP, mDTP)(ReviewModal);

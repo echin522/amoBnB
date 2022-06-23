@@ -50,3 +50,19 @@ export const deleteReview = reviewId => $.ajax({
     url: `/api/reviews/${reviewId}`,
     method: 'DELETE'
 });
+
+export const updateListing = (listing, listingId) => (
+    $.ajax({
+        method: 'PATCH',
+        url: `api/listings/${listingId}`,
+        data: { listing }
+    })
+)
+
+export const updateReview = (review, reviewId) => (
+    $.ajax({
+        method: 'PATCH',
+        url: `api/reviews/${reviewId}`,
+        data: { review }
+    })
+)

@@ -26,13 +26,26 @@ class Api::ListingsController < ApplicationController
     end
     
     def update
-        
+        @listing = Listing.find_by(id: params[:id])
+        if @listing and @listing.owner_id == current_user.id and @listing.update(listing_params) 
+            render :show
+        else
+            render json: @listing.errors.full_messages, status: 422
+        end
     end
 
     def destroy
         @listing = Listing.find_by(id: params[:id])
-        @listing.destroy
-        render :index
+        if @listing.owner_id == current_user.id
+            if @listing.destroy
+                @listings = Listing.all
+                render :index
+            else
+                render json: @listing.errors.full_messages, status: 422
+            end
+        else
+            render json: ['You cannot delete this listing!'], status: 422
+        end
     end
 
     private

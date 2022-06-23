@@ -33,7 +33,7 @@ class ListingReviewsItem extends React.Component {
         let date = this.props.review.created_at.split("-");
         console.log("date", date)
         return(
-            <li className="review">
+            <li className="review" key={this.props.key}>
                 <div className="reviewer-header">
                     <img
                         className="reviewer-propic"

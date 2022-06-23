@@ -9,7 +9,6 @@ class ListingIndexItem extends React.Component {
     render() {
         let listing = this.props.listing;
         let averageRating;
-        console.log(listing.title, " ", listing.average_rating);
         (typeof listing.average_rating !== "string")
             ? averageRating = "-"
             : averageRating = parseFloat(listing.average_rating).toFixed(2)

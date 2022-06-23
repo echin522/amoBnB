@@ -17,6 +17,7 @@ class ListingShow extends React.Component {
         this.reviews = [];
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
+        // this.renderUserButtons = this.renderUserButtons.bind(this);
     }
 
     componentDidMount() {
@@ -48,12 +49,36 @@ class ListingShow extends React.Component {
     }
 
     renderDeleteButton() {
+        return (
+            <button onClick={this.handleDelete} className="user-button">
+                Delete this listing
+            </button>
+        )
+    }
+
+    renderEditButton() {
+        return (
+            <button onClick={() => this.props.history.push(`/listings/edit/${this.props.match.params.listingId}`)} className="user-button">
+                Edit this listing
+            </button>
+        )
+    }
+
+    renderUserButtons() {
         if (!this.props.currentUser) return
         if (this.props.listing.owner_id === this.props.currentUser.id) {
+            if ( this.props.listing.id === 1 ) {
+                return (
+                    <div id="user-buttons">
+                        You cannot delete the demo listing!
+                    </div>
+                )
+            }
             return (
-                <button onClick={this.handleDelete} id="delete-button">
-                    Delete this listing
-                </button>
+                <div id="user-buttons">
+                    {this.renderDeleteButton()}
+                    {this.renderEditButton()}
+                </div>
             )
         }
     }
@@ -144,8 +169,8 @@ class ListingShow extends React.Component {
                         <div className="listing-description">
                             <h2>About this home</h2>
                             {
-                                listing.description.split("123").map(paragraph => (
-                                    <p>{paragraph}</p>
+                                listing.description.split("123").map((paragraph, idx) => (
+                                    <p key={`paragraph${idx}`}>{paragraph}</p>
                                 ))
                             }
                         </div>
@@ -226,42 +251,42 @@ class ListingShow extends React.Component {
                         <i className="fa-solid fa-star"></i> {averageRating} · {listing.num_reviews} reviews
                     </p>
                     <ul id="reviews-metrics">
-                        <li className="metric">
+                        <li className="metric" key="cleanliness">
                             <p>Cleanliness</p>
                             <ProgressBar 
                                 bgcolor="black"
                                 progress={averageCleanlinessRating}
                             />
                         </li>
-                        <li className="metric">
+                        <li className="metric" key="communication">
                             <p>Communication</p>
                             <ProgressBar 
                                 bgcolor="black"
                                 progress={averageCommunicationRating}
                             />
                         </li>
-                        <li className="metric">
+                        <li className="metric" key="checkin">
                             <p>Check-in</p>
                             <ProgressBar 
                                 bgcolor="black"
                                 progress={averageCheckInRating}
                             />
                         </li>
-                        <li className="metric">
+                        <li className="metric" key="accuracy">
                             <p>Accuracy</p>
                             <ProgressBar 
                                 bgcolor="black"
                                 progress={averageAccuracyRating}
                             />
                         </li>
-                        <li className="metric">
+                        <li className="metric" key="location">
                             <p>Location</p>
                             <ProgressBar 
                                 bgcolor="black"
                                 progress={averageLocationRating}
                             />
                         </li>
-                        <li className="metric">
+                        <li className="metric" key="value">
                             <p>Value</p>
                             <ProgressBar 
                                 bgcolor="black"
@@ -292,7 +317,7 @@ class ListingShow extends React.Component {
                         singleListing={true}
                     />
                 </div>
-                {this.renderDeleteButton()}
+                {this.renderUserButtons()}
             </div>
         )
     }

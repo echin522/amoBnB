@@ -6,6 +6,8 @@ export const RECEIVE_REVIEW = 'RECEIVE_REVIEW';
 export const RECEIVE_REVIEWS = 'RECEIVE_REVIEWS';
 export const REMOVE_LISTING = 'REMOVE_LISTING';
 export const REMOVE_REVIEW = 'REMOVE_REVIEW';
+export const RECEIVE_LISTING_ERRORS = "RECEIVE_LISTING_ERRORS";
+export const RECEIVE_REVIEW_ERRORS = "RECEIVE_REVIEW_ERRORS";
 
 const receiveListings = listings => ({
     type: RECEIVE_LISTINGS,
@@ -38,17 +40,15 @@ const removeReview = reviewId => ({
     reviewId
 });
 
-export const createReview = review => dispatch => (
-    listingAPIUtil.createReview(review).then(review => (
-        dispatch(receiveReview(review))
-    ))
-);
+const receiveListingErrors = errors => ({
+    type: RECEIVE_LISTING_ERRORS,
+    errors
+});
 
-export const fetchReviews = search => dispatch => (
-    listingAPIUtil.fetchReviews(search)
-        .then(reviews => (dispatch(receiveReviews(reviews))
-    ))
-);
+const receiveReviewErrors = errors => ({
+    type: RECEIVE_REVIEW_ERRORS,
+    errors
+});
 
 export const fetchListings = search => dispatch => (
     listingAPIUtil.fetchListings(search)
@@ -64,16 +64,42 @@ export const fetchListing = listingId => dispatch => (
 
 export const createListing = listing => dispatch => (
     listingAPIUtil.createListing(listing)
-        .then(listing => (dispatch(receiveListing(listing))
-    ))
+        .then(listing => dispatch(receiveListing(listing)),
+        (err) => dispatch(receiveListingErrors(err)))
 );
 
-export const deleteListing = listingId => dispatch => {
-    return listingAPIUtil.deleteListing(listingId)
-        .then(() => dispatch(removeListing(listingId)))
-}
+export const deleteListing = listingId => dispatch => (
+    listingAPIUtil.deleteListing(listingId)
+        .then(() => dispatch(removeListing(listingId)),
+        (err) => dispatch(receiveListingErrors(err)))
+);
+
+export const updateListing = (listing, id) => dispatch => (
+    listingAPIUtil.updateListing(listing, id)
+        .then(listing => dispatch(receiveListing(listing)),
+        (err) => dispatch(receiveListingErrors(err)))
+);
+
+export const createReview = review => dispatch => (
+    listingAPIUtil.createReview(review)
+        .then(review => dispatch(receiveReview(review)),
+        (err) => dispatch(receiveReviewErrors(err)))
+);
 
 export const deleteReview = reviewId => dispatch => {
     return listingAPIUtil.deleteReview(reviewId)
-        .then(() => dispatch(removeReview(reviewId)))
+        .then(() => dispatch(removeReview(reviewId)
+    ))
 }
+
+export const fetchReviews = search => dispatch => (
+    listingAPIUtil.fetchReviews(search)
+        .then(reviews => (dispatch(receiveReviews(reviews))
+    ))
+);
+
+export const updateReview = (review, id) => dispatch => (
+    reviewAPIUtil.updateReview(review, id)
+        .then(review => dispatch(receiveReview(review)),
+        err => dispatch(receiveReviewErrors(err)))
+);

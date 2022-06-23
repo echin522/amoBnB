@@ -7,7 +7,7 @@ class ListingForm extends React.Component {
     constructor(props) {
         super(props);
         // this.coords = { lat: props.lat, lng: props.lng };
-        this.state = props.listing
+        this.state = props.listing;
 
         this.inputNames = {
             title: "Name of home",
@@ -29,13 +29,13 @@ class ListingForm extends React.Component {
     componentDidMount() {
         let mapOptions;
         (this.props.formType === 'update')
-            ? mapOptions = {
+            ? (mapOptions = {
                 center: { 
-                    lat: this.props.listing.latitude, 
-                    lng: this.props.listing.longitude 
+                    lat: this.state.lat, 
+                    lng: this.state.lng, 
                 },    
                 zoom: 15
-            } 
+            }, this.setState({ photoFiles: [] }))
             : mapOptions = {
                 center: {
                     lat: 37.773972, 
@@ -72,6 +72,7 @@ class ListingForm extends React.Component {
     }
 
     update(field) {
+        console.log(this.state);
         return e => this.setState({ [field]: e.target.value })
     }
 
@@ -101,10 +102,10 @@ class ListingForm extends React.Component {
 
         if (this.props.formType === "update") {
             this.props.action(formData, this.state.id)
-                .then(listing => this.props.history.push(`/listings/${listing.listing.id}`));
+                .then(listing => this.props.history.push(`/listings/${listing.id}`));
         } else {
             this.props.action(formData)
-                .then(listing => this.props.history.push(`/listings/${listing.listing.id}`));
+                .then(listing => this.props.history.push(`/listings/${listing.id}`));
         }
     }
 
@@ -116,6 +117,7 @@ class ListingForm extends React.Component {
                 type={type}
                 value={this.state[field]}
                 onChange={this.update(field)}
+                min="0"
             />
         </label>
     )
@@ -127,7 +129,15 @@ class ListingForm extends React.Component {
                     {this.formInput("text", "title")}
                     {this.formInput("text", "address")}
                     {this.formInput("text", "location")}
-                    {this.formInput("textarea", "description")}
+                    <label key="description" className="listing-field">
+                        <label htmlFor={"description"}>{this.inputNames["description"]}</label>
+                        <input 
+                            id="description"
+                            type="textarea"
+                            value={this.state["description"]}
+                            onChange={this.update("description")}
+                        />
+                    </label>
                         {/* {preview} */}
                 {/* </div> */}
                 {/* <div id="form-second-half"> */}
@@ -139,6 +149,10 @@ class ListingForm extends React.Component {
                 {/* </div> */}
             </div>               
         )
+    }
+
+    renderErrors() {
+        
     }
 
     render() {

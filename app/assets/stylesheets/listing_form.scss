@@ -63,17 +63,24 @@
     flex-direction: column;
     justify-content: space-between;
     border-top: 2px solid lightgrey;
+
     &:last-child {
         border-bottom: 2px solid lightgrey;
     }
+
     &:focus {
         border: 2px solid lightgrey;
         border-radius: 20px;
     }
-}
+    
+    input {
+        border: none;
+    }
 
-.listing-field input {
-    border: none;
+    #description {
+        height: 20vh;
+        border-radius: 1em;
+    }
 }
 
 .form-button-holder {
