@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom';
 class Banner extends React.Component {
     constructor(props) {
         super(props);
+        this.renderMiniSearchBar = this.renderMiniSearchBar.bind(this);
     }
 
     dropDown(e) {
@@ -20,6 +21,20 @@ class Banner extends React.Component {
             document.getElementById("mini-search-bar").classList.remove("hidden");
             document.querySelector(".search-bar").classList.add("hidden");
             document.removeEventListener("click", this.dropSearch);
+        }
+    }
+
+    renderMiniSearchBar() {
+        console.log("URL: ", this.props.url);
+        if (this.props.url === "/") {
+            return (
+                <div id='mini-search-bar' onClick={() => this.toggleSearchBar()}>
+                    <p>Find your perfect getaway</p>
+                    <span>
+                        <i className="fas fa-search"></i>
+                    </span>
+                </div>
+            )
         }
     }
     
@@ -53,12 +68,7 @@ class Banner extends React.Component {
                     <img className='banner-icon' src={window.icon}/>
                     <h1>amobnb</h1>
                 </Link>
-                <div id='mini-search-bar' onClick={() => this.toggleSearchBar()}>
-                    <p>Find your perfect getaway</p>
-                    <span>
-                        <i className="fas fa-search"></i>
-                    </span>
-                </div>
+                {this.renderMiniSearchBar()}
                 <div onClick={() => this.toggleUserOptions()} className='user-options'>
                     <i className="fa-solid fa-bars"></i>
                     <i className="fa-solid fa-user-astronaut"></i>

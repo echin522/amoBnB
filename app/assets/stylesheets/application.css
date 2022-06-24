@@ -52,13 +52,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-
-
 }
 
-#root:last-child {
-  margin-bottom: 50px;
+#root > *:nth-child(2) {
+  min-height: 100vh;
 }
+
 
 body {
   margin: 0;

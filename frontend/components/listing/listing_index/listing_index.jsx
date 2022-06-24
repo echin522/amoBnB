@@ -29,13 +29,15 @@ class ListingIndex extends React.Component {
                 <div className="listing-index-container content">
                     {indexHeader}
                     <div className="listing-index-and-map">
-                        {listings.map(listing => (
+                        {listings.map((listing, idx) => {
+                        if (idx > 23) return;
+                        return (
                             <ListingIndexItem 
                                 listing={listing}
                                 updateFilter={updateFilter}
                                 key={`listing-${listing.id}`}
                             />
-                        ))}
+                        )})}
                         {/* {areaMap} */}
                         
                     </div>

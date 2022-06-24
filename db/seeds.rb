@@ -52,8 +52,8 @@ test_listing.photos.attach(io: open("https://s.wsj.net/public/resources/images/B
 test_listing.photos.attach(io: open("http://cdn.home-designing.com/wp-content/uploads/2018/03/Retractable-doors-1.jpg"), filename: "testListingInterior6")
 test_listing.photos.attach(io: open("https://dailydesignews.com/wp-content/uploads/2021/03/4-8.jpg"), filename: "testListingInterior7")
 
-num_users = 20
-num_listings_per_city = 3 #30
+num_users = 5
+num_listings_per_city = 2 #30
 num_reviews_per_listing = 6 #10
 num_reservations_per_listing = 1 #5
 today = Date.today

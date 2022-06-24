@@ -9,6 +9,7 @@ import EditListingForm from "./listing/listing_form/edit_listing_container";
 import ListingIndex from "./listing/listing_index/listing_index_container";
 import SearchBar from './search_bar/search_bar_container';
 import UserShowPage from "./user/user_show/user_show_container";
+import Footer from "./footer/footer";
 
 // Auth routes redirect to homepage while Protected routes
 // redirect to the login page
@@ -29,8 +30,9 @@ const App = () => (
             <Route exact path="/listings/:listingId" component={ListingShow} />
             <Route exact path="/listings/edit/:listingId" component={EditListingForm} />
             <Route exact path="/users/:userId" component={UserShowPage} />
-            {/* <ProtectedRoute path="/reservations" component={} /> */}
         </Switch>
+
+        <Footer/>
     </>
 )
 

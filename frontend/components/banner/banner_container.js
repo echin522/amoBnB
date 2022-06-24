@@ -4,7 +4,8 @@ import { openModal } from '../../actions/modal_actions';
 import Banner from "./banner"
 
 const mSTP = (state, ownProps) => ({
-    currentUser: state.session.id
+    currentUser: state.session.id,
+    url: ownProps.history.location.pathname,
 });
 
 const mDTP = dispatch => ({
