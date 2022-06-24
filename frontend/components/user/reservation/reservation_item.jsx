@@ -4,7 +4,10 @@ class ReservationItem extends React.Component {
     constructor(props) {
         super(props);
         this.state = props.reservation;
+        this.state.edit = false;
         this.renderReservationButtons = this.renderReservationButtons.bind(this);
+        this.openReservationForm = this.openReservationForm.bind(this);
+        this.submitEdit = this.submitEdit.bind(this);
     }
 
     toMonth(monthNum) {
@@ -13,27 +16,76 @@ class ReservationItem extends React.Component {
         return months[monthNum - 1];
     }
 
+    update(field) {
+        return e => this.setState({ [field]: e.currentTarget.value });
+    }
+    
+    renderDatesOrDateInputs() {
+        if (!this.state.edit) {
+            let reservation = this.props.reservation;
+            let startRes = reservation.start_date.split("-");
+            let endRes = reservation.end_date.split("-");
+            let startDate = `${this.toMonth(parseInt(startRes[1]))} ${startRes[2]}`;
+            let endDate = `${this.toMonth(parseInt(endRes[1]))} ${endRes[2]}`;
+            return(
+                <>
+                    <p className="dates">{ `${startDate} -`}</p>
+                    <p>{endDate}</p>
+                </>
+            )
+        } else {
+            return (
+                <>
+                    <input 
+                        type="date"
+                        value={this.state.start_date}
+                        onChange={this.update("start_date")}
+                    />
+                    <input 
+                        type="date"
+                        value={this.state.end_date}
+                        onChange={this.update("end_date")}
+                    />
+                </>
+            )
+        }
+    }
+
     renderReservationButtons() {
-        return (
-            <div className="reservation-buttons">
-                <p onClick={() => this.props.deleteReservation(this.props.reservation.id)}>Delete this reservation</p>
-                <p onClick={this.openReservationForm}>Edit this reservation</p>
-            </div>
-        )
+        if (!this.state.edit) {
+            return (
+                <div className="reservation-buttons">
+                    <p onClick={() => this.props.deleteReservation(this.state.id)}>Delete this reservation</p>
+                    <p onClick={this.openReservationForm}>Edit this reservation</p>
+                </div>
+            )
+        } else {
+            return (
+                <div className="reservation-buttons">
+                    <p></p>
+                    <p onClick={this.submitEdit}>Confirm Edit</p>
+                </div>
+            )
+        }
     }
 
     openReservationForm() {
+        this.setState({ edit: !this.state.edit });
+    }
 
+    submitEdit(e) {
+        e.preventDefault();
+        console.log("STATE: ", this.state);
+        const reservation = Object.assign({}, this.state);
+        this.props.updateReservation(reservation)
+            .then(this.openReservationForm());
     }
     
     render() {
         const { reservation } = this.props;
         const listing = reservation.listing;
-        let startRes = reservation.start_date.split("-");
         let endRes = reservation.end_date.split("-");
-        let startDate = `${this.toMonth(parseInt(startRes[1]))} ${startRes[2]}`
-        let endDate = `${this.toMonth(parseInt(endRes[1]))} ${endRes[2]}`
-
+        
         return (
             <li className="reservation-item">
                 <div className="reservation-item-header">
@@ -42,8 +94,7 @@ class ReservationItem extends React.Component {
                 </div>
                 <div className="reservation-body">
                     <div className="reservation-dates">
-                        <p className="dates">{ `${startDate} -`}</p>
-                            <p>{endDate}</p>
+                        {this.renderDatesOrDateInputs()}
                         <p className="year">{endRes[0]}</p>
                     </div>
                     <div className="reservation-address">

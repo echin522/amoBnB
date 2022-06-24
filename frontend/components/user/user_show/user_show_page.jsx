@@ -1,5 +1,5 @@
 import React from "react";
-import ReservationItem from "../reservation/reservation_item";
+import ReservationItem from "../reservation/reservation_item_container";
 
 class UserShow extends React.Component {
     constructor(props) {

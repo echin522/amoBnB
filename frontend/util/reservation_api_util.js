@@ -31,7 +31,7 @@ export const updateReservation = reservation => (
 
 export const deleteReservation = reservationId => (
     $.ajax({
-        url: `/api/listings/${reservationId}`,
+        url: `/api/reservations/${reservationId}`,
         method: 'DELETE'
     })
 );

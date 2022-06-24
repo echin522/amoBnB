@@ -45,16 +45,15 @@ export const createReservation = reservation => dispatch => (
     ))
 );
 
-export const updateReservation = reservation => dispatch => {
-    return reservationAPIUtil.updateReservation(reservation)
+export const updateReservation = reservation => dispatch => (
+    reservationAPIUtil.updateReservation(reservation)
         .then(reservation => dispatch(receiveReservation(reservation),
-        (err) => dispatch(receiveReservationErrors(err.responseJSON))
+        err => dispatch(receiveReservationErrors(err.responseJSON))
     ))
-}
+);
 
 export const deleteReservation = reservationId => dispatch => (
     reservationAPIUtil.deleteReservation(reservationId)
-        .then(reservation => (dispatch(removeReservation(reservation)),
-        (err) => dispatch(receiveReservationErrors(err.responseJSON))
+        .then(() => (dispatch(removeReservation(reservationId))
     ))
 );
