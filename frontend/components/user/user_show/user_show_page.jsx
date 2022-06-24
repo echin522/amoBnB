@@ -25,7 +25,7 @@ class UserShow extends React.Component {
                     <h2>Hello, {this.capitalize(currentUser.fname)} {this.capitalize(currentUser.lname)}!</h2>
                 </section>
                 <section className="trips">
-                    <h2>Upcoming Trips</h2>
+                    <h2>Your Trips</h2>
                     <div>
                         <ul className="user-trips">
                             {reservations.map(reservation => (
@@ -39,9 +39,9 @@ class UserShow extends React.Component {
                         </ul>
                     </div>
                 </section>
-                <section>
+                {/* <section>
                     <h2>Past Trips</h2>
-                </section>
+                </section> */}
             </div>
         )
     }

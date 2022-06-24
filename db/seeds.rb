@@ -1,5 +1,6 @@
 require 'faker'
 require 'open-uri'
+require 'date'
 
 # Reset the database
 User.destroy_all
@@ -26,6 +27,11 @@ amenities = [
 ]
 
 these_amenities = []
+8.times do 
+    curr_amenity = amenities.sample
+    these_amenities.push(curr_amenity)
+    amenities.delete(curr_amenity)
+end
 
 test_listing = Listing.create!(
     title: "Big house",
@@ -36,7 +42,7 @@ test_listing = Listing.create!(
     num_baths: 3,
     price_per_night: 117,
     lat: 37.804, lng: -122.419651,
-    amenities: these_amenities.push(amenities.shuffle!.pop),
+    amenities: these_amenities,
     address: "404 0th Street",
     location: "San Francisco",
     owner_id: 1
@@ -53,9 +59,9 @@ test_listing.photos.attach(io: open("http://cdn.home-designing.com/wp-content/up
 test_listing.photos.attach(io: open("https://dailydesignews.com/wp-content/uploads/2021/03/4-8.jpg"), filename: "testListingInterior7")
 
 num_users = 5
-num_listings_per_city = 2 #30
+num_listings_per_city = 8 #30
 num_reviews_per_listing = 6 #10
-num_reservations_per_listing = 1 #5
+num_reservations = 5 #5
 today = Date.today
 
 review_bodies = [
@@ -349,7 +355,7 @@ house_descriptions = [
     Our common areas include the best amenities around, such as our large firepit for nighttime relaxation, our pebble-textured hot tub for unwinding after a long day, or our large patio for a scenic cup of coffee in the morning.",
     "Contemporary farmhouse chic - the Peacock Room is an airy and bright getaway. Enjoy your own private bedroom with a private entryway and parking as well as a stunning bathroom. Self- check in.123
     We maintain clean and sterilized environments for our guests, using current industry standards for sterilizing hard surfaces, appliances and guest areas.123
-    We are a licensed short term rental."123
+    We are a licensed short term rental."
 ]
 
 # Create a bunch of random users
@@ -387,18 +393,6 @@ review_bodies.each do |review|
     )
 end
 
-5.times do |i|
-    start_date = (rand(1..23) + (i * 30))
-    end_date = start_date + rand(1..7)
-    Reservation.create!(
-        start_date: today - start_date,
-        end_date: today - end_date,
-        num_guests: rand(1..10),
-        listing_id: rand(2..(num_listings_per_city * locations.length()),
-        user_id: 1
-    )
-end
-
 # Create random listings
 locations.each_key do |city|
     num_listings_per_city.times do
@@ -409,20 +403,18 @@ locations.each_key do |city|
         beds = rand(1..guests)
         rooms = rand(1..beds)
         baths = rand(1..rooms)
-        description = []
+        description = house_descriptions.sample()
         these_amenities = []
 
-        rand(1..5).times do 
-            description.push(house_descriptions.sample())
-        end
-
         8.times do
-            these_amenities.push(amenities.shuffle!.pop)
+            curr_amenity = amenities.sample
+            these_amenities.push(curr_amenity)
+            amenities.delete(curr_amenity)
         end
 
         curr_listing = Listing.create!(
             title: "#{Faker::Space.meteorite} #{Faker::Space.star_cluster}",
-            description: description.join(""),
+            description: description,
             address: "#{Faker::Address.street_address}, #{city}, #{locations[city]}, #{Faker::Address.zip}",
             lat: rand(city_coords[city][:lat]),
             lng: rand(city_coords[city][:lng]),
@@ -477,4 +469,18 @@ locations.each_key do |city|
         #     )
         # end
     end
+end
+
+num_reservations.times do |i|
+    start_date = today - (rand(1..23) + (i * 30))
+    end_date = start_date + rand(1..7)
+    num_guests = rand(1..10)
+    listing_id = rand(2..(num_listings_per_city * locations.length()))
+    Reservation.create!(
+        start_date: start_date,
+        end_date: end_date,
+        num_guests: num_guests,
+        listing_id: listing_id,
+        user_id: 1
+    )
 end
