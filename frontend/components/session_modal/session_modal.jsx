@@ -3,12 +3,13 @@ import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
 import LoginFormContainer from '../session_form/login_form_container';
 import SignupFormContainer from '../session_form/signup_form_container';
+import ReviewFormContainer from "../listing/listing_reviews/review_form_container";
 
 const Modal = ({ modal, closeModal }) => {
     if (!modal) {
         return null;
     }
-
+    
     let component;
     switch(modal) {
         case "login":
@@ -17,11 +18,14 @@ const Modal = ({ modal, closeModal }) => {
         case "signup":
             component = <SignupFormContainer />;
             break;
+        case "review":
+            component = <ReviewFormContainer/>;
+            break;
         default:
             return null;
     }
 
-    return(
+    return (
         <div className="modal-bg" onClick={closeModal}>
             <div className="modal-child" onClick={e => e.stopPropagation()}>
                 { component }

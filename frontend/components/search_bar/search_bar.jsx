@@ -4,18 +4,20 @@ import { withRouter } from "react-router-dom";
 class SearchBar extends React.Component {
     constructor(props) {
         super(props);
-        this.handleSubmit = this.handleSubmit.bind(this);
         this.state = {
             location: "",
             start_date: "",
             end_date: "",
             max_guests: "",
         }
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.fetchListings(this.state);
+        // this.props.history.push("/")
+        //     .then(() => this.props.fetchListings(this.state))
+        this.props.fetchListings(this.state)
     }
 
     handleChange(field) {

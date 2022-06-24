@@ -13,6 +13,7 @@
     display: flex;
     justify-content: center;
     width: 50%;
+    min-width: 525px;
     max-width: 600px;
     background-color: white;
     border-radius: 15px;
@@ -106,7 +107,15 @@
 }
 
 #demo-button {
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    font-size: 16px;
     background-image: linear-gradient(to left, #e51f4e, #d60567);
+    border: none;
+    border-radius: 7px;
+    height: 50px;
 }
 
 .modal-bg button:hover {

@@ -7,7 +7,6 @@
 
 #leave-review:hover {
     transition: all 0.1s;
-
     cursor: pointer;
     border-bottom: 2px solid black;
 }
@@ -28,6 +27,12 @@
 
 .review {
     height: 156px;
+    form {
+        height: 100%;
+        textarea {
+            resize: none;
+        }
+    }
     .review-body {
         overflow: auto;
         border-radius: 10px;
@@ -115,30 +120,19 @@
 
 // MODAL
 
-#reviews-modal-bg {
-    position: fixed;
-    z-index: 3;
-    left: 0;
-    top: 0;
-    margin: 0px;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0 , 0.4);
-}
-
-.new-review-container {
+#review-form{
     display: flex;
-    min-width: 525px;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    width: 50%;
-    max-width: 600px;
-    background-color: white;
-    border-radius: 15px;
-    margin: 15% auto;
+    width: 100%;
+    padding-bottom: 7%;
+
+    .modal-header {
+        width: 100%;
+    }
 
     .rating-container {
+        display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
@@ -190,6 +184,7 @@
     }
 }
 
+
 .new-review-container > * {
     margin-bottom: 30px;
     width: 100%;
@@ -198,6 +193,7 @@
 // STAR RATING STUFF
 
 .star-wrapper {
+    display: flex;
     flex-direction: row-reverse;
     justify-content: center;
     

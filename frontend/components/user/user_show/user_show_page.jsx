@@ -27,20 +27,15 @@ class UserShow extends React.Component {
                 <section className="trips">
                     <h2>Upcoming Trips</h2>
                     <div>
-
                         <ul className="user-trips">
-                            {
-                                reservations.map(reservation => {
-                                    return(
-                                        <ReservationItem
-                                            key={reservation.id}
-                                            reservation={reservation}
-                                            deleteReservation={deleteReservation}
-                                            updateReservation={updateReservation}
-                                        />
-                                        )
-                                    })
-                                }
+                            {reservations.map(reservation => (
+                                    <ReservationItem
+                                        key={reservation.id}
+                                        reservation={reservation}
+                                        deleteReservation={deleteReservation}
+                                        updateReservation={updateReservation}
+                                    />
+                            ))}
                         </ul>
                     </div>
                 </section>

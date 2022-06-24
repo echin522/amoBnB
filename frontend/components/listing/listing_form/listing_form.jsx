@@ -131,7 +131,7 @@ class ListingForm extends React.Component {
                     {this.formInput("text", "location")}
                     <label key="description" className="listing-field">
                         <label htmlFor={"description"}>{this.inputNames["description"]}</label>
-                        <input 
+                        <textarea 
                             id="description"
                             type="textarea"
                             value={this.state["description"]}

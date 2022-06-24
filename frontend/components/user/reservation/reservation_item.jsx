@@ -3,12 +3,27 @@ import React from "react";
 class ReservationItem extends React.Component {
     constructor(props) {
         super(props);
+        this.state = props.reservation;
+        this.renderReservationButtons = this.renderReservationButtons.bind(this);
     }
 
     toMonth(monthNum) {
         const months = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", 
         "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ]
         return months[monthNum - 1];
+    }
+
+    renderReservationButtons() {
+        return (
+            <div className="reservation-buttons">
+                <p onClick={() => this.props.deleteReservation(this.props.reservation.id)}>Delete this reservation</p>
+                <p onClick={this.openReservationForm}>Edit this reservation</p>
+            </div>
+        )
+    }
+
+    openReservationForm() {
+
     }
     
     render() {
@@ -40,6 +55,7 @@ class ReservationItem extends React.Component {
                         </p>
                     </div>
                 </div>
+                {this.renderReservationButtons()}
                 <img className="reservation-image" src={listing.photoUrls[0]}/>
             </li>
         )

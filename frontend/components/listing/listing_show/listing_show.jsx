@@ -3,8 +3,6 @@ import ListingMap from "../listing_map/listing_map";
 import Amenities from "./listing_amenities";
 import ListingReviewsItem from "../listing_reviews/listing_reviews_item_container";
 import ProgressBar from "./progress_bar";
-import ReviewFormModal from "../listing_reviews/review_form_container";
-import EditReviewModal from "../listing_reviews/edit_review_container";
 
 class ListingShow extends React.Component {
     constructor(props) {
@@ -25,7 +23,6 @@ class ListingShow extends React.Component {
         this.props.fetchListing(this.props.match.params.listingId)
         document.querySelector("header").style.position = "static";
         document.querySelector(".banner").style.maxWidth = "1300px";
-        console.log("props: ", this.props);
     }
     
     componentWillUnmount() {
@@ -138,7 +135,7 @@ class ListingShow extends React.Component {
 
         return (
             <div className="listing-show-container content">
-                <ReviewFormModal listingId={listing.id}/>
+                {/* <ReviewFormModal listingId={listing.id}/> */}
                 <div className="listing-show-title">
                     <h1>{listing.title}</h1>
                     <h4 className="reserve-block-price">

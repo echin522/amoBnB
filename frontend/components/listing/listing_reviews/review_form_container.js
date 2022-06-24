@@ -1,12 +1,14 @@
-import ReviewModal from "./reviews_modal";
+import React from "react";
 import { connect } from "react-redux";
 import { createReview } from "../../../actions/listing_actions";
-import { closeModal } from "../../../actions/modal_actions";
+import { openModal, closeModal } from "../../../actions/modal_actions";
+import ReviewForm from "./reviews_form";
 
 const mSTP = ( state, ownProps) => ({
     modal: state.ui.modal,
     listingId: ownProps.listingId,
     errors: state.errors.session,
+    formType: "create",
     review: {
         body: "",
         cleanliness_rating: 0,
@@ -21,7 +23,8 @@ const mSTP = ( state, ownProps) => ({
 
 const mDTP = dispatch => ({
     processForm: review => dispatch(createReview(review)),
+    openModal: modal => dispatch(openModal(modal)),
     closeModal: () => dispatch(closeModal()),
 })
 
-export default connect(mSTP, mDTP)(ReviewModal);
+export default connect(mSTP, mDTP)(ReviewForm);

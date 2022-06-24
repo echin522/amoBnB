@@ -76,10 +76,15 @@
     input {
         border: none;
     }
-
+    
     #description {
+        border: none;
         height: 20vh;
         border-radius: 1em;
+        resize: none;
+        &:focus {
+            outline: none;
+        }
     }
 }
 

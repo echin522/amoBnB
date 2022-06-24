@@ -94,16 +94,16 @@ class SessionForm extends React.Component {
                         Sign up</p>
                     <div></div>
                 </div>
-                <form onSubmit={this.handleSubmit} className="login-form">
+                <form className="login-form">
                     <h1>Welcome to AmoBnB</h1>
                     {this.renderErrors()}
                     { formInfo }
-                    <button type="submit" className="session-submit">
+                    <button onClick={this.handleSubmit} type="submit" className="session-submit">
                         {this.props.formType.charAt(0).toUpperCase() + this.props.formType.slice(1)}
                     </button>
-                    <button onClick={this.loginAsDemo} id="demo-button">
+                    <div onClick={this.loginAsDemo} id="demo-button">
                         Log in as Demo User
-                    </button>
+                    </div>
                 </form>
                 <p id="other-form" onClick={() => this.props.openModal(this.props.otherForm)}>{otherFormText}</p>
             </div>

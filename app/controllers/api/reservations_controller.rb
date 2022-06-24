@@ -56,7 +56,12 @@ class Api::ReservationsController < ApplicationController
     end
     
     def update
-        
+        @reservation = Reservation.find_by(id: params[:id])
+        if @reservation and @reservation.user_id == current_user.id and @reservation.update(reservation_params) 
+            render :show
+        else
+            render json: @reservation.errors.full_messages, status: 422
+        end
     end
 
     def destroy
