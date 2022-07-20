@@ -8,6 +8,16 @@
     <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{Rails.application.credentials.google[:maps_api_key]}" %>
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+
+    <meta property="og:title" content="AmoBnB" />
+    <meta property='og:image' content="<%= image_url('amogus_icon.png') %>"/>
+    <meta property="og:description"
+      content="A fullstack clone of AirBnB."
+    />
+    <meta property="og:url"
+      content="https://amobnb.herokuapp.com/#/"
+    />
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope&family=Open+Sans:wght@500&display=swap" rel="stylesheet">

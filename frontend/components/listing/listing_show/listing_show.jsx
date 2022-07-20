@@ -20,7 +20,7 @@ class ListingShow extends React.Component {
     }
 
     componentDidMount() {
-        this.props.fetchListing(this.props.match.params.listingId)
+        this.props.fetchListing(this.props.match.params.listingId);
         document.querySelector("header").style.position = "static";
         document.querySelector(".banner").style.maxWidth = "1300px";
     }
@@ -91,6 +91,11 @@ class ListingShow extends React.Component {
                 ))}
             </ul>
         )
+    }
+
+    renderReviewErrors() {
+        if (!this.props.errors.reviews) return
+        return this.props.errors.reviews.statusText;
     }
 
     render() {
@@ -216,7 +221,7 @@ class ListingShow extends React.Component {
                             <label className="reserve-block-input">
                                 <h2>GUESTS</h2>
                                 <input 
-                                    type="text"
+                                    type="number"
                                     value={this.state.num_guests}
                                     onChange={this.update("num_guests")}
                                     placeholder="1 guest"
@@ -260,9 +265,14 @@ class ListingShow extends React.Component {
                         <h2>Reviews</h2>
                         <h4 id="leave-review" onClick={() => this.props.openModal("review")}>Leave a review</h4>
                     </div>
-                    <p id="reviews-scores">
-                        <i className="fa-solid fa-star"></i> {averageRating} · {listing.num_reviews} reviews
-                    </p>
+                    <div id="review-overall">
+                        <p id="reviews-scores">
+                            <i className="fa-solid fa-star"></i> {averageRating} · {listing.num_reviews} reviews
+                        </p>
+                        <p id="review-errors">
+                            {this.renderReviewErrors()}
+                        </p>
+                    </div>
                     <ul id="reviews-metrics">
                         <li className="metric" key="cleanliness">
                             <p>Cleanliness</p>

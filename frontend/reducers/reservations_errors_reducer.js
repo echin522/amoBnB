@@ -1,4 +1,8 @@
-import { RECEIVE_RESERVATION_ERRORS,RECEIVE_RESERVATIONS,RECEIVE_RESERVATION } from "../actions/reservation_actions";
+import { 
+    RECEIVE_RESERVATION_ERRORS,
+    RECEIVE_RESERVATIONS,
+    RECEIVE_RESERVATION,
+} from "../actions/reservation_actions";
 import { CLEAR_ERRORS } from "../actions/session_actions";
 
 export default (state = [], action) => {

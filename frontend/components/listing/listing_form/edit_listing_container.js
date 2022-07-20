@@ -32,7 +32,7 @@ const mSTP = (state, ownProps) => ({
     formType: "update",
     listing: state.entities.listings[ownProps.match.params.listingId],
     currentUserId: state.session.id,
-    errors: state.errors.listingErrors,
+    errors: state.errors.listings,
 });
 
 const mDTP = (dispatch, ownProps) => ({

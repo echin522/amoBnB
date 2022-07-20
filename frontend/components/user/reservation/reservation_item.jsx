@@ -8,6 +8,7 @@ class ReservationItem extends React.Component {
         this.renderReservationButtons = this.renderReservationButtons.bind(this);
         this.openReservationForm = this.openReservationForm.bind(this);
         this.submitEdit = this.submitEdit.bind(this);
+        this.redirectToListing = this.redirectToListing(this);
     }
 
     toMonth(monthNum) {
@@ -75,10 +76,13 @@ class ReservationItem extends React.Component {
 
     submitEdit(e) {
         e.preventDefault();
-        console.log("STATE: ", this.state);
         const reservation = Object.assign({}, this.state);
         this.props.updateReservation(reservation)
             .then(this.openReservationForm());
+    }
+
+    redirectToListing() {
+        // this.props.history.push(`/listings/${reservation.isting_id}`);
     }
     
     render() {
@@ -107,7 +111,11 @@ class ReservationItem extends React.Component {
                     </div>
                 </div>
                 {this.renderReservationButtons()}
-                <img className="reservation-image" src={listing.photoUrls[0]}/>
+                <img
+                    className="reservation-image"
+                    src={listing.photoUrls[0]}
+                    onClick={this.redirectToListing}
+                />
             </li>
         )
     }

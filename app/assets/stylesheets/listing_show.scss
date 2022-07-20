@@ -184,6 +184,9 @@
 .reserve-block-input {
     align-items: baseline;
     padding: 8px;
+    input {
+        width: 100%;
+    }
 }
 
 .reserve-block-input:hover {

@@ -44,7 +44,12 @@ class ListingReviewsItem extends React.Component {
 
     renderFormOrBody() {
         if (this.state.edit) {
-            return <textarea className="review-body" value={this.state.body} onChange={this.update("body")}/>
+            return (
+                <>
+                    <textarea className="review-body" value={this.state.body} onChange={this.update("body")}/>
+                    <button className="edit-review-button">Submit Edit</button>
+                </>
+            )
         } else {
             return <p className="review-body">{this.state.body}</p>
         }

@@ -6,7 +6,6 @@ import ReviewForm from "./reviews_form";
 
 const mSTP = ( state, ownProps) => ({
     modal: state.ui.modal,
-    listingId: ownProps.listingId,
     errors: state.errors.session,
     formType: "create",
     review: {
@@ -17,7 +16,7 @@ const mSTP = ( state, ownProps) => ({
         communication_rating: 0,
         accuracy_rating: 0,
         value_rating: 0,
-        listing_id: ownProps.listingId,
+        listing_id: Object.keys(state.entities.listings)[0],
     }
 });
 

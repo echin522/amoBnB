@@ -4,10 +4,10 @@ import { withRouter } from "react-router-dom";
 class ReviewModal extends React.Component {
     constructor(props) {
         super(props);
-        this.state = props.review
+        this.state = props.review;
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-
+    
     handleSubmit(e) {
         e.preventDefault();
         const review = Object.assign({}, this.state);

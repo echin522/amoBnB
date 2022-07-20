@@ -25,7 +25,6 @@ class Banner extends React.Component {
     }
 
     renderMiniSearchBar() {
-        console.log("URL: ", this.props.url);
         if (this.props.url === "/") {
             return (
                 <div id='mini-search-bar' onClick={() => this.toggleSearchBar()}>
