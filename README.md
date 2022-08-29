@@ -10,8 +10,4 @@ AmoBnB is built with a React/Redux frontend and a Ruby on Rails backend. All fro
 
 # Key Features
 
-## Full CRUD Functionality
-  * User Profiles
-  * Listings
-  * Reviews
-  * Reservations
+
