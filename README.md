@@ -12,7 +12,7 @@ AmoBnB is built with a React/Redux frontend and a Ruby on Rails backend. All fro
 
 ## User Authentication
 
-![Dropdown](https://imgur.com/sTKEFXo)
+![Dropdown](https://i.imgur.com/sTKEFXo.png[/img])
 ![Modal](https://imgur.com/fPRfQjZ)
 
 ## Creating and Editing Listings
