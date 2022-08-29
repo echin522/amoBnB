@@ -13,32 +13,32 @@ AmoBnB is built with a React/Redux frontend and a Ruby on Rails backend. All fro
 ## User Authentication
 
 ![Dropdown](https://i.imgur.com/sTKEFXo.png[/img])
-![Modal](https://imgur.com/fPRfQjZ)
+![Modal](https://i.imgur.com/fPRfQjZ.png[/img])
 
 ## Creating and Editing Listings
 
-![Create Listing](https://imgur.com/ASJrIaJ)
+![Create Listing](https://i.imgur.com/ASJrIaJ.png[/img])
 
-![Listing](https://imgur.com/MBBUBVD)
+![Listing](https://i.imgur.com/MBBUBVD.png[/img])
 
 ## Writing and Editing Reviews
 
-![Review](https://imgur.com/KBm7CdN)
+![Review](https://i.imgur.com/KBm7CdN.png[/img])
 
-![Edit Review](https://imgur.com/n5G6e5Y)
+![Edit Review](https://i.imgur.com/n5G6e5Y.png[/img])
 
 ## Booking Reservations
 
-![Reservations](https://imgur.com/Zp0K9Ub)
+![Reservations](https://i.imgur.com/Zp0K9Ub.png[/img])
 
 ## Managing Reservations
 
-![Manage Reservations](https://imgur.com/drFqd5o)
+![Manage Reservations](https://i.imgur.com/drFqd5o.png[/img])
 
 ## Maps
 
-![Imgur](https://imgur.com/dLu1kFX)
+![Imgur](https://i.imgur.com/dLu1kFX.png[/img])
 
 ## Search Functionality
 
-![Search](https://imgur.com/TcoErDV)
+![Search](https://i.imgur.com/TcoErDV.png[/img])
