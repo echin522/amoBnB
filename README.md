@@ -12,33 +12,33 @@ AmoBnB is built with a React/Redux frontend and a Ruby on Rails backend. All fro
 
 ## User Authentication
 
-[Dropdown](https://imgur.com/sTKEFXo)
-[Modal](https://imgur.com/fPRfQjZ)
+![Dropdown](https://imgur.com/sTKEFXo)
+![Modal](https://imgur.com/fPRfQjZ)
 
 ## Creating and Editing Listings
 
-[Create Listing](https://imgur.com/ASJrIaJ)
+![Create Listing](https://imgur.com/ASJrIaJ)
 
-[Listing](https://imgur.com/MBBUBVD)
+![Listing](https://imgur.com/MBBUBVD)
 
 ## Writing and Editing Reviews
 
-[Review](https://imgur.com/KBm7CdN)
+![Review](https://imgur.com/KBm7CdN)
 
-[Edit Review](https://imgur.com/n5G6e5Y)
+![Edit Review](https://imgur.com/n5G6e5Y)
 
 ## Booking Reservations
 
-[Reservations](https://imgur.com/Zp0K9Ub)
+![Reservations](https://imgur.com/Zp0K9Ub)
 
 ## Managing Reservations
 
-[Manage Reservations](https://imgur.com/drFqd5o)
+![Manage Reservations](https://imgur.com/drFqd5o)
 
 ## Maps
 
-[Imgur](https://imgur.com/dLu1kFX)
+![Imgur](https://imgur.com/dLu1kFX)
 
 ## Search Functionality
 
-[Search](https://imgur.com/TcoErDV)
+![Search](https://imgur.com/TcoErDV)
